@@ -11,4 +11,6 @@ export enum Color {
   Green = "#00A340",
   Yellow = "#F3A608",
   Orange = "#F45D2D",
+  Primary_BG = "var(--bg-primary)",
+  Primary_TX = "var(--primary)",
 }
