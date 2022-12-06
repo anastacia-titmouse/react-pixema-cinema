@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { OmdbAPI } from "./services/omdbApi";
+import { IMovie } from "./types/types";
 import { Color } from "./ui";
 
 export const App = () => {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [movies, setMovies] = useState<Array<IMovie>>([]);
+
+  useEffect(() => {
+    OmdbAPI.getMovies("id").then((movies) => {
+      console.log(movies);
+      setMovies(movies as any);
+    });
+  }, []);
+
+  console.log(OmdbAPI);
 
   useEffect(() => {
     document.documentElement.setAttribute("theme", theme);
@@ -12,7 +24,6 @@ export const App = () => {
   const handleTheme = () => {
     setTheme((theme) => (theme === "dark" ? "light" : "dark"));
   };
-
   return (
     <StyledApp>
       <Title>
@@ -21,6 +32,14 @@ export const App = () => {
         quo ullam nisi eos rerum recusandae accusantium iste accusamus
         architecto fugiat alias?
       </Title>
+      <ul>
+        {/* {movies.map((m) => (
+          <li>
+            {m.t}
+            {m.i}
+          </li>
+        ))} */}
+      </ul>
       <button onClick={handleTheme}>Theme</button>
     </StyledApp>
   );
