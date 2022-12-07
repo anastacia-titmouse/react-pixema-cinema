@@ -1,10 +1,3 @@
-export interface IMovie {
-  t: string;
-  type: string;
-  y: string;
-  i: string;
-}
-
 export interface IMovieInfoAPI {
   Title: string;
   Year: string;
@@ -30,11 +23,27 @@ export interface IMovieInfoAPI {
   BoxOffice: string;
 }
 
-export interface IRating {
-  Source: string;
-  Value: string;
+export interface IMovie {
+  title: string;
+  year: string;
+  imdbID: string;
+  type: string;
+  poster: string;
+}
+export interface IMovieAPI {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
 }
 
-export interface ISearch {
-  Search: IMovie[];
+export interface IDataAPI {
+  Search: IMovieAPI[];
+  totalResult: string;
+  Response: string;
+}
+interface IRating {
+  Source: string;
+  Value: string;
 }

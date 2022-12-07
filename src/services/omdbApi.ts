@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IMovieInfoAPI } from "../types/types";
+import { IDataAPI, IMovieInfoAPI } from "../types/types";
 
 class OmdbApi {
   private readonly BASE_URL = process.env.REACT_APP_BASE_URL_OMDB_API;
@@ -11,24 +11,21 @@ class OmdbApi {
     },
   });
 
-  //   public async getAll() {
-  //     const params = {
-  //       fields: ["t", "type", "y"].join(","),
-  //     };
-  //     const { data } = await this.API.get<IMovie[]>(this.ENDPOINT.all, {
-  //       params,
-  //     });
-
-  //     return data;
-  //   }
-
   public async getMovies(id: string) {
     const params = {
-      t: "batman",
-      y: "2020",
+      i: id,
       plot: "full",
     };
     const { data } = await this.API.get<IMovieInfoAPI[]>("", { params });
+    return data;
+  }
+  public async getMoviesBySearch(name: string, type: string, year?: number) {
+    const params = {
+      s: name,
+      type,
+      y: year,
+    };
+    const { data } = await this.API.get<IDataAPI>("", { params });
     return data;
   }
 }

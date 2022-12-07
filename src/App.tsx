@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { OmdbAPI } from "./services/omdbApi";
-import { IMovie } from "./types/types";
+import { useInput } from "./hooks";
+import { OmdbAPI, transformMovies } from "./services";
+import { IMovie } from "./types";
 import { Color } from "./ui";
 
 export const App = () => {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const [movies, setMovies] = useState<Array<IMovie>>([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
+  const search = useInput();
 
   useEffect(() => {
-    OmdbAPI.getMovies("id").then((movies) => {
-      console.log(movies);
-      setMovies(movies as any);
-    });
+    OmdbAPI.getMoviesBySearch("superman", "movie")
+      .then((data) => {
+        console.log(data);
+        return transformMovies(data.Search);
+      })
+      .then(setMovies);
   }, []);
-
-  console.log(OmdbAPI);
 
   useEffect(() => {
     document.documentElement.setAttribute("theme", theme);
