@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IDataAPI, IMovieInfoAPI } from "../types/types";
+import { IResponseAPI, IMovieInfoAPI } from "../types/types";
 
 class OmdbApi {
   private readonly BASE_URL = process.env.REACT_APP_BASE_URL_OMDB_API;
@@ -25,7 +25,7 @@ class OmdbApi {
       type,
       y: year,
     };
-    const { data } = await this.API.get<IDataAPI>("", { params });
+    const { data } = await this.API.get<IResponseAPI>("", { params });
     return data;
   }
 }

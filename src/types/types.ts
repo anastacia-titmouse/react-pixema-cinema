@@ -38,7 +38,7 @@ export interface IMovieAPI {
   Poster: string;
 }
 
-export interface IDataAPI {
+export interface IResponseAPI {
   Search: IMovieAPI[];
   totalResult: string;
   Response: string;
