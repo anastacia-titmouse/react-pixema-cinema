@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { StyledApp } from "./appWrapper";
 import { MoviesList } from "./components/MoviesList";
+import { Search } from "./components/Search";
 import { useInput } from "./hooks";
 import { OmdbAPI, transformMovies } from "./services";
 import { getUser, useAppDispatch } from "./store";
@@ -41,6 +42,7 @@ export const App = () => {
   };
   return (
     <StyledApp>
+      <Search />
       <MoviesList movies={movies} />
       <div>
         <h3>{name}</h3>

@@ -1,14 +1,19 @@
-import { ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
+import { setKeyword } from "../../store/searchSlice/searchSlice"; //TODO aliases
 
-interface IProps {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-}
-export const Search = ({ onChange, value }: IProps) => {
+export const Search = () => {
+  const dispatch = useDispatch();
+
+  const onChange = (keyword: string) => {
+    dispatch(setKeyword(keyword));
+    //TODO debounce
+  };
+
   return (
     <input
-      onChange={onChange}
-      value={value}
+      onChange={(e) => {
+        onChange(e.target.value);
+      }}
       type="search"
       placeholder="Search"
     />
