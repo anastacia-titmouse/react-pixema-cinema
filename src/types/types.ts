@@ -29,6 +29,7 @@ export interface IMovie {
   imdbID: string;
   type: string;
   poster: string;
+  genre: string;
 }
 export interface IMovieAPI {
   Title: string;
@@ -36,6 +37,7 @@ export interface IMovieAPI {
   imdbID: string;
   Type: string;
   Poster: string;
+  Genre: string;
 }
 
 export interface IResponseAPI {

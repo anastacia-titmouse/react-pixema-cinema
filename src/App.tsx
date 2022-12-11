@@ -1,12 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
+import { StyledApp } from "./appWrapper";
+import { MoviesList } from "./components/MoviesList";
 import { useInput } from "./hooks";
 import { OmdbAPI, transformMovies } from "./services";
 import { getUser, useAppDispatch } from "./store";
 import { setUserName, toggleAuth } from "./store/userSlice/userSlice";
 import { IMovie } from "./types";
-import { Color } from "./ui";
 
 export const App = () => {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -24,10 +24,9 @@ export const App = () => {
   };
 
   useEffect(() => {
-    OmdbAPI.getMoviesBySearch("superman", "movie")
-      .then((data) => {
-        const transformedMovies = transformMovies(data.Search);
-        console.log(transformedMovies);
+    OmdbAPI.getMoviesBySearch("superman")
+      .then((moviesList) => {
+        const transformedMovies = transformMovies(moviesList);
         return transformedMovies;
       })
       .then(setMovies);
@@ -42,17 +41,7 @@ export const App = () => {
   };
   return (
     <StyledApp>
-      <Title>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero neque
-        quia reprehenderit officia molestias, dolores excepturi minima adipisci
-        quo ullam nisi eos rerum recusandae accusantium iste accusamus
-        architecto fugiat alias?
-      </Title>
-      <ul>
-        {movies.map((m) => (
-          <li>{m.title}</li>
-        ))}
-      </ul>
+      <MoviesList movies={movies} />
       <div>
         <h3>{name}</h3>
         <h4>{email}</h4>
@@ -64,10 +53,3 @@ export const App = () => {
     </StyledApp>
   );
 };
-
-const StyledApp = styled.div`
-  background: ${Color.Primary_BG};
-`;
-const Title = styled.h1`
-  color: ${Color.Primary_TX};
-`;

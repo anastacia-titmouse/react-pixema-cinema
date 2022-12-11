@@ -11,22 +11,28 @@ class OmdbApi {
     },
   });
 
-  public async getMovies(id: string) {
+  public async getMovieById(id: string) {
     const params = {
       i: id,
       plot: "full",
     };
-    const { data } = await this.API.get<IMovieInfoAPI[]>("", { params });
+    const { data } = await this.API.get<IMovieInfoAPI>("", { params });
     return data;
   }
-  public async getMoviesBySearch(name: string, type: string, year?: number) {
-    const params = {
-      s: name,
-      type,
-      y: year,
-    };
-    const { data } = await this.API.get<IResponseAPI>("", { params });
-    return data;
+
+  public async getMoviesBySearch(
+    keyword: string
+  ): Promise<Array<IMovieInfoAPI>> {
+    const { data } = await this.API.get<IResponseAPI>("", {
+      params: { s: keyword },
+    });
+
+    if (data.Response === "False") {
+      return [];
+    }
+
+    const moviesIds = data.Search.map((movie) => movie.imdbID);
+    return Promise.all(moviesIds.map((id) => this.getMovieById(id)));
   }
 }
 
