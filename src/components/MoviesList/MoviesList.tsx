@@ -1,5 +1,5 @@
 import { IMovie } from "../../types";
-import { MovieCard } from "../MovieCard";
+import { MovieCard } from "../index";
 import { StyledList } from "./styles";
 
 interface IProps {

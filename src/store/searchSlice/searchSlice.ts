@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface SearchState {
@@ -14,7 +14,6 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     setKeyword: (state, action: PayloadAction<string>) => {
-      console.log(action);
       state.keyword += action.payload;
     },
   },

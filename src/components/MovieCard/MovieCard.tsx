@@ -6,7 +6,6 @@ interface IProps {
   year: string;
 }
 export const MovieCard = ({ title, img, genre, year }: IProps) => {
-  console.log(MovieCard);
   return (
     <li>
       <img src={img} alt={title} />

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setKeyword } from "../../store/searchSlice/searchSlice"; //TODO aliases
+import { setKeyword } from "../../store/index";
 
 export const Search = () => {
   const dispatch = useDispatch();
