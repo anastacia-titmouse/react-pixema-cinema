@@ -14,5 +14,14 @@ export const Button = styled.button`
 `;
 
 export const NavLink = styled.a`
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 18px;
   color: ${Color.Secondary};
+
+  &:hover {
+    color: ${Color.Primary};
+  }
 `;
