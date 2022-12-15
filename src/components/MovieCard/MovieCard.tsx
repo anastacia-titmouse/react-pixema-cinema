@@ -1,3 +1,5 @@
+import { SubTitle, Title, CardPoster } from "./style";
+
 interface IProps {
   id: string;
   title: string;
@@ -8,11 +10,11 @@ interface IProps {
 export const MovieCard = ({ title, img, genre, year }: IProps) => {
   return (
     <li>
-      <img src={img} alt={title} />
-      <h3>
+      <CardPoster src={img} alt={title} />
+      <Title>
         {title}:{year}
-      </h3>
-      <h4>{genre}</h4>
+      </Title>
+      <SubTitle>{genre}</SubTitle>
     </li>
   );
 };

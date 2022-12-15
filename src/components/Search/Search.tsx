@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setKeyword } from "../../store/index";
+import { SearchStyled } from "./style";
 
 export const Search = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export const Search = () => {
   };
 
   return (
-    <input
+    <SearchStyled
       onChange={(e) => {
         onChange(e.target.value);
       }}
