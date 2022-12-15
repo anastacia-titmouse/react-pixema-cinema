@@ -1,6 +1,6 @@
 import { IMovie } from "../../types";
 import { MovieCard } from "../index";
-import { StyledList } from "./styles";
+import { StyledList } from "./style";
 
 interface IProps {
   movies: IMovie[];
