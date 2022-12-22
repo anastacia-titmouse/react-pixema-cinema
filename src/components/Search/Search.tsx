@@ -1,5 +1,6 @@
+
 import { useDispatch } from "react-redux";
-import { setKeyword } from "../../store/index";
+import { setKeyword } from "store";
 import { SearchStyled } from "./style";
 
 export const Search = () => {
@@ -7,7 +8,6 @@ export const Search = () => {
 
   const onChange = (keyword: string) => {
     dispatch(setKeyword(keyword));
-    //TODO debounce
   };
 
   return (

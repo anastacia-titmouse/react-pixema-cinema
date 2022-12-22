@@ -1,4 +1,5 @@
-import { SubTitle, Title, CardPoster } from "./style";
+import { CardPoster, Title, SubTitle } from "./style";
+
 
 interface IProps {
   id: string;
