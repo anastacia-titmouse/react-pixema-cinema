@@ -13,8 +13,4 @@ html[theme = "dark"] {
 html[theme = "light"] {
     ${lightTheme}
 }
-
-#root {
-  background: ${Color.Primary_BG};
-}
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Color } from "ui";
 
 export const MainTemplateStyled = styled.div`
   min-height: 100vh;
@@ -10,4 +11,5 @@ export const MainTemplateStyled = styled.div`
     header header
     aside main
     aside main;
+  background: ${Color.Primary_BG};
 `;
