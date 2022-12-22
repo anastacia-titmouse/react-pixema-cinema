@@ -1,9 +1,8 @@
+import { HomeIcon, TrendsIcon, FavoritesIcon, SettingsIcon } from "assets/icons";
+import { CustomNavLink } from "components";
 import { useEffect, useState } from "react";
-import { Button, NavLink, NavStyled } from "./style";
-import { ReactComponent as HomeIcon } from "../../assets/icons/home_icon.svg";
-import { ReactComponent as TrendsIcon } from "../../assets/icons/trends_icon.svg";
-import { ReactComponent as FavoritesIcon } from "../../assets/icons/favorites_icon.svg";
-import { ReactComponent as SettingsIcon } from "../../assets/icons/settings_icon.svg";
+import { ROUTE } from "router";
+import { Button, NavStyled } from "./style";
 
 export const Nav = () => {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -18,22 +17,22 @@ export const Nav = () => {
 
   return (
     <NavStyled>
-      <NavLink href="">
+      <CustomNavLink to={ROUTE.HOME}>
         <HomeIcon />
         Home
-      </NavLink>
-      <NavLink href="">
+      </CustomNavLink>
+      <CustomNavLink to={ROUTE.TRENDS}>
         <TrendsIcon />
         Trends
-      </NavLink>
-      <NavLink href="">
+      </CustomNavLink>
+      <CustomNavLink to={ROUTE.FAVORITES}>
         <FavoritesIcon />
         Favorites
-      </NavLink>
-      <NavLink href="">
+      </CustomNavLink>
+      <CustomNavLink to={ROUTE.SETTINGS}>
         <SettingsIcon />
         Settings
-      </NavLink>
+      </CustomNavLink>
       <Button onClick={handleTheme}>Theme</Button>
     </NavStyled>
   );
