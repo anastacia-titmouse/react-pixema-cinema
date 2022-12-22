@@ -1,10 +1,13 @@
 import { Header, SidebarLeft } from "components";
 import { Outlet } from "react-router-dom";
+import { MainTemplateStyled } from "./style";
 
 export const MainTemplate = () => {
-  return <div>
-    <Header/>
-    <Outlet/>
-    <SidebarLeft />
-  </div>;
+  return (
+    <MainTemplateStyled>
+      <Header />
+      <Outlet />
+      <SidebarLeft />
+    </MainTemplateStyled>
+  );
 };
