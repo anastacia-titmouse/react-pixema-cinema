@@ -1,11 +1,10 @@
-import { StyledApp } from "appWrapper";
-import { Main, SidebarLeft } from "components";
+import { Main } from "components";
+import { HomePageStyled } from "./style";
 
 export const HomePage = () => {
   return (
-    <StyledApp>
-      <SidebarLeft />
+    <HomePageStyled>
       <Main />
-    </StyledApp>
+    </HomePageStyled>
   );
 };
