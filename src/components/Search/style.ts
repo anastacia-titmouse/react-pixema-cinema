@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "../../ui";
+import { Color } from "ui";
 
 export const SearchStyled = styled.input`
   align-self: center;

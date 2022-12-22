@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "../../ui";
+import { Color } from "ui";
 
 export const Title = styled.h3`
   color: ${Color.Primary_TX};

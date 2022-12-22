@@ -1,4 +1,4 @@
-import { PixemaIcon } from "assets/icons";
+import { PixemaIcon } from "assets";
 import { Search } from "components";
 import { useInput } from "hooks";
 

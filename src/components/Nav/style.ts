@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "../../ui";
+import { Color } from "ui";
 
 export const NavStyled = styled.nav`
   display: grid;
@@ -9,6 +9,6 @@ export const NavStyled = styled.nav`
 export const Button = styled.button`
   background-color: ${Color.Dark};
   color: ${Color.Secondary};
-  width: 80px;
   border-radius: 10px;
+  padding: 10px 5px;
 `;

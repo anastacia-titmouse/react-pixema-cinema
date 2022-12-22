@@ -1,4 +1,4 @@
-import { HomeIcon, TrendsIcon, FavoritesIcon, SettingsIcon } from "assets/icons";
+import { HomeIcon, TrendsIcon, FavoritesIcon, SettingsIcon } from "assets";
 import { CustomNavLink } from "components";
 import { useEffect, useState } from "react";
 import { ROUTE } from "router";
