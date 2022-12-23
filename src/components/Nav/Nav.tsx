@@ -14,7 +14,6 @@ export const Nav = () => {
   const handleTheme = () => {
     setTheme((theme) => (theme === "dark" ? "light" : "dark"));
   };
-
   return (
     <NavStyled>
       <CustomNavLink to={ROUTE.HOME}>

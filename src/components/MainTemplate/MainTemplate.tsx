@@ -1,4 +1,4 @@
-import { Header, SidebarLeft } from "components";
+import { Footer, Header, Nav } from "components";
 import { Outlet } from "react-router-dom";
 import { MainTemplateStyled } from "./style";
 
@@ -7,7 +7,8 @@ export const MainTemplate = () => {
     <MainTemplateStyled>
       <Header />
       <Outlet />
-      <SidebarLeft />
+      <Nav />
+      <Footer />
     </MainTemplateStyled>
   );
 };

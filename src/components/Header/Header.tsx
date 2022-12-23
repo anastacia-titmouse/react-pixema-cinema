@@ -1,13 +1,14 @@
 import { PixemaIcon } from "assets";
 import { Search } from "components";
 import { useInput } from "hooks";
+import { HeaderStyled } from "./style";
 
 export const Header = () => {
   const search = useInput;
   return (
-    <header>
+    <HeaderStyled>
       <PixemaIcon />
       <Search {...search} />
-    </header>
+    </HeaderStyled>
   );
 };

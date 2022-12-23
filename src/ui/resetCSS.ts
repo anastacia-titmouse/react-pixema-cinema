@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { Color } from "ui";
 export const resetCSS = css`
   html,
   body,
@@ -93,6 +94,7 @@ export const resetCSS = css`
 
   body {
     line-height: 1;
+    background: ${Color.Primary_BG};
   }
   ol,
   ul {
