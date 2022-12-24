@@ -1,21 +1,17 @@
+import { IMovie } from "types";
 import { CardPoster, Title, SubTitle } from "./style";
 
-
 interface IProps {
-  id: string;
-  title: string;
-  img: string;
-  genre: string;
-  year: string;
+  movie: IMovie;
 }
-export const MovieCard = ({ title, img, genre, year }: IProps) => {
+export const MovieCard = ({ movie }: IProps) => {
   return (
-    <li>
-      <CardPoster src={img} alt={title} />
+    <li key={movie.imdbID}>
+      <CardPoster src={movie.poster} alt={movie.title} />
       <Title>
-        {title}:{year}
+        {movie.title}:{movie.year}
       </Title>
-      <SubTitle>{genre}</SubTitle>
+      <SubTitle>{movie.genre}</SubTitle>
     </li>
   );
 };

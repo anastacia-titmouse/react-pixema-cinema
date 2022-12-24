@@ -9,15 +9,8 @@ interface IProps {
 export const MoviesList = ({ movies }: IProps) => {
   return (
     <StyledList>
-      {movies.map(({ imdbID, title, poster, genre, year }) => (
-        <MovieCard
-          key={imdbID}
-          id={imdbID}
-          title={title}
-          img={poster}
-          genre={genre}
-          year={year}
-        ></MovieCard>
+      {movies.map((movie) => (
+        <MovieCard movie={movie}></MovieCard>
       ))}
     </StyledList>
   );
