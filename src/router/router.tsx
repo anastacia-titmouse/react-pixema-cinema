@@ -17,7 +17,7 @@ import { AuthTemplate } from "../components/AuthTemplate/AuthTemplate";
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route element={<MainTemplate/>}>
+      <Route element={<MainTemplate />}>
         <Route path={ROUTE.HOME} element={<HomePage />} />
         <Route path={ROUTE.FAVORITES} element={<FavoritesPage />} />
         <Route path={ROUTE.TRENDS} element={<TrendsPage />} />
@@ -26,10 +26,10 @@ export const router = createBrowserRouter(
         <Route path={ROUTE.SETTINGS} element={<SettingsPage />} />
         <Route path={ROUTE.MOVIE_CARD} element={<MovieCardPage />} />
       </Route>
-      <Route element={<AuthTemplate/>}>
+      <Route element={<AuthTemplate />}>
         <Route path={ROUTE.SIGN_IN} element={<SignInPage />} />
         <Route path={ROUTE.SIGN_UP} element={<SignUpPage />} />
       </Route>
-    </Route>
+    </Route>,
   ),
 );

@@ -1,4 +1,3 @@
-
 import { useDispatch } from "react-redux";
 import { setKeyword } from "store";
 import { SearchStyled } from "./style";
