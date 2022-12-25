@@ -2,43 +2,34 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { ROUTE } from "../../router";
 import { SignUpFormStyled } from "./styles";
-import { registerWithEmailAndPassword } from "../../firebase/firebase";
+import { registerUser, useTypedDispatch, useTypedSelector } from "../../store";
 
-type SignUpFormData = {
+interface ISignUpFormData {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
-};
+}
 
 export const SignUpForm = () => {
+  const dispatch = useTypedDispatch();
+  const serverError = useTypedSelector((state) => state.user.error);
+
   const {
     register,
     handleSubmit,
     watch,
-    setError,
     formState: { errors },
-  } = useForm<SignUpFormData>();
-  const onSubmit = (data: SignUpFormData) => {
-    const { name, email, password } = data;
-    registerWithEmailAndPassword(name, email, password);
-    //TODO handle {
-    //     "error": {
-    //         "code": 400,
-    //         "message": "EMAIL_EXISTS",
-    //         "errors": [
-    //             {
-    //                 "message": "EMAIL_EXISTS",
-    //                 "domain": "global",
-    //                 "reason": "invalid"
-    //             }
-    //         ]
-    //     }
-    // }
+  } = useForm<ISignUpFormData>();
+
+  const onSubmit = (data: ISignUpFormData) => {
+    dispatch(registerUser(data));
   };
 
   return (
     <SignUpFormStyled onSubmit={handleSubmit(onSubmit)}>
+      {serverError && <span className={"server-errors"}>{serverError}</span>}
+
       <label>name</label>
       <input
         {...register("name", {
@@ -46,8 +37,6 @@ export const SignUpForm = () => {
             if (!value) {
               return "Field is required";
             }
-
-            //TODO
 
             return true;
           },
@@ -66,7 +55,6 @@ export const SignUpForm = () => {
               /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             );
 
-            console.log("****", emailValidationMatches);
             if (emailValidationMatches === null) {
               return "Invalid email address";
             }
