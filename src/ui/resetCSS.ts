@@ -47,4 +47,11 @@ export const resetCSS = css`
   a {
     text-decoration: none;
   }
+
+  .MuiPopover-root,
+  .MuiPaper-root {
+    background-color: transparent !important;
+    //sx={{ borderRadius: "10px" }} not working
+    border-radius: 10px !important;
+  }
 `;
