@@ -15,7 +15,7 @@ export const SearchStyled = styled.input`
   font-family: "Exo2 Regular", sans-serif;
   font-weight: 500;
   font-size: 16px;
-  color: ${Color.White};
+  color: ${Color.Primary_TEXT};
 
   &:active,
   &:focus {
