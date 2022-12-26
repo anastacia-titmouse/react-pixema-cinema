@@ -7,8 +7,9 @@ import {
   signOut,
 } from "firebase/auth";
 import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
-import { firebaseConfig, IUserLoginRequestPayload, IUserRegisterRequestPayload } from "firebaseApi";
+import { IUserLoginRequestPayload, IUserRegisterRequestPayload } from "firebaseApi";
 import { setAuthStatus, setEmail, setUserName, store } from "store";
+import { firebaseConfig } from "./config";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

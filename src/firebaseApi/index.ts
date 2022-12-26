@@ -1,3 +1,2 @@
-export * from "./firebaseApi";
+export * from "./api";
 export * from "./types";
-export * from "./config";

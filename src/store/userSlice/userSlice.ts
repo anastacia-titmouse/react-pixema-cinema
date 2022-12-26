@@ -1,7 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FirebaseError } from "firebase/app";
 import { AuthErrorCodes } from "firebase/auth";
-import { firebaseApi, IUserLoginRequestPayload, IUserRegisterRequestPayload } from "firebaseApi";
+import {
+  logout,
+  logInWithEmailAndPassword,
+  registerWithEmailAndPassword,
+  IUserLoginRequestPayload,
+  IUserRegisterRequestPayload,
+} from "firebaseApi";
 
 interface UserState {
   name: string;
@@ -23,7 +29,7 @@ export const registerUser = createAsyncThunk<
   { rejectValue: string }
 >("users/register", async (payload, { rejectWithValue }) => {
   try {
-    const response = await firebaseApi.registerWithEmailAndPassword(payload);
+    const response = await registerWithEmailAndPassword(payload);
     return response;
   } catch (error) {
     if (error instanceof FirebaseError) {
@@ -41,7 +47,7 @@ export const loginUser = createAsyncThunk<void, IUserLoginRequestPayload, { reje
   "users/login",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await firebaseApi.logInWithEmailAndPassword(payload);
+      const response = await logInWithEmailAndPassword(payload);
       return response;
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -60,7 +66,7 @@ export const logoutUser = createAsyncThunk<void, void, { rejectValue: string }>(
   "users/logout",
   async (payload, { rejectWithValue }) => {
     try {
-      await firebaseApi.logout();
+      await logout();
     } catch (error) {
       return rejectWithValue("Unknown error");
     }
