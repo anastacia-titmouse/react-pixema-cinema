@@ -1,13 +1,13 @@
-import { Footer, Header } from "components";
+import { FooterAuth, HeaderAuth } from "components";
 import { Outlet } from "react-router-dom";
 import { AuthTemplateStyled } from "./style";
 
 export const AuthTemplate = () => {
   return (
     <AuthTemplateStyled>
-      <Header />
+      <HeaderAuth />
       <Outlet />
-      <Footer />
+      <FooterAuth />
     </AuthTemplateStyled>
   );
 };
