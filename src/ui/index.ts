@@ -11,3 +11,4 @@ export { resetCSS };
 export { darkTheme, lightTheme };
 export { H1, H2, H3, S1, S1_2, S1_3, B };
 export { GlobalStyles };
+export * as typography from "./typography";

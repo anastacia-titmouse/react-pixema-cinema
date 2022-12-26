@@ -1,11 +1,18 @@
 {
-  "extends": ["react-app", "react-app/jest"],
+  "extends": ["react-app", "react-app/jest", "plugin:prettier/recommended"],
   "rules": {
     "quotes": ["error", "double"],
     "no-console": "warn",
     "prefer-const": "error",
     "indent": ["warn", 2, { "SwitchCase": 1 }],
     "max-len": ["error", { "code": 100 }],
-    "semi": ["warn", "always"]
+    "semi": ["warn", "always"],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "printWidth": 100
+      }
+    ]
   }
 }

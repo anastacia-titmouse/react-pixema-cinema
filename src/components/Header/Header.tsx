@@ -1,5 +1,6 @@
 import { PixemaIcon } from "assets";
 import { Search } from "components";
+import { UserSettings } from "components/UserSettings/UserSettings";
 import { useInput } from "hooks";
 import { HeaderStyled } from "./style";
 
@@ -9,6 +10,7 @@ export const Header = () => {
     <HeaderStyled>
       <PixemaIcon />
       <Search {...search} />
+      <UserSettings />
     </HeaderStyled>
   );
 };
