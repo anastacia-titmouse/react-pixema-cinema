@@ -1,12 +1,14 @@
 import { Header, Nav } from "components";
 import { Outlet } from "react-router-dom";
-import { MainTemplateStyled } from "./style";
+import { ContentWrapper, MainTemplateStyled } from "./style";
 
 export const MainTemplate = () => {
   return (
     <MainTemplateStyled>
       <Header />
-      <Outlet />
+      <ContentWrapper>
+        <Outlet />
+      </ContentWrapper>
       <Nav />
     </MainTemplateStyled>
   );

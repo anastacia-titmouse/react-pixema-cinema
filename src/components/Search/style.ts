@@ -1,6 +1,37 @@
 import styled from "styled-components";
 import { Color } from "ui";
 
+export const SearchWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 56px;
+
+  & .search-filter-button:before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background: ${Color.Primary};
+    position: absolute;
+    transform: translate(-7px, 5px);
+  }
+`;
+
+export const FilterButton = styled.button`
+  display: flex;
+  height: 56px;
+  width: 56px;
+  outline: none;
+  border: none;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
+
 export const SearchStyled = styled.input`
   align-self: center;
   width: 100%;
@@ -11,7 +42,7 @@ export const SearchStyled = styled.input`
   border: 1px solid ${Color.Primary_INPUT_BORDER};
   margin: 0 41px 0 0;
   box-sizing: border-box;
-  padding: 16px 20px;
+  padding: 16px 76px 16px 20px;
   font-family: "Exo2 Regular", sans-serif;
   font-weight: 500;
   font-size: 16px;

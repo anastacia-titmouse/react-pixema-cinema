@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const StyledList = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 40px;
-  padding: 50px 0 200px 0;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 40px;
+  padding: 0 0 200px 0;
 `;

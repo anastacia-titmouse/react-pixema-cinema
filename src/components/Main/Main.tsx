@@ -15,6 +15,7 @@ export const Main = () => {
       })
       .then(setMovies);
   }, []);
+
   return (
     <MainStyled>
       <MoviesList movies={movies} />

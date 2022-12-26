@@ -20,7 +20,8 @@ export const SubTitle = styled.h4`
 `;
 
 export const CardPoster = styled.img`
-  width: 266px;
-  height: 357px;
   border-radius: 20px;
+  width: 100%;
+  aspect-ratio: 266/357;
+  object-fit: cover;
 `;
