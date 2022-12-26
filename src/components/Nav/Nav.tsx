@@ -1,5 +1,5 @@
 import { HomeIcon, TrendsIcon, FavoritesIcon, SettingsIcon } from "assets";
-import { CustomNavLink } from "components";
+import { CustomNavLink, Footer } from "components";
 import { useEffect, useState } from "react";
 import { ROUTE } from "router";
 import { Button, NavStyled } from "./style";
@@ -33,6 +33,8 @@ export const Nav = () => {
         Settings
       </CustomNavLink>
       <Button onClick={handleTheme}>Theme</Button>
+
+      <Footer />
     </NavStyled>
   );
 };

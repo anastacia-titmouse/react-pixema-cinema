@@ -3,10 +3,11 @@ import { Color } from "ui";
 
 export const SearchStyled = styled.input`
   align-self: center;
-  width: 1184px;
+  width: 100%;
   height: 56px;
   background: ${Color.Graphite};
   border-radius: 10px;
   outline-color: ${Color.Primary};
   border: none;
+  margin: 0 41px 0 0;
 `;

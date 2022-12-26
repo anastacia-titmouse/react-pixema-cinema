@@ -2,7 +2,15 @@ import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
   display: grid;
-  grid-template-columns: 300px 1fr 300px;
+  grid-template-columns: 265px 1fr 267px;
+  grid-column-gap: 41px;
   grid-area: header;
-  padding: 36px 64px;
+`;
+
+export const LogoStyled = styled.div`
+  width: 265px;
+  padding: 0 105px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
