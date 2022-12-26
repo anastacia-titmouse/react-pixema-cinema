@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { logoutUser } from "store";
+import { useTypedDispatch, useTypedSelector } from "store/store";
 import { Button, Initials, Name, UserMenuStyled, ChevronRightStyled, Menu } from "./styles";
-import { logoutUser, useTypedDispatch, useTypedSelector } from "../../../store";
 
 const getInitialsFromName = (name: string) => {
   const parts = name.split(" ");

@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { ROUTE } from "../../router";
+import { ROUTE } from "router";
+import { registerUser, useTypedDispatch, useTypedSelector } from "store";
 import { SignUpFormStyled } from "./styles";
-import { registerUser, useTypedDispatch, useTypedSelector } from "../../store";
 
 interface ISignUpFormData {
   name: string;
@@ -44,7 +44,6 @@ export const SignUpForm = () => {
         placeholder={"Your name"}
       />
       {errors.name && <span>{errors.name.message}</span>}
-
       <label>email</label>
       <input
         {...register("email", {

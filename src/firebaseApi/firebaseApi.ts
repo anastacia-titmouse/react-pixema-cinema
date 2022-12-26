@@ -7,10 +7,8 @@ import {
   signOut,
 } from "firebase/auth";
 import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
-import { firebaseConfig } from "./config";
-import { IUserRegisterRequestPayload } from "./iUserRegisterRequestPayload";
-import { IUserLoginRequestPayload } from "./iUserLoginRequestPayload";
-import { setAuthStatus, setEmail, setUserName, store } from "../store";
+import { firebaseConfig, IUserLoginRequestPayload, IUserRegisterRequestPayload } from "firebaseApi";
+import { setAuthStatus, setEmail, setUserName, store } from "store";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -56,12 +54,7 @@ const logInWithEmailAndPassword = async ({ email, password }: IUserLoginRequestP
 };
 
 const sendPasswordReset = async (email: string) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
-  } catch (err) {
-    console.error(err);
-  }
+  await sendPasswordResetEmail(auth, email);
 };
 
 const logout = async () => {

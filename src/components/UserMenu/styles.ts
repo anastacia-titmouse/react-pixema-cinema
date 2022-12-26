@@ -1,6 +1,6 @@
+import { ChevronRight } from "assets";
 import styled from "styled-components";
-import { Color } from "../../../ui";
-import { ChevronRight } from "../../../assets";
+import { Color } from "ui";
 
 export const UserMenuStyled = styled.div`
   width: 264px;

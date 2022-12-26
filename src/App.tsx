@@ -1,6 +1,6 @@
-import { router } from "./router";
 import { RouterProvider } from "react-router-dom";
-import { useTypedSelector } from "./store";
+import { router } from "router";
+import { useTypedSelector } from "store";
 
 export const App = () => {
   const isAuth = useTypedSelector((state) => state.user.isAuth);

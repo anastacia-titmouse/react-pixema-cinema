@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
 import { SignInFormStyled } from "./styles";
-import { loginUser, useTypedDispatch, useTypedSelector } from "../../store";
 import { Link, useNavigate } from "react-router-dom";
-import { ROUTE } from "../../router";
 import { useEffect } from "react";
+import { loginUser, useTypedDispatch, useTypedSelector } from "store";
+import { ROUTE } from "router";
+import { useForm } from "react-hook-form";
 
 interface ISignInFormData {
   email: string;

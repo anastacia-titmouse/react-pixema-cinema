@@ -1,7 +1,7 @@
 import { SignInButtonStyled } from "./styles";
-import { ROUTE } from "../../../router";
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, UserIcon } from "../../../assets";
+import { ROUTE } from "router";
+import { ChevronRight, UserIcon } from "assets";
 
 export const SignInButton = () => {
   const navigate = useNavigate();

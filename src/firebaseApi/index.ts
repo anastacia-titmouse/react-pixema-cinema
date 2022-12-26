@@ -1,3 +1,3 @@
-export * as firebaseApi from "./firebaseApi";
-export * from "./iUserRegisterRequestPayload";
-export * from "./iUserLoginRequestPayload";
+export * from "./firebaseApi";
+export * from "./types";
+export * from "./config";

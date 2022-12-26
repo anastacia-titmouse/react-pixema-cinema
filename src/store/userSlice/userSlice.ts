@@ -1,11 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FirebaseError } from "firebase/app";
 import { AuthErrorCodes } from "firebase/auth";
-import {
-  firebaseApi,
-  IUserLoginRequestPayload,
-  IUserRegisterRequestPayload,
-} from "../../firebaseApi";
+import { firebaseApi, IUserLoginRequestPayload, IUserRegisterRequestPayload } from "firebaseApi";
 
 interface UserState {
   name: string;
