@@ -5,6 +5,7 @@ import { Color } from "ui";
 export const UserSettingsButtonStyled = styled.button`
   display: grid;
   grid-template-columns: 56px auto 24px;
+  grid-column-gap: 5px;
   width: 264px;
   height: 56px;
   background: transparent;
@@ -36,13 +37,15 @@ export const ChevronRightStyled = styled(ChevronRight)`
 `;
 
 export const UsernameStyled = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  height: 56px;
+  max-width: 174px;
+  line-height: 56px;
   color: ${Color.Primary_TEXT};
   font-family: "Exo2 Regular", sans-serif;
   font-weight: 600;
   font-size: 16px;
   text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

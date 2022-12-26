@@ -3,6 +3,7 @@ import { Color } from "ui";
 
 export const UserSettingsStyled = styled.div`
   background-color: transparent;
+  width: 267px;
 `;
 
 export const UserSettingButtonGroup = styled.div`
