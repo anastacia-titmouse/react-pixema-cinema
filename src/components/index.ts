@@ -18,6 +18,7 @@ export * from "./InitialsAvatar/InitialsAvatar";
 export * from "./Filter/Filter";
 export * from "./CloseButton/CloseButton";
 export * from "./Tabs/Tabs";
+export * from "./Divider/Divider";
 
 export {
   MovieCard,

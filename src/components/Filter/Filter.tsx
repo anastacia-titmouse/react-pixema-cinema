@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
-import { Background, Header, FilterStyled, Wrapper, SortSection } from "./styles";
+import { Background, Header, FilterStyled, Wrapper, Label } from "./styles";
 import { useBodyScroll } from "hooks";
-import { CloseButton, Tabs } from "components";
+import { CloseButton, Divider, Tabs } from "components";
 
 export enum SortVariant {
   rating,
@@ -24,18 +24,18 @@ export const Filter = () => {
               <CloseButton />
             </Header>
 
-            <SortSection>
-              <p>Sort by</p>
-              <Tabs
-                tabs={[
-                  { label: "Rating", id: SortVariant.rating },
-                  { label: "Year", id: SortVariant.year },
-                ]}
-                onChange={(value) => {
-                  console.log(value);
-                }}
-              />
-            </SortSection>
+            <Label>Sort by</Label>
+            <Tabs
+              tabs={[
+                { label: "Rating", id: SortVariant.rating },
+                { label: "Year", id: SortVariant.year },
+              ]}
+              onChange={(value) => {
+                console.log(value);
+              }}
+            />
+
+            <Divider />
           </FilterStyled>
         </Wrapper>
       </Background>,

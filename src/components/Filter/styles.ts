@@ -40,9 +40,8 @@ export const Header = styled.div`
   }
 `;
 
-export const SortSection = styled.div`
-  & > p {
-    margin: 0 0 8px;
-  }
+export const Label = styled.label`
+  display: inline-block;
+  margin: 0 0 8px 0;
   ${S1_3}
 `;
