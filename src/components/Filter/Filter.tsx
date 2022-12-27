@@ -26,10 +26,10 @@ export const Filter = () => {
 
             <SortSection>
               <p>Sort by</p>
-              <Tabs<SortVariant>
+              <Tabs
                 tabs={[
-                  { label: "Rating", value: SortVariant.rating },
-                  { label: "Year", value: SortVariant.year },
+                  { label: "Rating", id: SortVariant.rating },
+                  { label: "Year", id: SortVariant.year },
                 ]}
                 onChange={(value) => {
                   console.log(value);
