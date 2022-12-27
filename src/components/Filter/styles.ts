@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Color, H2 } from "ui";
+import { Color, H2, S1_3 } from "ui";
 
-export const FilterBackground = styled.div`
+export const Background = styled.div`
   position: fixed;
   display: grid;
   left: 0;
@@ -11,7 +11,7 @@ export const FilterBackground = styled.div`
   background: rgba(0, 0, 0, 0.7);
 `;
 
-export const FilterWrapper = styled.div`
+export const Wrapper = styled.div`
   position: absolute;
   width: 518px;
   right: 0;
@@ -29,12 +29,20 @@ export const FilterStyled = styled.div`
   overflow: auto;
 `;
 
-export const FilterHeaderStyled = styled.div`
+export const Header = styled.div`
   display: grid;
   grid-template-columns: auto 24px;
+  padding: 0 0 48px;
   ${H2}
 
   & button {
     align-self: center;
   }
+`;
+
+export const SortSection = styled.div`
+  & > p {
+    margin: 0 0 8px;
+  }
+  ${S1_3}
 `;

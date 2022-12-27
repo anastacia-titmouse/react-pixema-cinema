@@ -46,9 +46,17 @@ export const S1_3 = css`
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
+  font-family: "Exo2 Regular", sans-serif;
 `;
 export const B = css`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+`;
+
+export const TAB = css`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Exo2 Regular", sans-serif;
 `;

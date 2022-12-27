@@ -1,7 +1,12 @@
 import { createPortal } from "react-dom";
-import { FilterBackground, FilterHeaderStyled, FilterStyled, FilterWrapper } from "./styles";
+import { Background, Header, FilterStyled, Wrapper, SortSection } from "./styles";
 import { useBodyScroll } from "hooks";
-import { CloseButton } from "components";
+import { CloseButton, Tabs } from "components";
+
+export enum SortVariant {
+  rating,
+  year,
+}
 
 export const Filter = () => {
   const portalElement = document.getElementById("filter-root");
@@ -11,16 +16,29 @@ export const Filter = () => {
 
   if (portalElement) {
     return createPortal(
-      <FilterBackground>
-        <FilterWrapper>
+      <Background>
+        <Wrapper>
           <FilterStyled>
-            <FilterHeaderStyled>
+            <Header>
               <h2>Filters</h2>
               <CloseButton />
-            </FilterHeaderStyled>
+            </Header>
+
+            <SortSection>
+              <p>Sort by</p>
+              <Tabs<SortVariant>
+                tabs={[
+                  { label: "Rating", value: SortVariant.rating },
+                  { label: "Year", value: SortVariant.year },
+                ]}
+                onChange={(value) => {
+                  console.log(value);
+                }}
+              />
+            </SortSection>
           </FilterStyled>
-        </FilterWrapper>
-      </FilterBackground>,
+        </Wrapper>
+      </Background>,
       portalElement,
     );
   } else {
