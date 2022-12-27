@@ -10,7 +10,7 @@ export const MainTemplate = () => {
         <Outlet />
       </ContentWrapper>
       <Nav />
-      <Filter />
+      <Filter isVisible={false} />
     </MainTemplateStyled>
   );
 };

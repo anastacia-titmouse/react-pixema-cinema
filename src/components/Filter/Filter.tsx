@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { Background, Header, FilterStyled, Wrapper, Section, InputGroup } from "./styles";
 import { useBodyScroll } from "hooks";
 import { CloseButton, Divider, Input, Tabs, Label, CustomSelect } from "components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export enum SortVariant {
   rating,
@@ -15,14 +15,16 @@ export enum MovieType {
   episode = "episode",
 }
 
-export const Filter = () => {
+export const Filter = ({ isVisible }: { isVisible: boolean }) => {
   const portalElement = document.getElementById("filter-root");
   const [movieType, setMovieType] = useState(MovieType.movie);
-  useBodyScroll(false);
+
+  useBodyScroll(!isVisible);
+  //TODO move isVisible from props to redux
   //TODO redux isOpen variable
   //TODO disable window scroll onOpenPortal
 
-  if (portalElement) {
+  if (portalElement && isVisible) {
     return createPortal(
       <Background>
         <Wrapper>
@@ -40,7 +42,7 @@ export const Filter = () => {
                   { label: "Year", id: SortVariant.year },
                 ]}
                 onChange={(value) => {
-                  console.log(value);
+                  //TODO handle change
                 }}
               />
             </Section>
