@@ -8,4 +8,5 @@ export const MainTemplateStyled = styled.div`
     "header header"
     "nav outlet"
     "footer footer";
+  min-height: 100vh;
 `;
