@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
-import { Background, Header, FilterStyled, Wrapper, Label } from "./styles";
+import { Background, Header, FilterStyled, Wrapper, Section, InputGroup } from "./styles";
 import { useBodyScroll } from "hooks";
-import { CloseButton, Divider, Tabs } from "components";
+import { CloseButton, Divider, Input, Tabs, Label } from "components";
 
 export enum SortVariant {
   rating,
@@ -24,18 +24,33 @@ export const Filter = () => {
               <CloseButton />
             </Header>
 
-            <Label>Sort by</Label>
-            <Tabs
-              tabs={[
-                { label: "Rating", id: SortVariant.rating },
-                { label: "Year", id: SortVariant.year },
-              ]}
-              onChange={(value) => {
-                console.log(value);
-              }}
-            />
+            <Section>
+              <Label>Sort by</Label>
+              <Tabs
+                tabs={[
+                  { label: "Rating", id: SortVariant.rating },
+                  { label: "Year", id: SortVariant.year },
+                ]}
+                onChange={(value) => {
+                  console.log(value);
+                }}
+              />
+            </Section>
 
             <Divider />
+
+            <Section>
+              <Label>Full or short movie name</Label>
+              <Input placeholder="Your text" />
+            </Section>
+
+            <Section>
+              <Label>Years</Label>
+              <InputGroup>
+                <Input placeholder="From" />
+                <Input placeholder="To" />
+              </InputGroup>
+            </Section>
           </FilterStyled>
         </Wrapper>
       </Background>,

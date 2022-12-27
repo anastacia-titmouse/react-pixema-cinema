@@ -19,6 +19,8 @@ export * from "./Filter/Filter";
 export * from "./CloseButton/CloseButton";
 export * from "./Tabs/Tabs";
 export * from "./Divider/Divider";
+export * from "./Input/Input";
+export * from "./Label/Label";
 
 export {
   MovieCard,

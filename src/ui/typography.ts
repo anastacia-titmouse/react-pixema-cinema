@@ -54,7 +54,7 @@ export const B = css`
   line-height: 24px;
 `;
 
-export const TAB = css`
+export const INPUT = css`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;

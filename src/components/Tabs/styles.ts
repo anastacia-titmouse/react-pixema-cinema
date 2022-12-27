@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Color } from "ui";
-import { TAB } from "ui/typography";
+import { INPUT } from "ui/typography";
 
 export const TabsStyled = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ export const TabStyled = styled.button`
   background: ${Color.Dark};
   color: ${Color.Secondary};
   border: 1px solid ${Color.Graphite};
-  ${TAB}
+  ${INPUT}
 
   &.active {
     background: ${Color.Graphite};

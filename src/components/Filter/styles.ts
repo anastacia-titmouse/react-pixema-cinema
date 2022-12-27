@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color, H2, S1_3 } from "ui";
+import { Color, H2 } from "ui";
 
 export const Background = styled.div`
   position: fixed;
@@ -40,8 +40,13 @@ export const Header = styled.div`
   }
 `;
 
-export const Label = styled.label`
-  display: inline-block;
-  margin: 0 0 8px 0;
-  ${S1_3}
+export const Section = styled.div`
+  width: 100%;
+  margin: 0 0 24px;
+`;
+
+export const InputGroup = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 40px;
 `;
