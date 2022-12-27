@@ -18,6 +18,7 @@ export const H2 = css`
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
+  font-family: "Exo2 Regular", sans-serif;
   ${Media.Mobile} {
     font-size: 20px;
   }

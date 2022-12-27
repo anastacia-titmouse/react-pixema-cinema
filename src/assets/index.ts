@@ -6,6 +6,7 @@ import { ReactComponent as PixemaIcon } from "./icons/pixema.svg";
 import { ReactComponent as UserIcon } from "./icons/user.svg";
 import { ReactComponent as ChevronRight } from "./icons/chevron-right.svg";
 import { ReactComponent as FilterIcon } from "./icons/filter.svg";
+import { ReactComponent as TimesIcon } from "./icons/times.svg";
 
 export {
   HomeIcon,
@@ -16,4 +17,5 @@ export {
   UserIcon,
   ChevronRight,
   FilterIcon,
+  TimesIcon,
 };

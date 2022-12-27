@@ -1,4 +1,4 @@
-import { Header, Nav } from "components";
+import { Header, Nav, Filter } from "components";
 import { Outlet } from "react-router-dom";
 import { ContentWrapper, MainTemplateStyled } from "./style";
 
@@ -10,6 +10,7 @@ export const MainTemplate = () => {
         <Outlet />
       </ContentWrapper>
       <Nav />
+      <Filter />
     </MainTemplateStyled>
   );
 };
