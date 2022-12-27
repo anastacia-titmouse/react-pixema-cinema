@@ -20,7 +20,7 @@ class OmdbApi {
     return data;
   }
 
-  public async getMoviesBySearch(keyword: string): Promise<Array<IMovieInfoAPI>> {
+  public async getMoviesBySearch(keyword: string): Promise<IMovieInfoAPI[]> {
     const { data } = await this.API.get<IResponseAPI>("", {
       params: { s: keyword },
     });

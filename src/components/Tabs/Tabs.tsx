@@ -15,11 +15,11 @@ export interface IInnerTab {
 }
 
 export interface ITabsProps {
-  tabs: Array<ITab>;
+  tabs: ITab[];
   onChange: (id: number) => void;
 }
 
-const transformTabsToInnerTabs = (tabs: Array<ITab>): Array<IInnerTab> => {
+const transformTabsToInnerTabs = (tabs: ITab[]): IInnerTab[] => {
   const innerTabs = tabs.map((tab) => {
     const { label, id, isDefaultValue } = tab;
     return { label, id, isSelected: !!isDefaultValue };

@@ -1,12 +1,16 @@
 {
   "extends": ["react-app", "react-app/jest", "plugin:prettier/recommended"],
+  "plugins": [
+    "@typescript-eslint/eslint-plugin"
+  ],
   "rules": {
-    "quotes": ["error", "double"],
+    "quotes": ["error", "double", { "avoidEscape": true }],
     "no-console": "warn",
     "prefer-const": "error",
     "indent": ["warn", 2, { "SwitchCase": 1 }],
     "max-len": ["error", { "code": 100 }],
     "semi": ["warn", "always"],
+    "@typescript-eslint/array-type": ["error", { "default": "array" }],
     "prettier/prettier": [
       "error",
       {

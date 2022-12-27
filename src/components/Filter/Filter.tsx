@@ -1,15 +1,23 @@
 import { createPortal } from "react-dom";
 import { Background, Header, FilterStyled, Wrapper, Section, InputGroup } from "./styles";
 import { useBodyScroll } from "hooks";
-import { CloseButton, Divider, Input, Tabs, Label } from "components";
+import { CloseButton, Divider, Input, Tabs, Label, CustomSelect } from "components";
+import { useState } from "react";
 
 export enum SortVariant {
   rating,
   year,
 }
 
+export enum MovieType {
+  movie = "movie",
+  series = "series",
+  episode = "episode",
+}
+
 export const Filter = () => {
   const portalElement = document.getElementById("filter-root");
+  const [movieType, setMovieType] = useState(MovieType.movie);
   useBodyScroll(false);
   //TODO redux isOpen variable
   //TODO disable window scroll onOpenPortal
@@ -50,6 +58,17 @@ export const Filter = () => {
                 <Input placeholder="From" />
                 <Input placeholder="To" />
               </InputGroup>
+            </Section>
+
+            <Section>
+              <Label>Type</Label>
+              <CustomSelect
+                options={[
+                  { value: MovieType.movie, label: "Movie" },
+                  { value: MovieType.series, label: "Series" },
+                  { value: MovieType.episode, label: "Episode" },
+                ]}
+              />
             </Section>
           </FilterStyled>
         </Wrapper>

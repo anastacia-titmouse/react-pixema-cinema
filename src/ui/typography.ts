@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css, CSSObject } from "styled-components";
 import { Media } from ".";
 
 export const H1 = css`
@@ -54,9 +54,11 @@ export const B = css`
   line-height: 24px;
 `;
 
-export const INPUT = css`
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  font-family: "Exo2 Regular", sans-serif;
-`;
+export const INPUT_CSS_OBJECT: CSSObject = {
+  fontWeight: "500",
+  fontSize: "16px",
+  lineHeight: "24px",
+  fontFamily: '"Exo2 Regular", sans-serif',
+};
+
+export const INPUT = css(INPUT_CSS_OBJECT);
