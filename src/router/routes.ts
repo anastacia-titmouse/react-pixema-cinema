@@ -3,7 +3,7 @@ export enum ROUTE {
   TRENDS = "trends",
   FAVORITES = "favorites",
   SETTINGS = "settings",
-  MOVIE_CARD = "movie-card",
+  MOVIE_DETAILS = "name/:name",
   SEARCH = "search",
   SIGN_IN = "sign-in",
   SIGN_UP = "sign-up",
