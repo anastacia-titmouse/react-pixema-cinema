@@ -24,24 +24,11 @@ export const TabStyled = styled.button`
   outline: none;
   background: ${Color.Dark};
   color: ${Color.Secondary};
-  border-top: 1px solid ${Color.Graphite};
-  border-bottom: 1px solid ${Color.Graphite};
-  border-right: none;
-  border-left: none;
+  border: 1px solid ${Color.Graphite};
   ${TAB}
-
-  &:last-child {
-    border-right: 1px solid ${Color.Graphite};
-  }
-
-  &:first-child {
-    border-left: 1px solid ${Color.Graphite};
-  }
 
   &.active {
     background: ${Color.Graphite};
-    border: 1px solid ${Color.Black};
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   }
 
   &.active,
