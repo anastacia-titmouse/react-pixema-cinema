@@ -22,6 +22,7 @@ export * from "./Divider/Divider";
 export * from "./Input/Input";
 export * from "./Label/Label";
 export * from "./CustomSelect/CustomSelect";
+export * from "./Button/Button";
 
 export {
   MovieCard,

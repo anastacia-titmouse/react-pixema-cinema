@@ -19,6 +19,8 @@ export const Wrapper = styled.div`
 `;
 
 export const FilterStyled = styled.div`
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
   position: relative;
   width: 518px;
   height: 100vh;
@@ -40,13 +42,22 @@ export const Header = styled.div`
   }
 `;
 
+export const Content = styled.div`
+  width: 100%;
+`;
+
 export const Section = styled.div`
   width: 100%;
   margin: 0 0 24px;
+`;
+
+export const Footer = styled.div`
+  align-self: end;
 `;
 
 export const InputGroup = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 40px;
+  height: 56px;
 `;
