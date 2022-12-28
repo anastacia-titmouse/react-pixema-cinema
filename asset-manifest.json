@@ -1,10 +1,19 @@
 {
   "files": {
-    "main.js": "/react-pixema-cinema/static/js/main.9bf008b9.js",
-    "index.html": "/react-pixema-cinema/index.html",
-    "main.9bf008b9.js.map": "/react-pixema-cinema/static/js/main.9bf008b9.js.map"
+    "main.js": "/static/js/main.563e5851.js",
+    "static/media/pixema.svg": "/static/media/pixema.5e7c86e574d1814013e44450ef7ed569.svg",
+    "static/media/settings.svg": "/static/media/settings.ec580c9502c6d886f83c15d9f4aa5a2f.svg",
+    "static/media/trends.svg": "/static/media/trends.b964927255557a7b869a98fd79c7d97f.svg",
+    "static/media/home.svg": "/static/media/home.8a7b58bb65caf812e4f07772d56f2cf4.svg",
+    "static/media/times.svg": "/static/media/times.9d82cee8bc4eaf3d560c4a231f3329e0.svg",
+    "static/media/favorites.svg": "/static/media/favorites.22cfa8ea3f09c7354061fa63248be779.svg",
+    "static/media/user.svg": "/static/media/user.74b983f9bb66985eb38b4c09c79c1622.svg",
+    "index.html": "/index.html",
+    "static/media/filter.svg": "/static/media/filter.4ba9bca17211bbef2bee3847cddd2542.svg",
+    "static/media/chevron-right.svg": "/static/media/chevron-right.ca245344592b39550dd91896a8abf31e.svg",
+    "main.563e5851.js.map": "/static/js/main.563e5851.js.map"
   },
   "entrypoints": [
-    "static/js/main.9bf008b9.js"
+    "static/js/main.563e5851.js"
   ]
 }
