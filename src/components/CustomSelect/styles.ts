@@ -7,10 +7,10 @@ export const selectStyles: StylesConfig<{ label: string; value: string }> = {
     ...styles,
     ...INPUT_CSS_OBJECT,
     background: Color.Primary_INPUT_BG,
-    height: "56px",
+    minHeight: "56px",
     border: `1px solid ${Color.Primary_INPUT_BG}`,
     borderRadius: "10px",
-    padding: "0 20px",
+    padding: "12px 20px",
     ":active": {
       borderColor: Color.Primary,
     },
@@ -25,6 +25,7 @@ export const selectStyles: StylesConfig<{ label: string; value: string }> = {
   valueContainer: (styles) => ({
     ...styles,
     padding: "0",
+    gap: "12px",
   }),
   menu: (styles) => ({
     ...styles,
@@ -61,4 +62,28 @@ export const selectStyles: StylesConfig<{ label: string; value: string }> = {
       },
     };
   },
+  multiValue: (styles) => ({
+    ...styles,
+    backgroundColor: Color.Dark,
+    borderRadius: "6px",
+    padding: "4px 4px 4px 8px",
+  }),
+  multiValueLabel: (styles) => ({
+    ...styles,
+    ...INPUT_CSS_OBJECT,
+    color: Color.White,
+    padding: 0,
+  }),
+  multiValueRemove: (styles) => ({
+    ...styles,
+    ":hover": {
+      backgroundColor: "transparent",
+    },
+    ":active": {
+      backgroundColor: "transparent",
+    },
+    ":focus": {
+      backgroundColor: "transparent",
+    },
+  }),
 };

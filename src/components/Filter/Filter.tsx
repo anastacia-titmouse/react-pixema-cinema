@@ -83,8 +83,21 @@ export const Filter = ({ isVisible }: { isVisible: boolean }) => {
                       <Divider />
 
                       <Section>
-                        <Label>Full or short movie name</Label>
-                        <Input placeholder="Your text" />
+                        <Label>Genre</Label>
+                        <CustomSelect
+                          isMulti
+                          options={[
+                            { value: "1", label: "Movie" },
+                            { value: "2", label: "Series" },
+                            { value: "3", label: "Episode" },
+                            { value: "4", label: "Movie" },
+                            { value: "5", label: "Series" },
+                            { value: "6", label: "Episode" },
+                            { value: "7", label: "Movie" },
+                            { value: "8", label: "Series" },
+                            { value: "9", label: "Some Awesome Long Genre" },
+                          ]}
+                        />
                       </Section>
 
                       <Section>
