@@ -4,9 +4,11 @@ import { IMovieInfoAPI } from "types";
 interface MovieState {
   movie?: IMovieInfoAPI;
   loading: boolean;
+  error?: string;
 }
 const initialState: MovieState = {
   loading: true,
+  error: undefined,
 };
 
 const movieSlice = createSlice({
