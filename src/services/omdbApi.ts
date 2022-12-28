@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IResponseAPI, IMovieInfoAPI } from "../types/types";
+import { IResponseAPI, IMovieInfoAPI } from "types";
 
 class OmdbApi {
   private readonly BASE_URL = process.env.REACT_APP_BASE_URL_OMDB_API;

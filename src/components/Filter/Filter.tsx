@@ -11,7 +11,6 @@ import {
 } from "./styles";
 import { useBodyScroll } from "hooks";
 import { CloseButton, Divider, Input, Tabs, Label, CustomSelect, Button } from "components";
-import { useState } from "react";
 
 export enum SortVariant {
   rating,
@@ -26,7 +25,6 @@ export enum MovieType {
 
 export const Filter = ({ isVisible = false }: { isVisible?: boolean }) => {
   const portalElement = document.getElementById("filter-root");
-  const [movieType, setMovieType] = useState(MovieType.movie);
   useBodyScroll(false);
   //TODO redux isOpen variable
   //TODO disable window scroll onOpenPortal
@@ -50,7 +48,7 @@ export const Filter = ({ isVisible = false }: { isVisible?: boolean }) => {
                     { label: "Year", id: SortVariant.year },
                   ]}
                   onChange={(value) => {
-                    console.log(value);
+                    //TODO change filter type handler
                   }}
                 />
               </Section>
@@ -94,7 +92,7 @@ export const Filter = ({ isVisible = false }: { isVisible?: boolean }) => {
               <InputGroup>
                 <Button
                   onClick={() => {
-                    console.log("text click");
+                    //TODO submit handler
                   }}
                 >
                   text
