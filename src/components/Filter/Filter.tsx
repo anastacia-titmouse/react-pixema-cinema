@@ -1,16 +1,25 @@
 import { createPortal } from "react-dom";
 import {
   Background,
-  Header,
-  FilterStyled,
-  Wrapper,
-  Section,
-  InputGroup,
   Content,
+  FilterStyled,
   Footer,
+  Header,
+  InputGroup,
+  Section,
+  Wrapper,
 } from "./styles";
 import { useDisableBodyScroll } from "hooks";
-import { CloseButton, Divider, Input, Tabs, Label, CustomSelect, Button } from "components";
+import {
+  Button,
+  ButtonType,
+  CloseButton,
+  CustomSelect,
+  Divider,
+  Input,
+  Label,
+  Tabs,
+} from "components";
 import { setFilterVisibility, useTypedDispatch } from "store";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -113,7 +122,15 @@ export const Filter = ({ isVisible }: { isVisible: boolean }) => {
                             //TODO submit handler
                           }}
                         >
-                          text
+                          Clear Filter
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            //TODO submit handler
+                          }}
+                          type={ButtonType.Primary}
+                        >
+                          Show Results
                         </Button>
                       </InputGroup>
                     </Footer>
