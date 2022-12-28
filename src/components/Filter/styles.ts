@@ -34,6 +34,7 @@ export const FilterStyled = styled.div`
 export const Header = styled.div`
   display: grid;
   grid-template-columns: auto 24px;
+  align-items: center;
   padding: 0 0 48px;
   ${H2}
 

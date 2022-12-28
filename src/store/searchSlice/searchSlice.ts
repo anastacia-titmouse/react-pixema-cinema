@@ -3,10 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface SearchState {
   keyword: string;
+  isFilterVisible: boolean;
 }
 
 const initialState: SearchState = {
   keyword: "",
+  isFilterVisible: false,
 };
 
 export const searchSlice = createSlice({
@@ -16,9 +18,12 @@ export const searchSlice = createSlice({
     setKeyword: (state, action: PayloadAction<string>) => {
       state.keyword += action.payload;
     },
+    setFilterVisibility: (state, action: PayloadAction<boolean>) => {
+      state.isFilterVisible = action.payload;
+    },
   },
 });
 
-export const { setKeyword } = searchSlice.actions;
+export const { setKeyword, setFilterVisibility } = searchSlice.actions;
 
 export default searchSlice.reducer;

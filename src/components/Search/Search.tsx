@@ -1,13 +1,17 @@
-import { useDispatch } from "react-redux";
-import { setKeyword } from "store";
 import { FilterButton, SearchStyled, SearchWrapper } from "./style";
-import { FilterIcon } from "../../assets";
+import { setFilterVisibility, setKeyword, useTypedDispatch, useTypedSelector } from "store";
+import { FilterIcon } from "assets";
 
 export const Search = () => {
-  const dispatch = useDispatch();
+  const isFilterVisible = useTypedSelector((state) => state.search.isFilterVisible);
+  const dispatch = useTypedDispatch();
 
   const onChange = (keyword: string) => {
     dispatch(setKeyword(keyword));
+  };
+
+  const toggleFilterVisibility = () => {
+    dispatch(setFilterVisibility(!isFilterVisible));
   };
 
   const filtered = true;
@@ -20,7 +24,7 @@ export const Search = () => {
         }}
         placeholder="Search"
       />
-      <FilterButton className="search-filter-button">
+      <FilterButton className="search-filter-button" onClick={toggleFilterVisibility}>
         <FilterIcon />
       </FilterButton>
     </SearchWrapper>

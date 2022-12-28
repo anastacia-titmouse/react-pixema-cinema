@@ -1,2 +1,2 @@
 export * from "./useInput";
-export * from "./useBodyScroll";
+export * from "./useDisableBodyScroll";

@@ -30,6 +30,7 @@ export const FilterButton = styled.button`
   position: absolute;
   right: 0;
   top: 0;
+  cursor: pointer;
 `;
 
 export const SearchStyled = styled.input`
