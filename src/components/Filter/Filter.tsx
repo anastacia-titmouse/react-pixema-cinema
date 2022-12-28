@@ -24,14 +24,14 @@ export enum MovieType {
   episode = "episode",
 }
 
-export const Filter = () => {
+export const Filter = ({ isVisible = false }: { isVisible?: boolean }) => {
   const portalElement = document.getElementById("filter-root");
   const [movieType, setMovieType] = useState(MovieType.movie);
   useBodyScroll(false);
   //TODO redux isOpen variable
   //TODO disable window scroll onOpenPortal
 
-  if (portalElement) {
+  if (portalElement && isVisible) {
     return createPortal(
       <Background>
         <Wrapper>
