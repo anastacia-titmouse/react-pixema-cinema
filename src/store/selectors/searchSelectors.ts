@@ -8,11 +8,13 @@ export const getSelectedGenresAsOptions = (state: RootState) => {
 };
 
 export const getSelectedCountyAsOption = (state: RootState) => {
-  if (state.search.selectedCountry === null) return undefined;
-
-  const { id: value, title: label } = state.search.selectedCountry;
-  return {
-    value,
-    label,
-  };
+  if (state.search.selectedCountry) {
+    const { id: value, title: label } = state.search.selectedCountry;
+    return {
+      value,
+      label,
+    };
+  } else {
+    return null;
+  }
 };
