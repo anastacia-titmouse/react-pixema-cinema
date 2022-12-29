@@ -16,32 +16,82 @@ import {
   CloseButton,
   CustomSelect,
   Divider,
+  ICustomSelectOption,
   Input,
   Label,
   Tabs,
 } from "components";
-import { setFilterVisibility, useTypedDispatch } from "store";
+import {
+  fetchCountries,
+  fetchGenres,
+  setFilterVisibility,
+  setSelectedGenreIds,
+  useTypedDispatch,
+  useTypedSelector,
+  getSelectedGenresAsOptions,
+  getSelectedCountyAsOption,
+  setSelectedCountry,
+  SortVariant,
+  setSortVariant,
+  setYearFrom,
+  setYearTo,
+  setRatingFrom,
+  setRatingTo,
+  cleanFilter,
+} from "store";
 import { AnimatePresence, motion } from "framer-motion";
-
-export enum SortVariant {
-  rating,
-  year,
-}
-
-export enum MovieType {
-  movie = "movie",
-  series = "series",
-  episode = "episode",
-}
+import { useEffect } from "react";
+import { SingleValue, MultiValue } from "react-select";
 
 export const Filter = ({ isVisible }: { isVisible: boolean }) => {
   const portalElement = document.getElementById("filter-root");
   useDisableBodyScroll(!isVisible);
+
   const dispatch = useTypedDispatch();
+
+  const isGenresLoading = useTypedSelector((state) => state.search.isGenresLoading);
+  const genres = useTypedSelector((state) => state.search.genres);
+  const selectedGenres = useTypedSelector(getSelectedGenresAsOptions);
+
+  const isCountriesLoading = useTypedSelector((state) => state.search.isCountriesLoading);
+  const countries = useTypedSelector((state) => state.search.countries);
+  const selectedCountry = useTypedSelector(getSelectedCountyAsOption);
+
+  const sortVariant = useTypedSelector((state) => state.search.sortVariant);
+  const yearFrom = useTypedSelector((state) => state.search.yearFrom);
+  const yearTo = useTypedSelector((state) => state.search.yearTo);
+  const ratingFrom = useTypedSelector((state) => state.search.ratingFrom);
+  const ratingTo = useTypedSelector((state) => state.search.ratingTo);
+
+  const handleGenreChange = (options: MultiValue<ICustomSelectOption>) => {
+    dispatch(
+      setSelectedGenreIds(
+        options.map((option) => ({
+          id: option.value,
+          title: option.label,
+        })),
+      ),
+    );
+  };
+
+  const handleCountryChange = (option: SingleValue<ICustomSelectOption>) => {
+    if (option === null) {
+      dispatch(setSelectedCountry(null));
+    } else {
+      dispatch(setSelectedCountry({ id: option.value, title: option.label }));
+    }
+  };
 
   const closeFilter = () => {
     dispatch(setFilterVisibility(false));
   };
+
+  useEffect(() => {
+    if (isVisible) {
+      dispatch(fetchGenres()).finally();
+      dispatch(fetchCountries()).finally();
+    }
+  }, [dispatch, isVisible]);
 
   if (portalElement) {
     return createPortal(
@@ -74,8 +124,9 @@ export const Filter = ({ isVisible }: { isVisible: boolean }) => {
                             { label: "Rating", id: SortVariant.rating },
                             { label: "Year", id: SortVariant.year },
                           ]}
+                          value={sortVariant}
                           onChange={(value) => {
-                            //TODO change filter type handler
+                            dispatch(setSortVariant(value));
                           }}
                         />
                       </Section>
@@ -86,44 +137,82 @@ export const Filter = ({ isVisible }: { isVisible: boolean }) => {
                         <Label>Genre</Label>
                         <CustomSelect
                           isMulti
-                          options={[
-                            { value: "1", label: "Movie" },
-                            { value: "2", label: "Series" },
-                            { value: "3", label: "Episode" },
-                            { value: "4", label: "Movie" },
-                            { value: "5", label: "Series" },
-                            { value: "6", label: "Episode" },
-                            { value: "7", label: "Movie" },
-                            { value: "8", label: "Series" },
-                            { value: "9", label: "Some Awesome Long Genre" },
-                          ]}
+                          isDisabled={isGenresLoading}
+                          options={genres.map((genre) => ({
+                            value: genre.id,
+                            label: genre.title,
+                          }))}
+                          onChange={(newValues) => {
+                            handleGenreChange(newValues as MultiValue<ICustomSelectOption>);
+                          }}
+                          value={selectedGenres}
                         />
                       </Section>
 
                       <Section>
                         <Label>Years</Label>
                         <InputGroup>
-                          <Input placeholder="From" />
-                          <Input placeholder="To" />
+                          <Input
+                            placeholder="From"
+                            value={yearFrom ?? ""}
+                            type="number"
+                            min="1895"
+                            onChange={(e) => {
+                              dispatch(setYearFrom(e.target.value));
+                            }}
+                          />
+                          <Input
+                            placeholder="To"
+                            value={yearTo ?? ""}
+                            type="number"
+                            min="1895"
+                            onChange={(e) => {
+                              dispatch(setYearTo(e.target.value));
+                            }}
+                          />
                         </InputGroup>
                       </Section>
 
                       <Section>
                         <Label>Rating</Label>
                         <InputGroup>
-                          <Input placeholder="From" />
-                          <Input placeholder="To" />
+                          <Input
+                            placeholder="From"
+                            value={ratingFrom ?? ""}
+                            type="number"
+                            min="0"
+                            max="10"
+                            step="0.1"
+                            onChange={(e) => {
+                              dispatch(setRatingFrom(e.target.value));
+                            }}
+                          />
+                          <Input
+                            placeholder="To"
+                            value={ratingTo ?? ""}
+                            type="number"
+                            min="0"
+                            max="10"
+                            step="0.1"
+                            onChange={(e) => {
+                              dispatch(setRatingTo(e.target.value));
+                            }}
+                          />
                         </InputGroup>
                       </Section>
 
                       <Section>
-                        <Label>Type</Label>
+                        <Label>Country</Label>
                         <CustomSelect
-                          options={[
-                            { value: MovieType.movie, label: "Movie" },
-                            { value: MovieType.series, label: "Series" },
-                            { value: MovieType.episode, label: "Episode" },
-                          ]}
+                          isDisabled={isCountriesLoading}
+                          options={countries.map((country) => ({
+                            value: country.id,
+                            label: country.title,
+                          }))}
+                          value={selectedCountry}
+                          onChange={(option) => {
+                            handleCountryChange(option as SingleValue<ICustomSelectOption>);
+                          }}
                         />
                       </Section>
                     </Content>
@@ -132,7 +221,7 @@ export const Filter = ({ isVisible }: { isVisible: boolean }) => {
                       <InputGroup>
                         <Button
                           onClick={() => {
-                            //TODO submit handler
+                            dispatch(cleanFilter());
                           }}
                         >
                           Clear Filter

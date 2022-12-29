@@ -1,8 +1,9 @@
 import { StylesConfig } from "react-select";
 import { Color } from "ui";
 import { INPUT_CSS_OBJECT } from "ui/typography";
+import { ICustomSelectOption } from "./CustomSelect";
 
-export const selectStyles: StylesConfig<{ label: string; value: string }> = {
+export const selectStyles: StylesConfig<ICustomSelectOption> = {
   control: (styles) => ({
     ...styles,
     ...INPUT_CSS_OBJECT,
@@ -11,6 +12,7 @@ export const selectStyles: StylesConfig<{ label: string; value: string }> = {
     border: `1px solid ${Color.Primary_INPUT_BG}`,
     borderRadius: "10px",
     padding: "12px 20px",
+    textTransform: "capitalize",
     ":active": {
       borderColor: Color.Primary,
     },
@@ -51,6 +53,7 @@ export const selectStyles: StylesConfig<{ label: string; value: string }> = {
       padding: "0 20px",
       borderBottom: `1px solid ${Color.Primary_INPUT_BORDER}`,
       backgroundColor: "transparent",
+      textTransform: "capitalize",
       ":hover": {
         color: Color.Primary,
       },
@@ -67,6 +70,7 @@ export const selectStyles: StylesConfig<{ label: string; value: string }> = {
     backgroundColor: Color.Dark,
     borderRadius: "6px",
     padding: "4px 4px 4px 8px",
+    textTransform: "capitalize",
   }),
   multiValueLabel: (styles) => ({
     ...styles,

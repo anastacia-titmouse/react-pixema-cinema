@@ -1,17 +1,15 @@
-import Select from "react-select";
+import Select, { Props } from "react-select";
 import { selectStyles } from "./styles";
 
-export const CustomSelect = ({
-  options,
-  isMulti,
-}: {
-  options: { label: string; value: string }[];
-  isMulti?: boolean;
-}) => {
+export interface ICustomSelectOption {
+  label: string;
+  value: string;
+}
+
+export const CustomSelect = (props: Props<ICustomSelectOption>) => {
   return (
     <Select
-      isMulti={isMulti}
-      options={options}
+      {...props}
       components={{ Input: () => null, IndicatorSeparator: () => null }}
       styles={selectStyles}
     />
