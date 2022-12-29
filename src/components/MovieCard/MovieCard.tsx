@@ -15,7 +15,7 @@ export const MovieCard = ({ movie }: IProps) => {
           <Title>
             {movie.title}:{movie.year}
           </Title>
-          <SubTitle>{movie.genre}</SubTitle>
+          <SubTitle>{movie.year}</SubTitle>
         </Text>
       </MovieCardStyled>
     </Link>
