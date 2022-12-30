@@ -4,7 +4,7 @@ import { ContentWrapper, MainTemplateStyled } from "./style";
 import { useTypedSelector } from "store";
 
 export const MainTemplate = () => {
-  const isFilterVisible = useTypedSelector((state) => state.search.isFilterVisible);
+  const isFilterVisible = useTypedSelector((state) => state.filter.isFilterVisible);
 
   return (
     <MainTemplateStyled>

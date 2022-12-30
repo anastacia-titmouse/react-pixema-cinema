@@ -12,7 +12,6 @@ import {
 import { useDisableBodyScroll } from "hooks";
 import {
   Button,
-  ButtonType,
   CloseButton,
   CustomSelect,
   Divider,
@@ -42,26 +41,29 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { SingleValue, MultiValue } from "react-select";
+import { useNavigate } from "react-router-dom";
+import { ROUTE } from "router";
 
 export const Filter = ({ isVisible }: { isVisible: boolean }) => {
   const portalElement = document.getElementById("filter-root");
   useDisableBodyScroll(!isVisible);
 
   const dispatch = useTypedDispatch();
+  const navigate = useNavigate();
 
-  const isGenresLoading = useTypedSelector((state) => state.search.isGenresLoading);
-  const genres = useTypedSelector((state) => state.search.genres);
+  const isGenresLoading = useTypedSelector((state) => state.filter.isGenresLoading);
+  const genres = useTypedSelector((state) => state.filter.genres);
   const selectedGenres = useTypedSelector(getSelectedGenresAsOptions);
 
-  const isCountriesLoading = useTypedSelector((state) => state.search.isCountriesLoading);
-  const countries = useTypedSelector((state) => state.search.countries);
+  const isCountriesLoading = useTypedSelector((state) => state.filter.isCountriesLoading);
+  const countries = useTypedSelector((state) => state.filter.countries);
   const selectedCountry = useTypedSelector(getSelectedCountyAsOption);
 
-  const sortVariant = useTypedSelector((state) => state.search.sortVariant);
-  const yearFrom = useTypedSelector((state) => state.search.yearFrom);
-  const yearTo = useTypedSelector((state) => state.search.yearTo);
-  const ratingFrom = useTypedSelector((state) => state.search.ratingFrom);
-  const ratingTo = useTypedSelector((state) => state.search.ratingTo);
+  const sortVariant = useTypedSelector((state) => state.filter.sortVariant);
+  const yearFrom = useTypedSelector((state) => state.filter.yearFrom);
+  const yearTo = useTypedSelector((state) => state.filter.yearTo);
+  const ratingFrom = useTypedSelector((state) => state.filter.ratingFrom);
+  const ratingTo = useTypedSelector((state) => state.filter.ratingTo);
 
   const handleGenreChange = (options: MultiValue<ICustomSelectOption>) => {
     dispatch(
@@ -227,10 +229,11 @@ export const Filter = ({ isVisible }: { isVisible: boolean }) => {
                           Clear Filter
                         </Button>
                         <Button
-                          onClick={() => {
-                            //TODO submit handler
+                          onClick={(e) => {
+                            dispatch(setFilterVisibility(false));
+                            navigate(`/${ROUTE.SEARCH}`);
                           }}
-                          type={ButtonType.Primary}
+                          className="primary"
                         >
                           Show Results
                         </Button>

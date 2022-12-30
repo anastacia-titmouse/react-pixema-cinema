@@ -13,7 +13,7 @@ export enum SortVariant {
   year,
 }
 
-export interface SearchState {
+export interface FilterState {
   keyword: string;
   sortVariant: SortVariant;
 
@@ -34,7 +34,7 @@ export interface SearchState {
   isFilterVisible: boolean;
 }
 
-const initialState: SearchState = {
+export const filterInitialState: FilterState = {
   keyword: "",
   sortVariant: SortVariant.year,
   yearFrom: null,
@@ -72,9 +72,9 @@ export const fetchCountries = createAsyncThunk<ICountryModel[], void, { rejectVa
   },
 );
 
-export const searchSlice = createSlice({
+export const filterSlice = createSlice({
   name: "search",
-  initialState,
+  initialState: filterInitialState,
   reducers: {
     setKeyword: (state, action: PayloadAction<string>) => {
       state.keyword += action.payload;
@@ -121,7 +121,7 @@ export const searchSlice = createSlice({
         ratingTo,
         selectedGenres,
         selectedCountry,
-      } = initialState;
+      } = filterInitialState;
 
       return {
         ...state,
@@ -167,6 +167,6 @@ export const {
   setRatingFrom,
   setRatingTo,
   cleanFilter,
-} = searchSlice.actions;
+} = filterSlice.actions;
 
-export default searchSlice.reducer;
+export default filterSlice.reducer;

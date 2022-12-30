@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Color } from "ui";
 
-export const SearchWrapper = styled.div`
+export const SearchForm = styled.form`
   position: relative;
   width: 100%;
   height: 56px;
 
-  & .search-filter-button:before {
+  &.filter-active .search-filter-button:before {
     content: "";
     display: block;
     width: 6px;
