@@ -7,13 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
-import {
-  FirebaseCollections,
-  ICountryModel,
-  IGenreModel,
-  IUserLoginRequestPayload,
-  IUserRegisterRequestPayload,
-} from "firebaseApi";
+import { IUserLoginRequestPayload, IUserRegisterRequestPayload } from "services";
 import { setAuthStatus, setEmail, setUserName, store } from "store";
 import { firebaseConfig } from "./config";
 
@@ -66,26 +60,6 @@ const sendPasswordReset = async (email: string) => {
 
 const logout = async () => {
   await signOut(auth);
-};
-
-export const fetchGenreModels = async () => {
-  const q = query(collection(db, FirebaseCollections.genres));
-  const querySnapshot = await getDocs(q);
-
-  return querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    title: doc.data().title,
-  })) as IGenreModel[];
-};
-
-export const fetchCountryModels = async () => {
-  const q = query(collection(db, FirebaseCollections.countries));
-  const querySnapshot = await getDocs(q);
-
-  return querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    title: doc.data().title,
-  })) as ICountryModel[];
 };
 
 export const getFirebaseErrorMessage = (error: unknown) => {

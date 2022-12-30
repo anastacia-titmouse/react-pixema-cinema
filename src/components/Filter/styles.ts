@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
 
 export const FilterStyled = styled.div`
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: min-content auto min-content;
   position: relative;
   width: 518px;
   height: 100vh;
@@ -36,6 +36,7 @@ export const Header = styled.div`
   grid-template-columns: auto 24px;
   align-items: center;
   padding: 0 0 48px;
+  height: 36px;
   ${H2}
 
   & button {

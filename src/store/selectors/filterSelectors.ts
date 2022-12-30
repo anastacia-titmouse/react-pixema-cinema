@@ -1,45 +1,22 @@
 import { RootState } from "../store";
 import { filterInitialState } from "../features/filterSlice/filterSlice";
-
-export const getSelectedGenresAsOptions = (state: RootState) => {
-  return state.filter.selectedGenres.map((genre) => ({
-    label: genre.title,
-    value: genre.id,
-  }));
-};
-
-export const getSelectedCountyAsOption = (state: RootState) => {
-  if (state.filter.selectedCountry) {
-    const { id: value, title: label } = state.filter.selectedCountry;
-    return {
-      value,
-      label,
-    };
-  } else {
-    return null;
-  }
-};
+import { ICustomSelectOption } from "components";
 
 export const getFilterActivationState = (state: RootState) => {
-  const {
-    sortVariant: initialSortVariant,
-    yearFrom: initialYarFrom,
-    yearTo: initialYearTo,
-    ratingFrom: initialRatingFrom,
-    ratingTo: initialRatingTo,
-    selectedCountry: initialSelectedCountry,
-  } = filterInitialState;
+  const { yearOfRelease: initialYarOfRelease, type: initialType } = filterInitialState;
 
-  const { sortVariant, yearFrom, yearTo, ratingFrom, ratingTo, selectedGenres, selectedCountry } =
-    state.filter;
+  const { yearOfRelease, type } = state.filter;
 
-  return !(
-    sortVariant === initialSortVariant &&
-    yearFrom === initialYarFrom &&
-    yearTo === initialYearTo &&
-    ratingFrom === initialRatingFrom &&
-    ratingTo === initialRatingTo &&
-    selectedGenres.length === 0 &&
-    selectedCountry === initialSelectedCountry
-  );
+  return !(yearOfRelease === initialYarOfRelease && type === initialType);
+};
+
+export const getMovieTypeAsOption = (state: RootState): ICustomSelectOption | undefined => {
+  if (state.filter.type === null) {
+    return;
+  } else {
+    return {
+      label: state.filter.type,
+      value: state.filter.type,
+    };
+  }
 };

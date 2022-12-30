@@ -1,172 +1,93 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import {
-  fetchCountryModels,
-  fetchGenreModels,
-  getFirebaseErrorMessage,
-  ICountryModel,
-  IGenreModel,
-} from "firebaseApi";
-
-export enum SortVariant {
-  rating,
-  year,
-}
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { IMovie, MovieTypes } from "types";
+import { getImdbErrorMessage, OmdbAPI, transformMovies } from "services";
+import { RootState } from "../../store";
 
 export interface FilterState {
   keyword: string;
-  sortVariant: SortVariant;
-
-  yearFrom: number | null;
-  yearTo: number | null;
-
-  ratingFrom: number | null;
-  ratingTo: number | null;
-
-  genres: IGenreModel[];
-  isGenresLoading: boolean;
-  selectedGenres: IGenreModel[];
-
-  countries: ICountryModel[];
-  isCountriesLoading: boolean;
-  selectedCountry: ICountryModel | null;
-
+  yearOfRelease: string | null;
+  type: MovieTypes | null;
   isFilterVisible: boolean;
+  page: number;
+  isLoading: boolean;
+  movies: IMovie[];
 }
 
 export const filterInitialState: FilterState = {
   keyword: "",
-  sortVariant: SortVariant.year,
-  yearFrom: null,
-  yearTo: null,
-  ratingFrom: null,
-  ratingTo: null,
-  genres: [],
-  isGenresLoading: false,
-  selectedGenres: [],
-  countries: [],
-  isCountriesLoading: false,
-  selectedCountry: null,
+  yearOfRelease: null,
+  type: null,
   isFilterVisible: false,
+  page: 1,
+  isLoading: false,
+  movies: [],
 };
 
-export const fetchGenres = createAsyncThunk<IGenreModel[], void, { rejectValue: string }>(
-  "search/fetchGenres",
-  async (payload, { rejectWithValue }) => {
-    try {
-      return fetchGenreModels();
-    } catch (error) {
-      return rejectWithValue(getFirebaseErrorMessage(error));
-    }
-  },
-);
+export const applyFilter = createAsyncThunk<
+  IMovie[],
+  void,
+  { rejectValue: string; state: RootState }
+>("search/fetchMovies", async (payload, { rejectWithValue, getState }) => {
+  const state = getState();
+  const { keyword, page, type, yearOfRelease } = state.filter;
 
-export const fetchCountries = createAsyncThunk<ICountryModel[], void, { rejectValue: string }>(
-  "search/fetchCountries",
-  async (payload, { rejectWithValue }) => {
-    try {
-      return fetchCountryModels();
-    } catch (error) {
-      return rejectWithValue(getFirebaseErrorMessage(error));
-    }
-  },
-);
+  try {
+    const apiMovieList = await OmdbAPI.getMoviesBySearch({ keyword, yearOfRelease, type });
+    return transformMovies(apiMovieList);
+  } catch (error) {
+    return rejectWithValue(getImdbErrorMessage(error));
+  }
+});
 
 export const filterSlice = createSlice({
-  name: "search",
+  name: "filter",
   initialState: filterInitialState,
   reducers: {
     setKeyword: (state, action: PayloadAction<string>) => {
-      state.keyword += action.payload;
+      state.keyword = action.payload;
     },
 
-    setSortVariant: (state, action: PayloadAction<SortVariant>) => {
-      state.sortVariant = action.payload;
+    setYearOfRelease: (state, action: PayloadAction<string | null>) => {
+      state.yearOfRelease = action.payload;
     },
 
-    setYearFrom: (state, action: PayloadAction<number | string>) => {
-      state.yearFrom = action.payload ? Number(action.payload) : null;
-    },
-
-    setYearTo: (state, action: PayloadAction<number | string>) => {
-      state.yearTo = action.payload ? Number(action.payload) : null;
-    },
-
-    setRatingFrom: (state, action: PayloadAction<number | string>) => {
-      state.ratingFrom = action.payload ? Number(action.payload) : null;
-    },
-
-    setRatingTo: (state, action: PayloadAction<number | string>) => {
-      state.ratingTo = action.payload ? Number(action.payload) : null;
+    setType: (state, action: PayloadAction<MovieTypes | null>) => {
+      state.type = action.payload;
     },
 
     setFilterVisibility: (state, action: PayloadAction<boolean>) => {
       state.isFilterVisible = action.payload;
     },
 
-    setSelectedGenreIds: (state, action: PayloadAction<IGenreModel[]>) => {
-      state.selectedGenres = action.payload;
-    },
-
-    setSelectedCountry: (state, action: PayloadAction<ICountryModel | null>) => {
-      state.selectedCountry = action.payload;
-    },
-
     cleanFilter: (state) => {
-      const {
-        sortVariant,
-        yearFrom,
-        yearTo,
-        ratingFrom,
-        ratingTo,
-        selectedGenres,
-        selectedCountry,
-      } = filterInitialState;
+      const { keyword, yearOfRelease, type } = filterInitialState;
 
       return {
         ...state,
-        sortVariant,
-        yearFrom,
-        yearTo,
-        ratingFrom,
-        ratingTo,
-        selectedGenres,
-        selectedCountry,
+        keyword,
+        yearOfRelease,
+        type,
       };
+    },
+
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchGenres.pending, (state) => {
-      state.isGenresLoading = true;
+    builder.addCase(applyFilter.pending, (state) => {
+      state.isLoading = true;
     });
 
-    builder.addCase(fetchGenres.fulfilled, (state, action) => {
-      state.genres = action.payload;
-      state.isGenresLoading = false;
-    });
-
-    builder.addCase(fetchCountries.pending, (state) => {
-      state.isCountriesLoading = true;
-    });
-
-    builder.addCase(fetchCountries.fulfilled, (state, action) => {
-      state.countries = action.payload;
-      state.isCountriesLoading = false;
+    builder.addCase(applyFilter.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.movies = action.payload;
     });
   },
 });
 
-export const {
-  setKeyword,
-  setFilterVisibility,
-  setSelectedGenreIds,
-  setSelectedCountry,
-  setSortVariant,
-  setYearFrom,
-  setYearTo,
-  setRatingFrom,
-  setRatingTo,
-  cleanFilter,
-} = filterSlice.actions;
+export const { setKeyword, setFilterVisibility, setYearOfRelease, cleanFilter, setType, setPage } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

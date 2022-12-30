@@ -1,3 +1,12 @@
+import { useTypedSelector } from "store";
+import { MoviesList } from "components";
+
 export const SearchPage = () => {
-  return <div>SearchPage</div>;
+  const movies = useTypedSelector((state) => state.filter.movies);
+
+  return (
+    <div>
+      <MoviesList movies={movies} />
+    </div>
+  );
 };

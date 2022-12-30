@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IResponseAPI, IMovieInfoAPI } from "types";
+import { IResponseAPI, IMovieInfoAPI, IGetMoviesBySearchProps } from "types";
 
 class OmdbApi {
   private readonly BASE_URL = process.env.REACT_APP_BASE_URL_OMDB_API;
@@ -20,9 +20,15 @@ class OmdbApi {
     return data;
   }
 
-  public async getMoviesBySearch(keyword: string): Promise<IMovieInfoAPI[]> {
+  public async getMoviesBySearch({
+    keyword,
+    yearOfRelease,
+    type,
+  }: IGetMoviesBySearchProps): Promise<IMovieInfoAPI[]> {
+    const params = { s: keyword, y: yearOfRelease, type };
+
     const { data } = await this.API.get<IResponseAPI>("", {
-      params: { s: keyword },
+      params,
     });
 
     if (data.Response === "False") {
@@ -33,5 +39,10 @@ class OmdbApi {
     return Promise.all(moviesIds.map((id) => this.getMovieById(id)));
   }
 }
+
+export const getImdbErrorMessage = (error: unknown) => {
+  //TODO
+  return "";
+};
 
 export const OmdbAPI = new OmdbApi();

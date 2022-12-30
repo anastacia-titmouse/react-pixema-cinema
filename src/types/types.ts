@@ -49,3 +49,15 @@ interface IRating {
   Source: string;
   Value: string;
 }
+
+export enum MovieTypes {
+  movie = "movie",
+  series = "series",
+  episode = "episode",
+}
+
+export interface IGetMoviesBySearchProps {
+  keyword: string;
+  yearOfRelease?: string | null;
+  type?: MovieTypes | null;
+}
