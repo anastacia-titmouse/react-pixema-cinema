@@ -26,10 +26,11 @@ export interface IFullMovieInfoDto {
 export interface IMovie {
   title: string;
   year: string;
-  imdbID: string;
+  imdbId: string;
   type: string;
   poster: string;
 }
+
 export interface IShortMovieInfoDto {
   Title: string;
   Year: string;
@@ -44,6 +45,7 @@ export interface IResponseDto {
   totalResults: string;
   Response: "True" | "False";
 }
+
 interface IRating {
   Source: string;
   Value: string;

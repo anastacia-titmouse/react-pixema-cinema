@@ -7,15 +7,17 @@ interface IProps {
   movie: IMovie;
 }
 export const MovieCard = ({ movie }: IProps) => {
+  const { imdbId, poster, title, year } = movie;
+
   return (
-    <Link to={generatePath(ROUTE.MOVIE_DETAILS, { name: movie.imdbID })}>
-      <MovieCardStyled key={movie.imdbID}>
-        <CardPoster src={movie.poster} alt={movie.title} />
+    <Link to={`/${generatePath(ROUTE.MOVIE_DETAILS, { imdbId })}`}>
+      <MovieCardStyled key={imdbId}>
+        <CardPoster src={poster} alt={title} />
         <Text>
           <Title>
-            {movie.title}:{movie.year}
+            {title}:{year}
           </Title>
-          <SubTitle>{movie.year}</SubTitle>
+          <SubTitle>{year}</SubTitle>
         </Text>
       </MovieCardStyled>
     </Link>
