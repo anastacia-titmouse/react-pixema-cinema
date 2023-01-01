@@ -1,6 +1,6 @@
 import { HomePage } from "./HomePage/HomePage";
 import { FavoritesPage } from "./FavoritesPage/FavoritesPage";
-import { MovieCardPage } from "./MovieCardPage/MovieCardPage";
+import { MovieDetailsPage } from "./MovieDetailsPage/MovieDetailsPage";
 import { PasswordPage } from "./PasswordPage/PasswordPage";
 import { SearchPage } from "./SearchPage/SearchPage";
 import { SettingsPage } from "./SettingsPage/SettingsPage";
@@ -17,5 +17,5 @@ export {
   SettingsPage,
   SignInPage,
   SignUpPage,
-  MovieCardPage,
+  MovieDetailsPage,
 };

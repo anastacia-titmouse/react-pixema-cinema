@@ -2,7 +2,7 @@ import { MainTemplate } from "components";
 import {
   FavoritesPage,
   HomePage,
-  MovieCardPage,
+  MovieDetailsPage,
   PasswordPage,
   SearchPage,
   SettingsPage,
@@ -32,7 +32,7 @@ export const router = createBrowserRouter(
         <Route path={ROUTE.PASSWORD} element={<PasswordPage />} />
         <Route path={ROUTE.SEARCH} element={<SearchPage />} />
         <Route path={ROUTE.SETTINGS} element={<SettingsPage />} />
-        <Route path={ROUTE.MOVIE_CARD} element={<MovieCardPage />} />
+        <Route path={ROUTE.MOVIE_DETAILS} element={<MovieDetailsPage />} />
       </Route>
       <Route element={<AuthTemplate />}>
         <Route

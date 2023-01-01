@@ -29,7 +29,6 @@ export interface IMovie {
   imdbID: string;
   type: string;
   poster: string;
-  genre: string;
 }
 export interface IShortMovieInfoDto {
   Title: string;
@@ -37,7 +36,6 @@ export interface IShortMovieInfoDto {
   imdbID: string;
   Type: string;
   Poster: string;
-  Genre: string;
 }
 
 export interface IResponseDto {
