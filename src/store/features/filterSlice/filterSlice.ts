@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IMovie, MovieTypes } from "types";
+import { IMovie, IResponseDto, MovieTypes } from "types";
 import { getImdbErrorMessage, OmdbAPI, transformMovies } from "services";
 import { RootState } from "../../store";
 
@@ -10,6 +10,7 @@ export interface FilterState {
   type: MovieTypes | null;
   isFilterVisible: boolean;
   page: number;
+  totalMovies: number | null;
   isLoading: boolean;
   movies: IMovie[];
 }
@@ -20,21 +21,36 @@ export const filterInitialState: FilterState = {
   type: null,
   isFilterVisible: false,
   page: 1,
+  totalMovies: null,
   isLoading: false,
   movies: [],
 };
 
 export const applyFilter = createAsyncThunk<
-  IMovie[],
+  IResponseDto,
   void,
   { rejectValue: string; state: RootState }
->("search/fetchMovies", async (payload, { rejectWithValue, getState }) => {
+>("search/applyFilter", async (payload, { rejectWithValue, getState }) => {
   const state = getState();
-  const { keyword, page, type, yearOfRelease } = state.filter;
+  const { keyword, type, yearOfRelease } = state.filter;
 
   try {
-    const apiMovieList = await OmdbAPI.getMoviesBySearch({ keyword, yearOfRelease, type });
-    return transformMovies(apiMovieList);
+    return OmdbAPI.getMoviesBySearch({ keyword, yearOfRelease, type });
+  } catch (error) {
+    return rejectWithValue(getImdbErrorMessage(error));
+  }
+});
+
+export const loadMoreMovies = createAsyncThunk<
+  IResponseDto,
+  void,
+  { rejectValue: string; state: RootState }
+>("search/loadMoreMovies", async (payload, { rejectWithValue, getState }) => {
+  const state = getState();
+  const { keyword, type, yearOfRelease, page } = state.filter;
+
+  try {
+    return OmdbAPI.getMoviesBySearch({ keyword, yearOfRelease, type, page: page + 1 });
   } catch (error) {
     return rejectWithValue(getImdbErrorMessage(error));
   }
@@ -61,18 +77,13 @@ export const filterSlice = createSlice({
     },
 
     cleanFilter: (state) => {
-      const { keyword, yearOfRelease, type } = filterInitialState;
+      const { yearOfRelease, type } = filterInitialState;
 
       return {
         ...state,
-        keyword,
         yearOfRelease,
         type,
       };
-    },
-
-    setPage: (state, action: PayloadAction<number>) => {
-      state.page = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -81,13 +92,37 @@ export const filterSlice = createSlice({
     });
 
     builder.addCase(applyFilter.fulfilled, (state, action) => {
+      if (action.payload.Response === "True") {
+        const { Search, totalResults } = action.payload;
+        state.movies = transformMovies(Search);
+        state.totalMovies = Number(totalResults);
+      } else {
+        state.movies = [];
+        state.totalMovies = 0;
+      }
+
+      state.page = 1;
       state.isLoading = false;
-      state.movies = action.payload;
+    });
+
+    builder.addCase(loadMoreMovies.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(loadMoreMovies.fulfilled, (state, action) => {
+      if (action.payload.Response === "True") {
+        const { Search, totalResults } = action.payload;
+        state.movies = [...state.movies, ...transformMovies(Search)];
+        state.totalMovies = Number(totalResults);
+        state.page = state.page + 1;
+      }
+
+      state.isLoading = false;
     });
   },
 });
 
-export const { setKeyword, setFilterVisibility, setYearOfRelease, cleanFilter, setType, setPage } =
+export const { setKeyword, setFilterVisibility, setYearOfRelease, cleanFilter, setType } =
   filterSlice.actions;
 
 export default filterSlice.reducer;

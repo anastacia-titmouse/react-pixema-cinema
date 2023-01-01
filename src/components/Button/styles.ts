@@ -5,6 +5,8 @@ export const ButtonStyled = styled.button`
   outline: none;
   border: none;
   border-radius: 10px;
+  height: 54px;
+  padding: 8px 24px;
   background-color: ${Color.Primary_INPUT_BG};
   color: ${Color.Primary_TEXT};
   ${S1_3}

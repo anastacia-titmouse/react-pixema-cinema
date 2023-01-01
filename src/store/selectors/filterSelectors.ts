@@ -10,9 +10,9 @@ export const getFilterActivationState = (state: RootState) => {
   return !(yearOfRelease === initialYarOfRelease && type === initialType);
 };
 
-export const getMovieTypeAsOption = (state: RootState): ICustomSelectOption | undefined => {
+export const getMovieTypeAsOption = (state: RootState): ICustomSelectOption | null => {
   if (state.filter.type === null) {
-    return;
+    return null;
   } else {
     return {
       label: state.filter.type,

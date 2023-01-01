@@ -18,7 +18,6 @@ import {
   ICustomSelectOption,
   Input,
   Label,
-  Tabs,
 } from "components";
 import {
   setFilterVisibility,
