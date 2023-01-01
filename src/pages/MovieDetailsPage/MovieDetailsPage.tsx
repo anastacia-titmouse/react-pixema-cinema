@@ -7,13 +7,9 @@ export const MovieDetailsPage = () => {
   const { movie, loading } = useSelector((state: RootState) => state.movie);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchMovieById({ "superman" }));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchMovieById({ "superman" }));
+  // }, [dispatch]);
 
-  return (
-    <div>
-      <MoviesList movie={movie} loading={loading} />
-    </div>
-  );
+  return <div>{/*<MoviesList movie={movie} loading={loading} />*/}</div>;
 };

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IMovieInfoAPI } from "types";
+import { IShortMovieInfoDto } from "types";
 import { OmdbAPI } from "services";
 import { loading } from "./types";
 
 interface MovieState {
-  movie?: IMovieInfoAPI;
+  movie?: IShortMovieInfoDto;
   loading: loading;
   error?: unknown;
 }
