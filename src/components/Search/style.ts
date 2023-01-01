@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Color } from "ui";
 
-export const SearchWrapper = styled.div`
+export const SearchForm = styled.form`
   position: relative;
   width: 100%;
   height: 56px;
 
-  & .search-filter-button:before {
+  &.filter-active .search-filter-button:before {
     content: "";
     display: block;
     width: 6px;
@@ -30,6 +30,7 @@ export const FilterButton = styled.button`
   position: absolute;
   right: 0;
   top: 0;
+  cursor: pointer;
 `;
 
 export const SearchStyled = styled.input`

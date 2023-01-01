@@ -1,11 +1,11 @@
 import { CloseButtonStyled } from "./styles";
 import { TimesIcon } from "assets";
 
-export const CloseButton = ({ onClose }: { onClose?: () => void }) => {
+export const CloseButton = ({ onClick }: { onClick?: () => void }) => {
   return (
     <CloseButtonStyled
       onClick={() => {
-        onClose && onClose();
+        onClick && onClick();
       }}
     >
       <TimesIcon />

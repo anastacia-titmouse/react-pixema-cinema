@@ -7,7 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
-import { IUserLoginRequestPayload, IUserRegisterRequestPayload } from "firebaseApi";
+import { IUserLoginRequestPayload, IUserRegisterRequestPayload } from "services";
 import { setAuthStatus, setEmail, setUserName, store } from "store";
 import { firebaseConfig } from "./config";
 
@@ -60,6 +60,11 @@ const sendPasswordReset = async (email: string) => {
 
 const logout = async () => {
   await signOut(auth);
+};
+
+export const getFirebaseErrorMessage = (error: unknown) => {
+  //TODO
+  return "TODO getFirebaseErrorMessage";
 };
 
 export {

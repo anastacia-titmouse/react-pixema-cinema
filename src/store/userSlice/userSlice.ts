@@ -7,7 +7,7 @@ import {
   registerWithEmailAndPassword,
   IUserLoginRequestPayload,
   IUserRegisterRequestPayload,
-} from "firebaseApi";
+} from "services/firebaseApi";
 
 interface UserState {
   name: string;

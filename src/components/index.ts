@@ -23,6 +23,7 @@ export * from "./Input/Input";
 export * from "./Label/Label";
 export * from "./CustomSelect/CustomSelect";
 export * from "./Button/Button";
+export * from "./ShowMoreButton/ShowMoreButton";
 
 export {
   MovieCard,

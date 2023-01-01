@@ -7,14 +7,16 @@ import { MainStyled } from "./style";
 export const Main = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
 
-  useEffect(() => {
-    OmdbAPI.getMoviesBySearch("superman")
-      .then((moviesList) => {
-        const transformedMovies = transformMovies(moviesList);
-        return transformedMovies;
-      })
-      .then(setMovies);
-  }, []);
+  // useEffect(() => {
+  //   OmdbAPI.getMoviesBySearch({
+  //     keyword: "superman",
+  //   })
+  //     .then((moviesList) => {
+  //       const transformedMovies = transformMovies(moviesList);
+  //       return transformedMovies;
+  //     })
+  //     .then(setMovies);
+  // }, []);
 
   return (
     <MainStyled>

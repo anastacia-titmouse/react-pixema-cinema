@@ -1,9 +1,17 @@
-import { IInnerTab } from "./Tabs";
 import { TabStyled } from "./styles";
+import { ITab } from "./Tabs";
 
-export const Tab = ({ tab, onClick }: { tab: IInnerTab; onClick: () => void }) => {
+export const Tab = ({
+  tab,
+  selected,
+  onClick,
+}: {
+  tab: ITab;
+  selected: boolean;
+  onClick: () => void;
+}) => {
   return (
-    <TabStyled className={tab.isSelected ? "active" : ""} onClick={onClick}>
+    <TabStyled className={selected ? "active" : ""} onClick={onClick}>
       {tab.label}
     </TabStyled>
   );

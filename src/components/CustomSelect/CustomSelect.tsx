@@ -1,10 +1,15 @@
-import Select from "react-select";
+import Select, { Props } from "react-select";
 import { selectStyles } from "./styles";
 
-export const CustomSelect = ({ options }: { options: { label: string; value: string }[] }) => {
+export interface ICustomSelectOption {
+  label: string;
+  value: string;
+}
+
+export const CustomSelect = (props: Props<ICustomSelectOption>) => {
   return (
     <Select
-      options={options}
+      {...props}
       components={{ Input: () => null, IndicatorSeparator: () => null }}
       styles={selectStyles}
     />

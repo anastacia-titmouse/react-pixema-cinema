@@ -1,107 +1,146 @@
 import { createPortal } from "react-dom";
 import {
   Background,
-  Header,
-  FilterStyled,
-  Wrapper,
-  Section,
-  InputGroup,
   Content,
+  FilterStyled,
   Footer,
+  Header,
+  InputGroup,
+  Section,
+  Wrapper,
 } from "./styles";
-import { useBodyScroll } from "hooks";
-import { CloseButton, Divider, Input, Tabs, Label, CustomSelect, Button } from "components";
+import { useDisableBodyScroll } from "hooks";
+import {
+  Button,
+  CloseButton,
+  CustomSelect,
+  Divider,
+  ICustomSelectOption,
+  Input,
+  Label,
+} from "components";
+import {
+  setFilterVisibility,
+  useTypedDispatch,
+  useTypedSelector,
+  cleanFilter,
+  setType,
+  setYearOfRelease,
+  applyFilter,
+  getMovieTypeAsOption,
+} from "store";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { ROUTE } from "router";
+import { MovieTypes } from "types";
+import { SingleValue } from "react-select";
 
-export enum SortVariant {
-  rating,
-  year,
-}
-
-export enum MovieType {
-  movie = "movie",
-  series = "series",
-  episode = "episode",
-}
-
-export const Filter = ({ isVisible = false }: { isVisible?: boolean }) => {
+export const Filter = ({ isVisible }: { isVisible: boolean }) => {
   const portalElement = document.getElementById("filter-root");
-  useBodyScroll(false);
-  //TODO redux isOpen variable
-  //TODO disable window scroll onOpenPortal
+  useDisableBodyScroll(!isVisible);
 
-  if (portalElement && isVisible) {
+  const dispatch = useTypedDispatch();
+  const navigate = useNavigate();
+
+  const yearOfRelease = useTypedSelector((state) => state.filter.yearOfRelease);
+  const movieType = useTypedSelector(getMovieTypeAsOption);
+
+  const closeFilter = () => {
+    dispatch(setFilterVisibility(false));
+  };
+
+  const handleMovieTypeChange = (option: SingleValue<ICustomSelectOption>) => {
+    if (option === null) {
+      dispatch(setType(null));
+    } else {
+      dispatch(setType(option.value as MovieTypes));
+    }
+  };
+
+  if (portalElement) {
     return createPortal(
-      <Background>
-        <Wrapper>
-          <FilterStyled>
-            <Header>
-              <h2>Filters</h2>
-              <CloseButton />
-            </Header>
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: "linear", duration: 0.2 }}
+          >
+            <Background>
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.3 }}
+              >
+                <Wrapper>
+                  <FilterStyled>
+                    <Header>
+                      <h2>Filters</h2>
+                      <CloseButton onClick={closeFilter} />
+                    </Header>
 
-            <Content>
-              <Section>
-                <Label>Sort by</Label>
-                <Tabs
-                  tabs={[
-                    { label: "Rating", id: SortVariant.rating },
-                    { label: "Year", id: SortVariant.year },
-                  ]}
-                  onChange={(value) => {
-                    //TODO change filter type handler
-                  }}
-                />
-              </Section>
+                    <Content>
+                      <Section>
+                        <Label>Type</Label>
+                        <CustomSelect
+                          value={movieType}
+                          options={[
+                            { label: "Movie", value: MovieTypes.movie },
+                            { label: "Episode", value: MovieTypes.episode },
+                            { label: "Series", value: MovieTypes.series },
+                          ]}
+                          isClearable
+                          onChange={(option) => {
+                            handleMovieTypeChange(option as SingleValue<ICustomSelectOption>);
+                          }}
+                        />
+                      </Section>
 
-              <Divider />
+                      <Divider />
 
-              <Section>
-                <Label>Full or short movie name</Label>
-                <Input placeholder="Your text" />
-              </Section>
+                      <Section>
+                        <Label>Year Of Release</Label>
+                        <Input
+                          placeholder="Year Of Release"
+                          value={yearOfRelease ?? ""}
+                          type="number"
+                          min="1895"
+                          onChange={(e) => {
+                            dispatch(setYearOfRelease(e.target.value));
+                          }}
+                        />
+                      </Section>
+                    </Content>
 
-              <Section>
-                <Label>Years</Label>
-                <InputGroup>
-                  <Input placeholder="From" />
-                  <Input placeholder="To" />
-                </InputGroup>
-              </Section>
-
-              <Section>
-                <Label>Rating</Label>
-                <InputGroup>
-                  <Input placeholder="From" />
-                  <Input placeholder="To" />
-                </InputGroup>
-              </Section>
-
-              <Section>
-                <Label>Type</Label>
-                <CustomSelect
-                  options={[
-                    { value: MovieType.movie, label: "Movie" },
-                    { value: MovieType.series, label: "Series" },
-                    { value: MovieType.episode, label: "Episode" },
-                  ]}
-                />
-              </Section>
-            </Content>
-
-            <Footer>
-              <InputGroup>
-                <Button
-                  onClick={() => {
-                    //TODO submit handler
-                  }}
-                >
-                  text
-                </Button>
-              </InputGroup>
-            </Footer>
-          </FilterStyled>
-        </Wrapper>
-      </Background>,
+                    <Footer>
+                      <InputGroup>
+                        <Button
+                          onClick={() => {
+                            dispatch(cleanFilter());
+                          }}
+                        >
+                          Clear Filter
+                        </Button>
+                        <Button
+                          onClick={(e) => {
+                            dispatch(setFilterVisibility(false));
+                            dispatch(applyFilter());
+                            navigate(`/${ROUTE.SEARCH}`);
+                          }}
+                          className="primary"
+                        >
+                          Show Results
+                        </Button>
+                      </InputGroup>
+                    </Footer>
+                  </FilterStyled>
+                </Wrapper>
+              </motion.div>
+            </Background>
+          </motion.div>
+        )}
+      </AnimatePresence>,
       portalElement,
     );
   } else {

@@ -1,28 +1,48 @@
-import { useDispatch } from "react-redux";
-import { setKeyword } from "store";
-import { FilterButton, SearchStyled, SearchWrapper } from "./style";
-import { FilterIcon } from "../../assets";
+import { FilterButton, SearchForm, SearchStyled } from "./style";
+import {
+  getFilterActivationState,
+  setFilterVisibility,
+  setKeyword as setStoreKeyword,
+  useTypedDispatch,
+  useTypedSelector,
+  applyFilter,
+} from "store";
+import { FilterIcon } from "assets";
+import { useNavigate } from "react-router-dom";
+import { ROUTE } from "router";
+import { useState } from "react";
 
 export const Search = () => {
-  const dispatch = useDispatch();
+  const storeKeyword = useTypedSelector((state) => state.filter.keyword);
+  const [keyword, setKeyword] = useState(storeKeyword);
+  const isFilterVisible = useTypedSelector((state) => state.filter.isFilterVisible);
+  const isFilterActive = useTypedSelector(getFilterActivationState);
+  const dispatch = useTypedDispatch();
+  const navigate = useNavigate();
 
-  const onChange = (keyword: string) => {
-    dispatch(setKeyword(keyword));
+  const toggleFilterVisibility = () => {
+    dispatch(setFilterVisibility(!isFilterVisible));
   };
 
-  const filtered = true;
-
   return (
-    <SearchWrapper className={filtered ? "filtered" : ""}>
+    <SearchForm
+      onSubmit={(e) => {
+        e.preventDefault();
+        dispatch(setStoreKeyword(keyword));
+        dispatch(applyFilter());
+        navigate(`/${ROUTE.SEARCH}`);
+      }}
+      className={isFilterActive ? "filter-active" : ""}
+    >
       <SearchStyled
         onChange={(e) => {
-          onChange(e.target.value);
+          setKeyword(e.target.value);
         }}
         placeholder="Search"
       />
-      <FilterButton className="search-filter-button">
+      <FilterButton className="search-filter-button" onClick={toggleFilterVisibility} type="button">
         <FilterIcon />
       </FilterButton>
-    </SearchWrapper>
+    </SearchForm>
   );
 };

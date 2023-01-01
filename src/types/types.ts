@@ -1,4 +1,4 @@
-export interface IMovieInfoAPI {
+export interface IFullMovieInfoDto {
   Title: string;
   Year: string;
   Rated: string;
@@ -31,7 +31,7 @@ export interface IMovie {
   poster: string;
   genre: string;
 }
-export interface IMovieAPI {
+export interface IShortMovieInfoDto {
   Title: string;
   Year: string;
   imdbID: string;
@@ -40,12 +40,25 @@ export interface IMovieAPI {
   Genre: string;
 }
 
-export interface IResponseAPI {
-  Search: IMovieAPI[];
-  totalResult: string;
-  Response: string;
+export interface IResponseDto {
+  Search: IShortMovieInfoDto[];
+  totalResults: string;
+  Response: "True" | "False";
 }
 interface IRating {
   Source: string;
   Value: string;
+}
+
+export enum MovieTypes {
+  movie = "movie",
+  series = "series",
+  episode = "episode",
+}
+
+export interface IGetMoviesBySearchProps {
+  keyword: string;
+  yearOfRelease?: string | null;
+  type?: MovieTypes | null;
+  page?: number;
 }
