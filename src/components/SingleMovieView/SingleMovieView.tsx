@@ -69,7 +69,7 @@ export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
           <div>{awards}</div>
 
           <div>Actors</div>
-          <div>{actors}</div>
+          <div>{actors.join(", ")}</div>
 
           <div>Director</div>
           <div>{director}</div>
