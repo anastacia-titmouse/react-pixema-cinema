@@ -10,7 +10,17 @@ export const NavLinkStyled = styled(NavLink)<{ $isActive: PathMatch<string> | nu
   font-size: 18px;
   color: ${({ $isActive }) => ($isActive ? `${Color.Primary}` : `${Color.Secondary}`)};
 
+  & svg path {
+    stroke: ${({ $isActive }) => ($isActive ? `${Color.Primary}` : `${Color.Secondary}`)};
+    fill: ${({ $isActive }) => ($isActive ? `${Color.Primary}` : `${Color.Secondary}`)};
+  }
+
   &:hover {
     color: ${Color.Primary};
+
+    & svg path {
+      stroke: ${Color.Primary};
+      fill: ${Color.Primary};
+    }
   }
 `;

@@ -6,8 +6,6 @@ export const NavStyled = styled.nav`
   flex-direction: column;
   gap: 40px;
   grid-area: nav;
-
-  padding: 48px 60px 64px 62px;
 `;
 
 export const Button = styled.button`
