@@ -51,11 +51,15 @@ export const MovieDescription = styled.p`
 export const MovieDetails = styled.div`
   max-width: 878px;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: max-content auto;
   grid-auto-flow: row;
   grid-auto-rows: 1fr;
   grid-column-gap: 40px;
   grid-row-gap: 20px;
   color: ${Color.Primary_TEXT};
   ${INPUT}
+`;
+
+export const RecommendationsWrapper = styled.div`
+  grid-area: recommendations;
 `;

@@ -29,6 +29,7 @@ export * from "./MovieControlButtons/MovieControlButtons";
 export * from "./GenresList/GenresList";
 export * from "./Badge/Badge";
 export * from "./PgBadge/PgBadge";
+export * from "./Recommendations/Recommendations";
 
 export {
   MovieCard,

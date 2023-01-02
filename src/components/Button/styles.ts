@@ -30,6 +30,10 @@ export const ButtonStyled = styled.button`
     }
   }
 
+  &.transparent {
+    background-color: transparent;
+  }
+
   &.primary {
     background-color: ${Color.Primary};
 
@@ -63,6 +67,10 @@ export const ButtonStyled = styled.button`
     & svg circle {
       fill: ${Color.Primary_TEXT_LIGHT};
       stroke: ${Color.Primary_TEXT_LIGHT};
+    }
+
+    &.transparent {
+      background-color: transparent;
     }
   }
 `;

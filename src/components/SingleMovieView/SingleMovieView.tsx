@@ -6,10 +6,11 @@ import {
   MovieTitle,
   Poster,
   PosterAndCtrlWrapper,
+  RecommendationsWrapper,
   SingleMovieViewStyled,
 } from "./styles";
 import { IFullMovieInfo } from "types";
-import { MovieControlButtons, GenresList, Badge, PgBadge } from "components";
+import { MovieControlButtons, GenresList, Badge, PgBadge, Recommendations } from "components";
 
 export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
   const {
@@ -77,9 +78,9 @@ export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
           <div>{writer}</div>
         </MovieDetails>
       </MovieInfoWrapper>
-      <div style={{ backgroundColor: "blue", gridArea: "recommendations" }}>
-        {/*  TODO recommendations*/}
-      </div>
+      <RecommendationsWrapper>
+        <Recommendations />
+      </RecommendationsWrapper>
     </SingleMovieViewStyled>
   );
 };
