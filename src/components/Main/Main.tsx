@@ -1,6 +1,5 @@
 import { MoviesList } from "components";
 import { useEffect, useState } from "react";
-import { OmdbAPI, transformMovies } from "services";
 import { IMovie } from "types";
 import { MainStyled } from "./style";
 

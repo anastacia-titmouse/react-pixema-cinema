@@ -1,15 +1,23 @@
-import { MoviesList } from "components";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchMovieById, RootState } from "store";
+import { fetchMovieById, useTypedDispatch, useTypedSelector } from "store";
+import { useParams } from "react-router";
+import { SingleMovieView } from "components";
 
 export const MovieDetailsPage = () => {
-  const { movie, loading } = useSelector((state: RootState) => state.movie);
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchMovieById({ "superman" }));
-  // }, [dispatch]);
+  const { imdbId } = useParams<{ imdbId: string }>();
+  const movie = useTypedSelector((state) => state.movie.movie);
 
-  return <div>{/*<MoviesList movie={movie} loading={loading} />*/}</div>;
+  useEffect(() => {
+    if (imdbId) {
+      dispatch(fetchMovieById(imdbId));
+    }
+  }, [dispatch, imdbId]);
+
+  if (movie) {
+    return <SingleMovieView movie={movie} />;
+  } else {
+    return null; //TODO not found error
+  }
 };

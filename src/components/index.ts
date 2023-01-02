@@ -24,6 +24,11 @@ export * from "./Label/Label";
 export * from "./CustomSelect/CustomSelect";
 export * from "./Button/Button";
 export * from "./ShowMoreButton/ShowMoreButton";
+export * from "./SingleMovieView/SingleMovieView";
+export * from "./MovieControlButtons/MovieControlButtons";
+export * from "./GenresList/GenresList";
+export * from "./Badge/Badge";
+export * from "./PgBadge/PgBadge";
 
 export {
   MovieCard,

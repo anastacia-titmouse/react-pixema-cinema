@@ -23,6 +23,39 @@ export interface IFullMovieInfoDto {
   BoxOffice: string;
 }
 
+export enum PgRating {
+  pg13,
+  g,
+  pg,
+  r,
+  nc17,
+  notRated,
+}
+
+export interface IFullMovieInfo {
+  title: string;
+  year: string;
+  rated: PgRating;
+  released: string;
+  runtime: string;
+  genres: string[];
+  director: string;
+  writer: string;
+  actors: string[];
+  plot: string;
+  language: string;
+  country: string;
+  awards: string;
+  poster: string;
+  metaScore: string;
+  imdbRating: string;
+  imdbVotes: string;
+  imdbId: string;
+  type: string;
+  dvd: string;
+  boxOffice: string;
+}
+
 export interface IMovie {
   title: string;
   year: string;

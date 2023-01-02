@@ -7,6 +7,8 @@ import { ReactComponent as UserIcon } from "./icons/user.svg";
 import { ReactComponent as ChevronRight } from "./icons/chevron-right.svg";
 import { ReactComponent as FilterIcon } from "./icons/filter.svg";
 import { ReactComponent as TimesIcon } from "./icons/times.svg";
+import { ReactComponent as BookmarkIcon } from "./icons/bookmark.svg";
+import { LinkIcon } from "./icons/LinkIcon/LinkIcon";
 
 export {
   HomeIcon,
@@ -18,4 +20,6 @@ export {
   ChevronRight,
   FilterIcon,
   TimesIcon,
+  BookmarkIcon,
+  LinkIcon,
 };

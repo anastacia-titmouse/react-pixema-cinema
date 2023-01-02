@@ -1,7 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IMovie, IResponseDto, MovieTypes } from "types";
-import { getImdbErrorMessage, OmdbAPI, transformMovies } from "services";
+import { getImdbErrorMessage, OmdbAPI, transformShortMovieInfo } from "services";
 import { RootState } from "../../store";
 
 export interface FilterState {
@@ -94,7 +94,7 @@ export const filterSlice = createSlice({
     builder.addCase(applyFilter.fulfilled, (state, action) => {
       if (action.payload.Response === "True") {
         const { Search, totalResults } = action.payload;
-        state.movies = transformMovies(Search);
+        state.movies = transformShortMovieInfo(Search);
         state.totalMovies = Number(totalResults);
       } else {
         state.movies = [];
@@ -112,7 +112,7 @@ export const filterSlice = createSlice({
     builder.addCase(loadMoreMovies.fulfilled, (state, action) => {
       if (action.payload.Response === "True") {
         const { Search, totalResults } = action.payload;
-        state.movies = [...state.movies, ...transformMovies(Search)];
+        state.movies = [...state.movies, ...transformShortMovieInfo(Search)];
         state.totalMovies = Number(totalResults);
         state.page = state.page + 1;
       }

@@ -10,6 +10,7 @@ export const MainTemplateStyled = styled.div`
     "header header"
     "nav content";
   padding: 40px 62px 64px 62px;
+  min-height: 100vh;
 `;
 
 export const ContentWrapper = styled.div`
