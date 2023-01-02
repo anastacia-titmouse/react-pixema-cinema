@@ -11,8 +11,11 @@ import {
 } from "./styles";
 import { IFullMovieInfo } from "types";
 import { MovieControlButtons, GenresList, Badge, PgBadge, Recommendations } from "components";
+import { useTypedDispatch, addMovieToFavorites } from "store";
 
 export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
+  const dispatch = useTypedDispatch();
+
   const {
     genres,
     title,
@@ -28,16 +31,21 @@ export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
     director,
     writer,
     awards,
+    imdbId,
+    poster,
+    type,
   } = movie;
+
+  const addToFavourite = () => {
+    dispatch(addMovieToFavorites({ imdbId, poster, title, type, year }));
+  };
 
   return (
     <SingleMovieViewStyled>
       <PosterAndCtrlWrapper>
         <Poster src={movie.poster} />
         <MovieControlButtons
-          onAddToFavouriteClick={() => {
-            //TODO onAddToFavouriteClick handler
-          }}
+          onAddToFavouriteClick={addToFavourite}
           onShareClick={() => {
             //TODO onShareClick handler
           }}

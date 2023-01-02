@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice/userSlice";
 import filterReducer from "./features/filterSlice/filterSlice";
 import movieReducer from "./features/movieSlice/movieSlice";
+import favoritesReducer from "./features/favoritesSlice/favoritesSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     user: userReducer,
     filter: filterReducer,
     movie: movieReducer,
+    favorites: favoritesReducer,
   },
 });
 

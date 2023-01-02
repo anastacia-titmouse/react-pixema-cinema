@@ -14,6 +14,7 @@ interface UserState {
   email: string;
   isAuth?: boolean;
   error?: string;
+  uid: string | null;
 }
 
 const initialState: UserState = {
@@ -21,6 +22,7 @@ const initialState: UserState = {
   email: "",
   isAuth: undefined,
   error: undefined,
+  uid: null,
 };
 
 export const registerUser = createAsyncThunk<
@@ -86,6 +88,9 @@ const userSlice = createSlice({
     setUserName: (state, { payload }: PayloadAction<string>) => {
       state.name = payload;
     },
+    setUid: (state, { payload }: PayloadAction<string>) => {
+      state.uid = payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.fulfilled, (state, action) => {
@@ -105,4 +110,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { setAuthStatus, setUserName, setEmail } = userSlice.actions;
+export const { setAuthStatus, setUserName, setEmail, setUid } = userSlice.actions;
