@@ -88,6 +88,7 @@ export const filterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(applyFilter.pending, (state) => {
+      state.movies = [];
       state.isLoading = true;
     });
 

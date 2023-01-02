@@ -12,6 +12,7 @@ export const ButtonStyled = styled.button`
   align-items: center;
   background-color: ${Color.Primary_INPUT_BG};
   color: ${Color.Primary_TEXT};
+  cursor: pointer;
   ${S1_3}
 
   & svg path, & svg circle {
