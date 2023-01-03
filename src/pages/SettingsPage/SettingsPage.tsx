@@ -1,3 +1,5 @@
+import { SettingsForm } from "components";
+
 export const SettingsPage = () => {
-  return <div>SettingsPage</div>;
+  return <SettingsForm />;
 };

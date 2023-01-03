@@ -9,6 +9,7 @@ export const darkTheme = css`
   --primary-input-border: #323537;
   --primary-form-bg: #242426;
 `;
+
 export const lightTheme = css`
   --primary: #000000;
   --bg-primary: #ffffff;

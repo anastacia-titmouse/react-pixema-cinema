@@ -20,6 +20,7 @@ export interface IUserModel {
   email: string;
   name: string;
   uid: string;
+  useDarkTheme?: boolean;
 }
 
 export interface IFavoriteMovieModel {

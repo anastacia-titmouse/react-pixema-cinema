@@ -7,7 +7,11 @@ import {
   registerWithEmailAndPassword,
   IUserLoginRequestPayload,
   IUserRegisterRequestPayload,
+  IUserModel,
+  updateUserSettings,
+  getFirebaseErrorMessage,
 } from "services/firebaseApi";
+import { RootState } from "../../store";
 
 interface UserState {
   name: string;
@@ -15,6 +19,8 @@ interface UserState {
   isAuth?: boolean;
   error?: string;
   uid: string | null;
+  useDarkTheme: boolean | null;
+  changeSettingsError: string | null;
 }
 
 const initialState: UserState = {
@@ -23,10 +29,37 @@ const initialState: UserState = {
   isAuth: undefined,
   error: undefined,
   uid: null,
+  useDarkTheme: null,
+  changeSettingsError: null,
 };
 
+export const updateSettings = createAsyncThunk<
+  { useDarkTheme: boolean; name: string; email?: string },
+  { useDarkTheme: boolean; email: string; name: string; password: string },
+  { rejectValue: string; state: RootState }
+>("users/updateSettings", async (payload, { rejectWithValue, getState }) => {
+  const state = getState();
+  const { uid, email: storeEmail } = state.user;
+
+  if (!uid) {
+    throw new Error("Unauthorized");
+  }
+
+  try {
+    return await updateUserSettings({
+      uid,
+      useDarkTheme: payload.useDarkTheme,
+      name: payload.name,
+      email: storeEmail === payload.email ? undefined : payload.email,
+      password: payload.password,
+    });
+  } catch (error) {
+    return rejectWithValue(getFirebaseErrorMessage(error));
+  }
+});
+
 export const registerUser = createAsyncThunk<
-  { name: string; email: string; uid: string },
+  Omit<IUserModel, "authProvider">,
   IUserRegisterRequestPayload,
   { rejectValue: string }
 >("users/register", async (payload, { rejectWithValue }) => {
@@ -91,6 +124,12 @@ const userSlice = createSlice({
     setUid: (state, { payload }: PayloadAction<string>) => {
       state.uid = payload;
     },
+    setUseDarkTheme: (state, { payload }: PayloadAction<boolean>) => {
+      state.useDarkTheme = payload;
+    },
+    resetChangeSettingsError: (state) => {
+      state.changeSettingsError = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.fulfilled, (state, action) => {
@@ -98,6 +137,7 @@ const userSlice = createSlice({
       state.isAuth = true;
       state.name = action.payload.name;
       state.email = action.payload.email;
+      state.useDarkTheme = !!action.payload.useDarkTheme;
     });
     builder.addCase(registerUser.rejected, (state, action) => {
       state.error = action.payload;
@@ -106,8 +146,29 @@ const userSlice = createSlice({
     builder.addCase(loginUser.rejected, (state, action) => {
       state.error = action.payload;
     });
+
+    builder.addCase(updateSettings.fulfilled, (state, action) => {
+      state.changeSettingsError = null;
+      state.useDarkTheme = action.payload.useDarkTheme;
+      state.name = action.payload.name;
+
+      if (action.payload.email) {
+        state.email = action.payload.email;
+      }
+    });
+
+    builder.addCase(updateSettings.rejected, (state, action) => {
+      state.changeSettingsError = action.payload as string;
+    });
   },
 });
 
 export default userSlice.reducer;
-export const { setAuthStatus, setUserName, setEmail, setUid } = userSlice.actions;
+export const {
+  setAuthStatus,
+  setUserName,
+  setEmail,
+  setUid,
+  setUseDarkTheme,
+  resetChangeSettingsError,
+} = userSlice.actions;

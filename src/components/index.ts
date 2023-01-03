@@ -30,6 +30,9 @@ export * from "./GenresList/GenresList";
 export * from "./Badge/Badge";
 export * from "./PgBadge/PgBadge";
 export * from "./Recommendations/Recommendations";
+export * from "./SettingsForm/SettingsForm";
+export * from "./Switch/Switch";
+export * from "./ServerError/ServerError";
 
 export {
   MovieCard,
