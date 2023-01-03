@@ -12,6 +12,7 @@ export interface IUserRegisterRequestPayload {
 export enum FirebaseCollections {
   favorites = "favorites",
   users = "users",
+  trends = "trends",
 }
 
 export interface IUserModel {
@@ -23,6 +24,14 @@ export interface IUserModel {
 
 export interface IFavoriteMovieModel {
   uid: string;
+  imdbId: string;
+  title: string;
+  year: string;
+  type: string;
+  poster: string;
+}
+
+export interface ITrendMovieModel {
   imdbId: string;
   title: string;
   year: string;

@@ -11,31 +11,21 @@ import {
 } from "./styles";
 import { IFullMovieInfo } from "types";
 import { MovieControlButtons, GenresList, Badge, PgBadge, Recommendations } from "components";
-import {
-  useTypedDispatch,
-  addMovieToFavorites,
-  hasFavoritesMovie,
-  setImdbId,
-  useTypedSelector,
-} from "store";
+import { useTypedDispatch, addMovieToFavorites, useTypedSelector, fetchMovieById } from "store";
 import { useEffect, useState } from "react";
 
 export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
   const dispatch = useTypedDispatch();
-  const isExistedInFavorites = useTypedSelector((state) => state.movieDetails.isExistedInFavorites);
-  const isTestForFavoritesLoading = useTypedSelector(
-    (state) => state.movieDetails.isTestForFavoritesLoading,
-  );
+  const isFavoriteMovie = useTypedSelector((state) => state.movieDetails.isFavoriteMovie);
+  const isMovieLoading = useTypedSelector((state) => state.movieDetails.isMovieLoading);
   const isPushToFavoritesLoading = useTypedSelector(
     (state) => state.movieDetails.isPushToFavoritesLoading,
   );
   const [isAddToFavoritesDisabled, setIsAddToFavoritesDisabled] = useState(true);
 
   useEffect(() => {
-    setIsAddToFavoritesDisabled(
-      isExistedInFavorites || isTestForFavoritesLoading || isPushToFavoritesLoading,
-    );
-  }, [isExistedInFavorites, isTestForFavoritesLoading, isPushToFavoritesLoading]);
+    setIsAddToFavoritesDisabled(isFavoriteMovie || isMovieLoading || isPushToFavoritesLoading);
+  }, [isFavoriteMovie, isMovieLoading, isPushToFavoritesLoading]);
 
   const {
     genres,
@@ -58,9 +48,8 @@ export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
   } = movie;
 
   useEffect(() => {
-    dispatch(setImdbId(imdbId));
-    dispatch(hasFavoritesMovie());
-  }, []);
+    dispatch(fetchMovieById(imdbId));
+  }, [imdbId, dispatch]);
 
   const addToFavourite = () => {
     dispatch(addMovieToFavorites({ imdbId, poster, title, type, year }));

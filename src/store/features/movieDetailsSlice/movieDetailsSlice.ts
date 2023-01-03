@@ -1,40 +1,47 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
-  getFirebaseErrorMessage,
   getImdbErrorMessage,
   IFavoriteMovieModel,
   isMovieExistsInFavorites,
+  OmdbAPI,
   putFavoriteMovie,
+  transformFullMovieInfo,
 } from "services";
 import { RootState } from "../../store";
+import { IFullMovieInfo } from "types";
 
 export interface MovieDetailsState {
   imdbId: string;
-  isExistedInFavorites: boolean;
-  isTestForFavoritesLoading: boolean;
+  movie: IFullMovieInfo | null;
+  isMovieLoading: boolean;
+  isFavoriteMovie: boolean;
   isPushToFavoritesLoading: boolean;
 }
 
 export const movieDetailsInitialState: MovieDetailsState = {
   imdbId: "",
-  isExistedInFavorites: false,
-  isTestForFavoritesLoading: false,
+  movie: null,
+  isMovieLoading: false,
+  isFavoriteMovie: false,
   isPushToFavoritesLoading: false,
 };
 
-export const hasFavoritesMovie = createAsyncThunk<
-  boolean,
-  void,
+export const fetchMovieById = createAsyncThunk<
+  { movieInfo: IFullMovieInfo; isFavoriteMovie: boolean },
+  string,
   { rejectValue: string; state: RootState }
->("movieDetailsSlice/hasFavoritesMovie", async (payload, { rejectWithValue, getState }) => {
+>("movieDetailsSlice/fetchById", async (payload, { rejectWithValue, getState }) => {
   const state = getState();
   const { uid: userId } = state.user;
-  const { imdbId } = state.movieDetails;
 
   try {
-    return isMovieExistsInFavorites({ userId, imdbId });
+    const response = await OmdbAPI.getMovieById(payload);
+    const movieInfo = transformFullMovieInfo(response);
+    const isFavoriteMovie = await isMovieExistsInFavorites({ userId, imdbId: payload });
+
+    return { movieInfo, isFavoriteMovie };
   } catch (error) {
-    return rejectWithValue(getFirebaseErrorMessage(error));
+    return rejectWithValue(getImdbErrorMessage(error));
   }
 });
 
@@ -59,18 +66,19 @@ export const movieDetailsSlice = createSlice({
   name: "movieDetails",
   initialState: movieDetailsInitialState,
   reducers: {
-    setImdbId: (state, { payload }: PayloadAction<string>) => {
-      state.imdbId = payload;
+    resetMovieDetails: (state) => {
+      //TODO
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(hasFavoritesMovie.pending, (state) => {
-      state.isTestForFavoritesLoading = true;
+    builder.addCase(fetchMovieById.pending, (state) => {
+      state.isMovieLoading = true;
     });
 
-    builder.addCase(hasFavoritesMovie.fulfilled, (state, action) => {
-      state.isTestForFavoritesLoading = false;
-      state.isExistedInFavorites = action.payload;
+    builder.addCase(fetchMovieById.fulfilled, (state, action) => {
+      state.isMovieLoading = false;
+      state.isFavoriteMovie = action.payload.isFavoriteMovie;
+      state.movie = action.payload.movieInfo;
     });
 
     builder.addCase(addMovieToFavorites.pending, (state) => {
@@ -79,11 +87,11 @@ export const movieDetailsSlice = createSlice({
 
     builder.addCase(addMovieToFavorites.fulfilled, (state, action) => {
       state.isPushToFavoritesLoading = false;
-      state.isExistedInFavorites = true;
+      state.isFavoriteMovie = true;
     });
   },
 });
 
-export const { setImdbId } = movieDetailsSlice.actions;
+export const { resetMovieDetails } = movieDetailsSlice.actions;
 
 export default movieDetailsSlice.reducer;

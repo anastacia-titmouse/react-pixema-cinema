@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyDE_Hschs6Fp9g6Iwyp4u0NHFez9v4TQ2A",
-  authDomain: "pixema-5119f.firebaseapp.com",
-  projectId: "pixema-5119f",
-  storageBucket: "pixema-5119f.appspot.com",
-  messagingSenderId: "711951155158",
-  appId: "1:711951155158:web:bb07fc7094702617856e77",
-  measurementId: "G-L28PLN992C",
+  apiKey: "AIzaSyAKH-IDEbg84zieuuGVux-_vr217qhHwH0",
+  authDomain: "pixema-b01e0.firebaseapp.com",
+  projectId: "pixema-b01e0",
+  storageBucket: "pixema-b01e0.appspot.com",
+  messagingSenderId: "925274706983",
+  appId: "1:925274706983:web:d2268b5c919429dfe56a02",
+  measurementId: "G-ZCJLWHYSWH",
 };

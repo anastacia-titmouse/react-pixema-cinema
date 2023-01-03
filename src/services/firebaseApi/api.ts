@@ -9,6 +9,7 @@ import {
 import { getFirestore, query, getDocs, collection, where, addDoc, limit } from "firebase/firestore";
 import {
   IFavoriteMovieModel,
+  ITrendMovieModel,
   IUserLoginRequestPayload,
   IUserRegisterRequestPayload,
 } from "services";
@@ -78,6 +79,12 @@ const fetchFavorites = async (userUid: string | null): Promise<IFavoriteMovieMod
   return doc.docs.map((doc) => doc.data()) as IFavoriteMovieModel[];
 };
 
+const fetchTrendMovies = async (): Promise<ITrendMovieModel[]> => {
+  const q = query(collection(db, FirebaseCollections.trends));
+  const doc = await getDocs(q);
+  return doc.docs.map((doc) => doc.data()) as ITrendMovieModel[];
+};
+
 const isMovieExistsInFavorites = async ({
   userId,
   imdbId,
@@ -119,4 +126,5 @@ export {
   fetchFavorites,
   putFavoriteMovie,
   isMovieExistsInFavorites,
+  fetchTrendMovies,
 };

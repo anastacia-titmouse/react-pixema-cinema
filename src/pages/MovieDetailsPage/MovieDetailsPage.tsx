@@ -7,7 +7,7 @@ export const MovieDetailsPage = () => {
   const dispatch = useTypedDispatch();
 
   const { imdbId } = useParams<{ imdbId: string }>();
-  const movie = useTypedSelector((state) => state.movie.movie);
+  const movie = useTypedSelector((state) => state.movieDetails.movie);
 
   useEffect(() => {
     if (imdbId) {
