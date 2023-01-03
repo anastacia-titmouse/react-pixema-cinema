@@ -11,10 +11,31 @@ import {
 } from "./styles";
 import { IFullMovieInfo } from "types";
 import { MovieControlButtons, GenresList, Badge, PgBadge, Recommendations } from "components";
-import { useTypedDispatch, addMovieToFavorites } from "store";
+import {
+  useTypedDispatch,
+  addMovieToFavorites,
+  hasFavoritesMovie,
+  setImdbId,
+  useTypedSelector,
+} from "store";
+import { useEffect, useState } from "react";
 
 export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
   const dispatch = useTypedDispatch();
+  const isExistedInFavorites = useTypedSelector((state) => state.movieDetails.isExistedInFavorites);
+  const isTestForFavoritesLoading = useTypedSelector(
+    (state) => state.movieDetails.isTestForFavoritesLoading,
+  );
+  const isPushToFavoritesLoading = useTypedSelector(
+    (state) => state.movieDetails.isPushToFavoritesLoading,
+  );
+  const [isAddToFavoritesDisabled, setIsAddToFavoritesDisabled] = useState(true);
+
+  useEffect(() => {
+    setIsAddToFavoritesDisabled(
+      isExistedInFavorites || isTestForFavoritesLoading || isPushToFavoritesLoading,
+    );
+  }, [isExistedInFavorites, isTestForFavoritesLoading, isPushToFavoritesLoading]);
 
   const {
     genres,
@@ -36,8 +57,18 @@ export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
     type,
   } = movie;
 
+  useEffect(() => {
+    dispatch(setImdbId(imdbId));
+    dispatch(hasFavoritesMovie());
+  }, []);
+
   const addToFavourite = () => {
     dispatch(addMovieToFavorites({ imdbId, poster, title, type, year }));
+  };
+
+  const shareMovie = () => {
+    const redirectUrl = `https://telegram.me/share/url?url=${window.location.href}&text=${title}`;
+    window.location.href = redirectUrl;
   };
 
   return (
@@ -45,10 +76,9 @@ export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
       <PosterAndCtrlWrapper>
         <Poster src={movie.poster} />
         <MovieControlButtons
+          isAddToFavoritesDisabled={isAddToFavoritesDisabled}
           onAddToFavouriteClick={addToFavourite}
-          onShareClick={() => {
-            //TODO onShareClick handler
-          }}
+          onShareClick={shareMovie}
         />
       </PosterAndCtrlWrapper>
       <MovieInfoWrapper>

@@ -70,7 +70,6 @@ export interface IShortMovieInfoDto {
   imdbID: string;
   Type: string;
   Poster: string;
-  Genre: string;
 }
 
 export interface IResponseDto {

@@ -6,11 +6,14 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
-import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
-import { IUserLoginRequestPayload, IUserRegisterRequestPayload } from "services";
+import { getFirestore, query, getDocs, collection, where, addDoc, limit } from "firebase/firestore";
+import {
+  IFavoriteMovieModel,
+  IUserLoginRequestPayload,
+  IUserRegisterRequestPayload,
+} from "services";
 import { setAuthStatus, setEmail, setUid, setUserName, store } from "store";
 import { firebaseConfig } from "./config";
-import { IFavoriteMovie } from "../../store/features/movieSlice/types";
 import { FirebaseCollections } from "./types";
 
 const app = initializeApp(firebaseConfig);
@@ -65,14 +68,39 @@ const logout = async () => {
   await signOut(auth);
 };
 
-const fetchFavorites = async (userUid: string) => {
+const fetchFavorites = async (userUid: string | null): Promise<IFavoriteMovieModel[]> => {
+  if (!userUid) {
+    throw new Error("Missing user id");
+  }
+
   const q = query(collection(db, FirebaseCollections.favorites), where("uid", "==", userUid));
   const doc = await getDocs(q);
-  console.log(doc);
-  return doc.docs[0].data() as IFavoriteMovie[];
+  return doc.docs.map((doc) => doc.data()) as IFavoriteMovieModel[];
 };
 
-const putFavoriteMovie = async (movie: IFavoriteMovie) => {
+const isMovieExistsInFavorites = async ({
+  userId,
+  imdbId,
+}: {
+  userId: string | null;
+  imdbId: string;
+}): Promise<boolean> => {
+  if (!userId) {
+    throw new Error("Missing user id");
+  }
+
+  const q = query(
+    collection(db, FirebaseCollections.favorites),
+    where("uid", "==", userId),
+    where("imdbId", "==", imdbId),
+    limit(1),
+  );
+  const doc = await getDocs(q);
+
+  return !!doc.docs[0];
+};
+
+const putFavoriteMovie = async (movie: IFavoriteMovieModel) => {
   await addDoc(collection(db, FirebaseCollections.favorites), movie);
 };
 
@@ -90,4 +118,5 @@ export {
   logout,
   fetchFavorites,
   putFavoriteMovie,
+  isMovieExistsInFavorites,
 };

@@ -1,56 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IMovie } from "types";
-import { fetchFavorites, getImdbErrorMessage, putFavoriteMovie } from "services";
+import { fetchFavorites, getFirebaseErrorMessage, IFavoriteMovieModel } from "services";
 import { RootState } from "../../store";
-import { IFavoriteMovie } from "../movieSlice/types";
 
 export interface FavoritesState {
-  page: number;
-  totalMovies: number | null;
   isLoading: boolean;
   movies: IMovie[];
 }
 
 export const favoritesInitialState: FavoritesState = {
-  page: 1,
-  totalMovies: null,
   isLoading: false,
   movies: [],
 };
 
-export const initialLoad = createAsyncThunk<
-  IFavoriteMovie[],
+export const fetchFavoriteMovies = createAsyncThunk<
+  IFavoriteMovieModel[],
   void,
   { rejectValue: string; state: RootState }
->("favorites/initialLoad", async (payload, { rejectWithValue, getState }) => {
+>("favorites/fetchFavoriteMovies", async (payload, { rejectWithValue, getState }) => {
   const state = getState();
   const { uid } = state.user;
 
   try {
-    if (uid) {
-      return fetchFavorites(uid);
-    } else {
-      return [];
-    }
+    return fetchFavorites(uid);
   } catch (error) {
-    return rejectWithValue(getImdbErrorMessage(error));
-  }
-});
-
-export const addMovieToFavorites = createAsyncThunk<
-  void,
-  Omit<IFavoriteMovie, "uid">,
-  { rejectValue: string; state: RootState }
->("favorites/initialLoad", async (payload, { rejectWithValue, getState }) => {
-  const state = getState();
-  const { uid } = state.user;
-
-  try {
-    if (uid) {
-      return putFavoriteMovie({ ...payload, uid });
-    }
-  } catch (error) {
-    return rejectWithValue(getImdbErrorMessage(error));
+    return rejectWithValue(getFirebaseErrorMessage(error));
   }
 });
 
@@ -59,13 +33,14 @@ export const favoritesSlice = createSlice({
   initialState: favoritesInitialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(initialLoad.pending, (state) => {
+    builder.addCase(fetchFavoriteMovies.pending, (state) => {
       state.movies = [];
       state.isLoading = true;
     });
 
-    builder.addCase(initialLoad.fulfilled, (state, action) => {
-      //TODO loading hadnler
+    builder.addCase(fetchFavoriteMovies.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.movies = action.payload;
     });
   },
 });

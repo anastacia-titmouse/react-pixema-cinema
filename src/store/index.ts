@@ -5,3 +5,4 @@ export * from "./features/filterSlice/filterSlice";
 export * from "./selectors/filterSelectors";
 export * from "./features/movieSlice/movieSlice";
 export * from "./features/favoritesSlice/favoritesSlice";
+export * from "./features/movieDetailsSlice/movieDetailsSlice";

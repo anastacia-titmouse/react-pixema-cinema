@@ -21,7 +21,11 @@ export interface IUserModel {
   uid: string;
 }
 
-export interface IFetchMoviesProps {
-  keyword: string;
-  yearOfRelease: string | null;
+export interface IFavoriteMovieModel {
+  uid: string;
+  imdbId: string;
+  title: string;
+  year: string;
+  type: string;
+  poster: string;
 }
