@@ -67,7 +67,7 @@ export const movieDetailsSlice = createSlice({
   initialState: movieDetailsInitialState,
   reducers: {
     resetMovieDetails: (state) => {
-      //TODO
+      return { ...movieDetailsInitialState };
     },
   },
   extraReducers: (builder) => {

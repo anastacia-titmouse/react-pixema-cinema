@@ -11,7 +11,7 @@ import {
 } from "./styles";
 import { IFullMovieInfo } from "types";
 import { MovieControlButtons, GenresList, Badge, PgBadge, Recommendations } from "components";
-import { useTypedDispatch, addMovieToFavorites, useTypedSelector, fetchMovieById } from "store";
+import { useTypedDispatch, addMovieToFavorites, useTypedSelector } from "store";
 import { useEffect, useState } from "react";
 
 export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
@@ -46,10 +46,6 @@ export const SingleMovieView = ({ movie }: { movie: IFullMovieInfo }) => {
     poster,
     type,
   } = movie;
-
-  useEffect(() => {
-    dispatch(fetchMovieById(imdbId));
-  }, [imdbId, dispatch]);
 
   const addToFavourite = () => {
     dispatch(addMovieToFavorites({ imdbId, poster, title, type, year }));
