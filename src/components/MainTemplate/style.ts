@@ -9,8 +9,8 @@ export const MainTemplateStyled = styled.div`
   grid-template-areas:
     "header header"
     "nav content";
-  padding: 40px 62px 64px 62px;
   min-height: 100vh;
+  padding: 40px 62px 64px 62px;
 `;
 
 export const ContentWrapper = styled.div`

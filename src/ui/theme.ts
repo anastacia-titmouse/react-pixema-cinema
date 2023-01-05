@@ -8,6 +8,7 @@ export const darkTheme = css`
   --primary-input-bg: #323537;
   --primary-input-border: #323537;
   --primary-form-bg: #242426;
+  --label-text: #ffffff;
 `;
 export const lightTheme = css`
   --primary: #000000;
@@ -17,4 +18,5 @@ export const lightTheme = css`
   --primary-input-bg: #ffffff;
   --primary-input-border: #afb2b6;
   --primary-form-bg: #ffffff;
+  --label-text: #000000;
 `;

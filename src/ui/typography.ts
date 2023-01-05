@@ -7,7 +7,7 @@ export const H1 = css`
   line-height: 60px;
   font-family: "Exo2 Regular", sans-serif;
 
-  ${Media.Mobile} {
+  ${Media.Mobile_S} {
     font-size: 32px;
     line-height: 48px;
   }
@@ -22,7 +22,7 @@ export const H2 = css`
   font-size: 24px;
   line-height: 36px;
   font-family: "Exo2 Regular", sans-serif;
-  ${Media.Mobile} {
+  ${Media.Mobile_S} {
     font-size: 20px;
   }
 `;
@@ -33,7 +33,7 @@ export const H3 = css`
   line-height: 32px;
   font-family: "Exo2 Regular", sans-serif;
 
-  ${Media.Mobile} {
+  ${Media.Mobile_S} {
     font-size: 18px;
     line-height: 28px;
   }
