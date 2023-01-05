@@ -1,7 +1,7 @@
 import { HomePage } from "./HomePage/HomePage";
 import { FavoritesPage } from "./FavoritesPage/FavoritesPage";
 import { MovieDetailsPage } from "./MovieDetailsPage/MovieDetailsPage";
-import { PasswordPage } from "./PasswordPage/PasswordPage";
+import { ResetPasswordPage } from "./ResetPasswordPage/ResetPasswordPage";
 import { SearchPage } from "./SearchPage/SearchPage";
 import { SettingsPage } from "./SettingsPage/SettingsPage";
 import { SignInPage } from "./SignInPage/SignInPage";
@@ -12,7 +12,7 @@ export {
   HomePage,
   FavoritesPage,
   TrendsPage,
-  PasswordPage,
+  ResetPasswordPage,
   SearchPage,
   SettingsPage,
   SignInPage,

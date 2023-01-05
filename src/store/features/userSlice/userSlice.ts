@@ -10,6 +10,7 @@ import {
   IUserModel,
   updateUserSettings,
   getFirebaseErrorMessage,
+  sendResetPasswordEmail,
 } from "services/firebaseApi";
 import { RootState } from "../../store";
 
@@ -21,6 +22,8 @@ interface UserState {
   uid: string | null;
   useDarkTheme: boolean | null;
   changeSettingsError: string | null;
+  isResetPasswordLoading: boolean;
+  resetPasswordError: string | null;
 }
 
 const initialState: UserState = {
@@ -31,7 +34,20 @@ const initialState: UserState = {
   uid: null,
   useDarkTheme: null,
   changeSettingsError: null,
+  isResetPasswordLoading: false,
+  resetPasswordError: null,
 };
+
+export const resetPassword = createAsyncThunk<void, string, { rejectValue: string }>(
+  "users/resetPassword",
+  async (payload, { rejectWithValue }) => {
+    try {
+      await sendResetPasswordEmail(payload);
+    } catch (error) {
+      return rejectWithValue(getFirebaseErrorMessage(error));
+    }
+  },
+);
 
 export const updateSettings = createAsyncThunk<
   { useDarkTheme: boolean; name: string; email?: string },
@@ -159,6 +175,18 @@ const userSlice = createSlice({
 
     builder.addCase(updateSettings.rejected, (state, action) => {
       state.changeSettingsError = action.payload as string;
+    });
+
+    builder.addCase(resetPassword.pending, (state) => {
+      state.isResetPasswordLoading = true;
+    });
+
+    builder.addCase(resetPassword.fulfilled, (state) => {
+      state.isResetPasswordLoading = false;
+    });
+
+    builder.addCase(resetPassword.rejected, (state, action) => {
+      state.resetPasswordError = action.payload as string;
     });
   },
 });

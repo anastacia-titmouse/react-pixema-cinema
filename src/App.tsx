@@ -12,7 +12,7 @@ export const App = () => {
   }, [useDarkTheme]);
 
   if (isAuth === undefined) {
-    return null;
+    return null; //TODO preloading
   } else {
     return <RouterProvider router={router} />;
   }

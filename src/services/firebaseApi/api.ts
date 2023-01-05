@@ -36,6 +36,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+/**
+ * firebase.js event. Fires when auth successful or unsuccessful
+ */
 auth.onAuthStateChanged((user) => {
   if (user) {
     fetchUserInfo(user.uid).then((userInfo) => {
@@ -56,6 +59,13 @@ const fetchUserInfo = async (userUid: string) => {
   return doc.docs[0].data() as IUserModel;
 };
 
+/**
+ * https://firebase.google.com/docs/auth/web/password-auth#create_a_password-based_account
+ * ...Firebase data extended and save in users firestore collection
+ * @param name
+ * @param email
+ * @param password
+ */
 const registerWithEmailAndPassword = async ({
   name,
   email,
@@ -78,10 +88,15 @@ const logInWithEmailAndPassword = async ({ email, password }: IUserLoginRequestP
   await signInWithEmailAndPassword(auth, email, password);
 };
 
-const sendPasswordReset = async (email: string) => {
-  await sendPasswordResetEmail(auth, email);
-};
-
+/**
+ * https://firebase.google.com/docs/auth/web/manage-users#set_a_users_email_address
+ * https://firebase.google.com/docs/auth/web/manage-users#set_a_users_password
+ * @param uid
+ * @param useDarkTheme
+ * @param name
+ * @param email
+ * @param password
+ */
 const updateUserSettings = async ({
   uid,
   useDarkTheme,
@@ -119,6 +134,10 @@ const logout = async () => {
   await signOut(auth);
 };
 
+/**
+ * Fetch list of favorites (for user) movies
+ * @param userUid
+ */
 const fetchFavorites = async (userUid: string | null): Promise<IFavoriteMovieModel[]> => {
   if (!userUid) {
     throw new Error("Missing user id");
@@ -135,6 +154,11 @@ const fetchTrendMovies = async (): Promise<ITrendMovieModel[]> => {
   return doc.docs.map((doc) => doc.data()) as ITrendMovieModel[];
 };
 
+/**
+ * Check for "favorites": fetch movie from favorites collection by userId and movie imdbId.
+ * @param userId
+ * @param imdbId
+ */
 const isMovieExistsInFavorites = async ({
   userId,
   imdbId,
@@ -157,10 +181,18 @@ const isMovieExistsInFavorites = async ({
   return !!doc.docs[0];
 };
 
+/**
+ * Save movie to firestore (favorites collection)
+ * @param movie
+ */
 const putFavoriteMovie = async (movie: IFavoriteMovieModel) => {
   await addDoc(collection(db, FirebaseCollections.favorites), movie);
 };
 
+/**
+ * Convert firebase errors to human-readable format.
+ * @param error
+ */
 export const getFirebaseErrorMessage = (error: unknown): string => {
   if (error instanceof FirebaseError) {
     if (error.code === AuthErrorCodes.CREDENTIAL_TOO_OLD_LOGIN_AGAIN) {
@@ -169,8 +201,21 @@ export const getFirebaseErrorMessage = (error: unknown): string => {
         " Try to reAuth and change parameter again."
       );
     }
+
+    if (error.code === AuthErrorCodes.USER_DELETED) {
+      return "User not found";
+    }
   }
   return "Unknown firebase error";
+};
+
+/**
+ * https://firebase.google.com/docs/auth/web/manage-users#send_a_password_reset_email
+ * @param email
+ */
+const sendResetPasswordEmail = async (email: string) => {
+  const auth = getAuth();
+  await sendPasswordResetEmail(auth, email);
 };
 
 export {
@@ -178,11 +223,11 @@ export {
   db,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
-  sendPasswordReset,
   logout,
   fetchFavorites,
   putFavoriteMovie,
   isMovieExistsInFavorites,
   fetchTrendMovies,
   updateUserSettings,
+  sendResetPasswordEmail,
 };
