@@ -10,6 +10,7 @@ export const darkTheme = css`
   --primary-form-bg: #242426;
   --label-text: #ffffff;
 `;
+
 export const lightTheme = css`
   --primary: #000000;
   --bg-primary: #ffffff;

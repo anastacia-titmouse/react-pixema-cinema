@@ -3,7 +3,7 @@ import {
   FavoritesPage,
   HomePage,
   MovieDetailsPage,
-  PasswordPage,
+  ResetPasswordPage,
   SearchPage,
   SettingsPage,
   SignInPage,
@@ -29,7 +29,6 @@ export const router = createBrowserRouter(
           }
         />
         <Route path={ROUTE.TRENDS} element={<TrendsPage />} />
-        <Route path={ROUTE.PASSWORD} element={<PasswordPage />} />
         <Route path={ROUTE.SEARCH} element={<SearchPage />} />
         <Route path={ROUTE.SETTINGS} element={<SettingsPage />} />
         <Route path={ROUTE.MOVIE_DETAILS} element={<MovieDetailsPage />} />
@@ -48,6 +47,14 @@ export const router = createBrowserRouter(
           element={
             <ProtectedRoute protectFrom={ProtectFrom.authorized}>
               <SignUpPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTE.RESET_PASSWORD}
+          element={
+            <ProtectedRoute protectFrom={ProtectFrom.authorized}>
+              <ResetPasswordPage />
             </ProtectedRoute>
           }
         />

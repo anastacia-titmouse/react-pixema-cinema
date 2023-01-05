@@ -1,21 +1,15 @@
 import { MoviesList } from "components";
-import { useEffect, useState } from "react";
-import { IMovie } from "types";
+import { useEffect } from "react";
 import { MainStyled } from "./style";
+import { fetchTrendsMovies, useTypedDispatch, useTypedSelector } from "store";
 
 export const Main = () => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  const dispatch = useTypedDispatch();
+  const movies = useTypedSelector((state) => state.trends.movies);
 
-  // useEffect(() => {
-  //   OmdbAPI.getMoviesBySearch({
-  //     keyword: "superman",
-  //   })
-  //     .then((moviesList) => {
-  //       const transformedMovies = transformMovies(moviesList);
-  //       return transformedMovies;
-  //     })
-  //     .then(setMovies);
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchTrendsMovies());
+  }, []);
 
   return (
     <MainStyled>

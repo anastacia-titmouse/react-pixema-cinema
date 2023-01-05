@@ -7,5 +7,5 @@ export enum ROUTE {
   SEARCH = "search",
   SIGN_IN = "sign-in",
   SIGN_UP = "sign-up",
-  PASSWORD = "reset-password",
+  RESET_PASSWORD = "reset-password",
 }

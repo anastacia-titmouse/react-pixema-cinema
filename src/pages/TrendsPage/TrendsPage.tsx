@@ -1,3 +1,9 @@
+import { Main } from "components";
+
 export const TrendsPage = () => {
-  return <div>TrendsPage</div>;
+  return (
+    <div>
+      <Main />
+    </div>
+  );
 };

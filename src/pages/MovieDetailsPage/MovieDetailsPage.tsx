@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { fetchMovieById, useTypedDispatch, useTypedSelector } from "store";
+import { fetchMovieById, resetMovieDetails, useTypedDispatch, useTypedSelector } from "store";
 import { useParams } from "react-router";
 import { SingleMovieView } from "components";
 
@@ -7,13 +7,17 @@ export const MovieDetailsPage = () => {
   const dispatch = useTypedDispatch();
 
   const { imdbId } = useParams<{ imdbId: string }>();
-  const movie = useTypedSelector((state) => state.movie.movie);
+  const movie = useTypedSelector((state) => state.movieDetails.movie);
+
+  useEffect(() => {
+    dispatch(resetMovieDetails());
+  }, []);
 
   useEffect(() => {
     if (imdbId) {
       dispatch(fetchMovieById(imdbId));
     }
-  }, [dispatch, imdbId]);
+  }, [imdbId]);
 
   if (movie) {
     return <SingleMovieView movie={movie} />;
