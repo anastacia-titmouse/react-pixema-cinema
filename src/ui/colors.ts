@@ -19,4 +19,5 @@ export enum Color {
   Primary_INPUT_BG = "var(--primary-input-bg)",
   Primary_INPUT_BORDER = "var(--primary-input-border)",
   Primary_FORM_BG = "var(--primary-form-bg)",
+  Label_Text = "var(--label-text)",
 }
