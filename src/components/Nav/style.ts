@@ -1,11 +1,16 @@
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
 export const NavStyled = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 40px;
   grid-area: nav;
+
+  ${Media.Tablet} {
+    width: 100%;
+    overflow: hidden;
+  }
 `;
 
 export const Button = styled.button`

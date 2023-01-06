@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Media } from "ui";
 
 export const MainTemplateStyled = styled.div`
   display: grid;
@@ -11,6 +12,14 @@ export const MainTemplateStyled = styled.div`
     "nav content";
   min-height: 100vh;
   padding: 40px 62px 64px 62px;
+
+  ${Media.Tablet} {
+    grid-template-areas: "header nav" "content nav";
+    grid-template-columns: 1fr 0;
+    grid-column-gap: 0;
+    padding: 48px 40px;
+    width: 100%;
+  }
 `;
 
 export const ContentWrapper = styled.div`

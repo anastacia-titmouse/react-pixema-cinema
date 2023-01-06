@@ -9,6 +9,7 @@ import { ReactComponent as FilterIcon } from "./icons/filter.svg";
 import { ReactComponent as TimesIcon } from "./icons/times.svg";
 import { ReactComponent as BookmarkIcon } from "./icons/bookmark.svg";
 import { LinkIcon } from "./icons/LinkIcon/LinkIcon";
+import { ReactComponent as BurgerIcon } from "./icons/burger.svg";
 
 export {
   HomeIcon,
@@ -22,4 +23,5 @@ export {
   TimesIcon,
   BookmarkIcon,
   LinkIcon,
+  BurgerIcon,
 };
