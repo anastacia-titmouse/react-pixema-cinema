@@ -2,7 +2,7 @@
   "name": "pixema-cinema-store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anastacia-titmouse.github.io/",
+  "homepage": "https://anastacia-titmouse.github.io/react-pixema-cinema/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
