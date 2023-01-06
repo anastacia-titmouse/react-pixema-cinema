@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
 export const UserSettingsStyled = styled.div`
   background-color: transparent;
   width: 267px;
+
+  ${Media.Tablet} {
+    display: none;
+  }
 `;
 
 export const UserSettingButtonGroup = styled.div`
