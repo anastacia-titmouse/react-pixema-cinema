@@ -33,6 +33,7 @@ export * from "./Recommendations/Recommendations";
 export * from "./SettingsForm/SettingsForm";
 export * from "./Switch/Switch";
 export * from "./ServerError/ServerError";
+export * from "./BurgerButton/BurgerButton";
 
 export {
   MovieCard,

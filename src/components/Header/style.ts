@@ -8,6 +8,11 @@ export const HeaderStyled = styled.header`
   grid-area: header;
   width: 100%;
   overflow: hidden;
+
+  ${Media.Tablet} {
+    grid-template-columns: 208px 1fr 56px;
+    grid-column-gap: 32px;
+  }
 `;
 
 export const LogoStyled = styled.div`
@@ -18,6 +23,8 @@ export const LogoStyled = styled.div`
   justify-content: center;
 
   ${Media.Tablet} {
-    display: none;
+    width: 100%;
+    padding: 0;
+    justify-content: start;
   }
 `;
