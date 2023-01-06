@@ -16,7 +16,7 @@ import {
   CustomSelect,
   Divider,
   ICustomSelectOption,
-  Input,
+  InputStyled,
   Label,
 } from "components";
 import {
@@ -101,7 +101,7 @@ export const Filter = ({ isVisible }: { isVisible: boolean }) => {
 
                       <Section>
                         <Label>Year Of Release</Label>
-                        <Input
+                        <InputStyled
                           placeholder="Year Of Release"
                           value={yearOfRelease ?? ""}
                           type="number"

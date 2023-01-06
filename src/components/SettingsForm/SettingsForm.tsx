@@ -1,4 +1,4 @@
-import { Switch, Input, Label, Button, ServerError } from "components";
+import { Switch, InputStyled, Label, Button, ServerError } from "components";
 import {
   ButtonGroup,
   Caption,
@@ -51,7 +51,7 @@ export const SettingsForm = () => {
         <InputGroup>
           <div>
             <Label>Name</Label>
-            <Input
+            <InputStyled
               placeholder="Name"
               value={name}
               onChange={(e) => {
@@ -62,7 +62,7 @@ export const SettingsForm = () => {
 
           <div>
             <Label>Email</Label>
-            <Input
+            <InputStyled
               placeholder="Email"
               value={email}
               onChange={(e) => {
@@ -78,7 +78,7 @@ export const SettingsForm = () => {
         <InputGroup>
           <div>
             <Label>New password</Label>
-            <Input
+            <InputStyled
               placeholder="New password"
               value={password}
               onChange={(e) => {
@@ -89,7 +89,7 @@ export const SettingsForm = () => {
 
           <div>
             <Label>Confirm password</Label>
-            <Input placeholder="Confirm password" />
+            <InputStyled placeholder="Confirm password" />
           </div>
         </InputGroup>
       </SettingsFieldset>

@@ -1,10 +1,10 @@
 import { InputSection, LinkStyled, SignInFormStyled, Text, Title } from "./styles";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { loginUser, useTypedDispatch, useTypedSelector } from "store";
 import { ROUTE } from "router";
 import { useForm } from "react-hook-form";
-import { Button, Input, Label } from "components";
+import { Button, InputStyled, Label } from "components";
 
 interface ISignInFormData {
   email: string;
@@ -40,7 +40,7 @@ export const SignInForm = () => {
       <InputSection>
         <div>
           <Label>Email</Label>
-          <Input
+          <InputStyled
             {...register("email", {
               required: true,
               validate: (value: string) => {
@@ -62,7 +62,7 @@ export const SignInForm = () => {
         </div>
         <div>
           <Label>Password</Label>
-          <Input
+          <InputStyled
             {...register("password", {
               required: true,
               validate: (value: string) => {

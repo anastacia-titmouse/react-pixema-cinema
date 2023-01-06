@@ -1,5 +1,5 @@
 import { ResetPasswordFormStyled, SuccessfulResetText } from "./styles";
-import { Button, Input, Label, ServerError } from "components";
+import { Button, InputStyled, Label, ServerError } from "components";
 import { resetPassword, useTypedDispatch, useTypedSelector } from "store";
 import { useState } from "react";
 
@@ -27,7 +27,7 @@ export const ResetPasswordForm = () => {
         </SuccessfulResetText>
       )}
       <Label>Email</Label>
-      <Input
+      <InputStyled
         placeholder="Email"
         onChange={(e) => {
           setEmail(e.target.value);

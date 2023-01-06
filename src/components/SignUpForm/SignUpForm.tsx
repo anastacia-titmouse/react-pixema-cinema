@@ -1,4 +1,4 @@
-import { Button, Input, Label } from "components";
+import { Button, InputStyled, Label } from "components";
 import { useForm } from "react-hook-form";
 import { ROUTE } from "router";
 import { registerUser, useTypedDispatch, useTypedSelector } from "store";
@@ -33,7 +33,7 @@ export const SignUpForm = () => {
       <InputSection>
         <div>
           <Label>Name</Label>
-          <Input
+          <InputStyled
             {...register("name", {
               validate: (value) => {
                 if (!value) {
@@ -49,7 +49,7 @@ export const SignUpForm = () => {
         </div>
         <div>
           <Label>Email</Label>
-          <Input
+          <InputStyled
             {...register("email", {
               required: true,
               validate: (value: string) => {
@@ -71,7 +71,7 @@ export const SignUpForm = () => {
         </div>
         <div>
           <Label>Password</Label>
-          <Input
+          <InputStyled
             {...register("password", {
               required: true,
               validate: (value: string) => {
@@ -88,7 +88,7 @@ export const SignUpForm = () => {
         </div>
         <div>
           <Label>Confirm password</Label>
-          <Input
+          <InputStyled
             {...register("confirmPassword", {
               required: true,
               validate: (value) => {
