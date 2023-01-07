@@ -1,8 +1,8 @@
-import { Button, InputStyled, Label } from "components";
+import { Button, CustomNavLink, InputStyled, Label } from "components";
 import { useForm } from "react-hook-form";
 import { ROUTE } from "router";
 import { registerUser, useTypedDispatch, useTypedSelector } from "store";
-import { SignUpFormStyled, Title, Text, InputSection, LinkStyled } from "./styles";
+import { SignUpFormStyled, Title, Text, InputSection } from "./styles";
 
 interface ISignUpFormData {
   name: string;
@@ -107,8 +107,7 @@ export const SignUpForm = () => {
         Sign up
       </Button>
       <Text>
-        Already have an account?{" "}
-        <LinkStyled to={`${ROUTE.HOME}${ROUTE.SIGN_IN}`}>Sign In</LinkStyled>
+        Already have an account? <CustomNavLink to={`${ROUTE.SIGN_IN}`}>Sign In</CustomNavLink>
       </Text>
     </SignUpFormStyled>
   );
