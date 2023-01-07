@@ -23,7 +23,7 @@ export const router = createBrowserRouter(
         <Route
           path={ROUTE.FAVORITES}
           element={
-            <ProtectedRoute protectFrom={ProtectFrom.anon} redirectTo={`/${ROUTE.SIGN_IN}`}>
+            <ProtectedRoute protectFrom={ProtectFrom.anon} redirectTo={`${ROUTE.SIGN_IN}`}>
               <FavoritesPage />
             </ProtectedRoute>
           }

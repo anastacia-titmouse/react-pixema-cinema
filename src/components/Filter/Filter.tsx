@@ -126,7 +126,7 @@ export const Filter = ({ isVisible }: { isVisible: boolean }) => {
                           onClick={(e) => {
                             dispatch(setFilterVisibility(false));
                             dispatch(applyFilter());
-                            navigate(`/${ROUTE.SEARCH}`);
+                            navigate(`${ROUTE.SEARCH}`);
                           }}
                           className="primary"
                         >

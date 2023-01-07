@@ -30,7 +30,7 @@ export const Search = () => {
         e.preventDefault();
         dispatch(setStoreKeyword(keyword));
         dispatch(applyFilter());
-        navigate(`/${ROUTE.SEARCH}`);
+        navigate(`${ROUTE.SEARCH}`);
       }}
       className={isFilterActive ? "filter-active" : ""}
     >

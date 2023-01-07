@@ -1,17 +1,11 @@
-import { ReactNode } from "react";
 import { useMatch } from "react-router";
-import { ROUTE } from "router";
 import { NavLinkStyled } from "./style";
+import { NavLinkProps } from "react-router-dom";
 
-interface IProps {
-  children: ReactNode;
-  to: ROUTE;
-}
-
-export const CustomNavLink = ({ children, to }: IProps) => {
-  const isActive = useMatch(to);
+export const CustomNavLink = ({ children, to, ...props }: NavLinkProps) => {
+  const isActive = useMatch(to as string);
   return (
-    <NavLinkStyled $isActive={isActive} to={to}>
+    <NavLinkStyled {...props} $isActive={isActive} to={to}>
       {children}
     </NavLinkStyled>
   );

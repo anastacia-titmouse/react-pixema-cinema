@@ -21,7 +21,7 @@ export const UserSettings = () => {
       if (isAuth) {
         setAnchorEl(event.currentTarget);
       } else {
-        navigate(`/${ROUTE.SIGN_IN}`);
+        navigate(`${ROUTE.SIGN_IN}`);
       }
     },
     [isAuth, navigate],
@@ -53,7 +53,7 @@ export const UserSettings = () => {
         <UserSettingButtonGroup>
           <UserSettingButton
             onClick={() => {
-              navigate(`/${ROUTE.SETTINGS}`);
+              navigate(`${ROUTE.SETTINGS}`);
               handlePopoverClose();
             }}
           >
