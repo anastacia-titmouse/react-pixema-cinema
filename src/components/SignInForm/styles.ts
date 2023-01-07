@@ -35,7 +35,3 @@ export const InputSection = styled.section`
   display: grid;
   grid-row-gap: 24px;
 `;
-
-export const LinkStyled = styled(Link)`
-  color: ${Color.Primary};
-`;

@@ -1,10 +1,10 @@
-import { InputSection, LinkStyled, SignInFormStyled, Text, Title } from "./styles";
+import { InputSection, SignInFormStyled, Text, Title } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { loginUser, useTypedDispatch, useTypedSelector } from "store";
 import { ROUTE } from "router";
 import { useForm } from "react-hook-form";
-import { Button, InputStyled, Label } from "components";
+import { Button, CustomNavLink, InputStyled, Label } from "components";
 
 interface ISignInFormData {
   email: string;
@@ -83,7 +83,7 @@ export const SignInForm = () => {
         Sign in
       </Button>
       <Text>
-        Don't have an account? <LinkStyled to={`${ROUTE.HOME}${ROUTE.SIGN_UP}`}>Sign Up</LinkStyled>
+        Don't have an account? <CustomNavLink to={`${ROUTE.SIGN_UP}`}>Sign Up</CustomNavLink>
       </Text>
     </SignInFormStyled>
   );
