@@ -4,6 +4,7 @@ import filterReducer from "./features/filterSlice/filterSlice";
 import favoritesReducer from "./features/favoritesSlice/favoritesSlice";
 import movieDetailsReducer from "./features/movieDetailsSlice/movieDetailsSlice";
 import trendsReducer from "./features/trendsSlice/trendsSlice";
+import mobileMenuReducer from "./features/mobileMenuSlice/mobileMenuSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
     favorites: favoritesReducer,
     movieDetails: movieDetailsReducer,
     trends: trendsReducer,
+    mobileMenu: mobileMenuReducer,
   },
 });
 

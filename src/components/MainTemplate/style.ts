@@ -15,7 +15,7 @@ export const MainTemplateStyled = styled.div`
 
   ${Media.Tablet} {
     grid-template-areas: "header nav" "content nav";
-    grid-template-columns: 1fr 0;
+    grid-template-columns: 1fr auto;
     grid-column-gap: 0;
     padding: 48px 40px;
     width: 100%;

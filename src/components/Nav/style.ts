@@ -8,8 +8,12 @@ export const NavStyled = styled.nav`
   grid-area: nav;
 
   ${Media.Tablet} {
-    width: 100%;
+    width: 0;
     overflow: hidden;
+
+    &.is-open {
+      width: 248px;
+    }
   }
 `;
 
