@@ -32,7 +32,7 @@ const initialState: UserState = {
   isAuth: undefined,
   error: undefined,
   uid: null,
-  useDarkTheme: true,
+  useDarkTheme: null,
   changeSettingsError: null,
   isResetPasswordLoading: false,
   resetPasswordError: null,

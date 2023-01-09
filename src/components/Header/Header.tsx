@@ -1,11 +1,14 @@
-import { PixemaIcon } from "assets";
+import { PixemaIcon, PixemaLightIcon } from "assets";
 import { Search, BurgerButton } from "components";
-import { UserSettings } from "components/UserSettings/UserSettings";
+import { UserSettings } from "components";
 import { HeaderStyled, LogoStyled } from "./style";
 import { useNavigate } from "react-router-dom";
 import { ROUTE } from "router";
+import { useTypedSelector } from "store";
+import { useState } from "react";
 
 export const Header = () => {
+  const darkThemeStore: boolean | null = useTypedSelector((state) => state.user.useDarkTheme);
   const navigate = useNavigate();
 
   return (
@@ -15,7 +18,7 @@ export const Header = () => {
           navigate(`${ROUTE.HOME}`);
         }}
       >
-        <PixemaIcon />
+        {darkThemeStore ? <PixemaIcon /> : <PixemaLightIcon />}
       </LogoStyled>
       <Search />
       <UserSettings />
