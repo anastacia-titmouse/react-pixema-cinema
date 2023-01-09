@@ -10,6 +10,7 @@ import { ReactComponent as TimesIcon } from "./icons/times.svg";
 import { ReactComponent as BookmarkIcon } from "./icons/bookmark.svg";
 import { LinkIcon } from "./icons/LinkIcon/LinkIcon";
 import { ReactComponent as BurgerIcon } from "./icons/burger.svg";
+import { ReactComponent as PixemaLightIcon } from "./icons/logo.svg";
 
 export {
   HomeIcon,
@@ -24,4 +25,5 @@ export {
   BookmarkIcon,
   LinkIcon,
   BurgerIcon,
+  PixemaLightIcon,
 };

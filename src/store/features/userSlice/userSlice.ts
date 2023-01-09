@@ -12,7 +12,7 @@ import {
   getFirebaseErrorMessage,
   sendResetPasswordEmail,
 } from "services/firebaseApi";
-import { RootState } from "../../store";
+import { RootState } from "store";
 
 interface UserState {
   name: string;
@@ -32,7 +32,7 @@ const initialState: UserState = {
   isAuth: undefined,
   error: undefined,
   uid: null,
-  useDarkTheme: null,
+  useDarkTheme: true,
   changeSettingsError: null,
   isResetPasswordLoading: false,
   resetPasswordError: null,
