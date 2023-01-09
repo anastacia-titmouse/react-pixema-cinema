@@ -8,7 +8,7 @@ import { useTypedSelector } from "store";
 import { useState } from "react";
 
 export const Header = () => {
-  const darkThemeStore: boolean | null = useTypedSelector((state) => state.user.useDarkTheme);
+  const darkThemeStore: boolean = useTypedSelector((state) => state.user.useDarkTheme);
   const navigate = useNavigate();
 
   return (
