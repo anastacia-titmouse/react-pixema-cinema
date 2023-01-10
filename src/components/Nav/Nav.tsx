@@ -2,7 +2,7 @@ import { HomeIcon, TrendsIcon, FavoritesIcon, SettingsIcon } from "assets";
 import { CustomNavLink, Footer } from "components";
 import { ROUTE } from "router";
 import { NavStyled } from "./style";
-import { useTypedSelector } from "../../store";
+import { useTypedSelector } from "store";
 
 export const Nav = () => {
   const isMobileMenuOpen = useTypedSelector((state) => state.mobileMenu.isOpen);

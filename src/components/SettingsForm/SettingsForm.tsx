@@ -19,11 +19,11 @@ import {
 export const SettingsForm = () => {
   const dispatch = useTypedDispatch();
   const changeSettingsError = useTypedSelector((state) => state.user.changeSettingsError);
-  const useDartThemeStore = useTypedSelector((state) => state.user.useDarkTheme);
+  const useDarkThemeStore = useTypedSelector((state) => state.user.useDarkTheme);
   const emailStore = useTypedSelector((state) => state.user.email);
   const nameStore = useTypedSelector((state) => state.user.name);
 
-  const [useDarkTheme, setUseDarkTheme] = useState(!!useDartThemeStore);
+  const [useDarkTheme, setUseDarkTheme] = useState(!!useDarkThemeStore);
   const [email, setEmail] = useState(emailStore);
   const [name, setName] = useState(nameStore);
   const [password, setPassword] = useState("");
@@ -33,7 +33,7 @@ export const SettingsForm = () => {
   };
 
   const resetForm = () => {
-    setUseDarkTheme(!!useDartThemeStore);
+    setUseDarkTheme(!!useDarkThemeStore);
     setEmail(emailStore);
     setName(nameStore);
     setPassword("");
