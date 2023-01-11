@@ -9,9 +9,23 @@ export const HeaderStyled = styled.header`
   width: 100%;
   overflow: hidden;
 
+  ${Media.Desktop_M} {
+    grid-template-columns: 208px 1fr 56px;
+    grid-column-gap: 32px;
+  }
+
+  ${Media.Desktop_S} {
+    grid-template-columns: 208px 1fr 56px;
+    grid-column-gap: 32px;
+  }
+
   ${Media.Tablet} {
     grid-template-columns: 208px 1fr 56px;
     grid-column-gap: 32px;
+  }
+
+  ${Media.Mobile} {
+    grid-auto-flow: row dense;
   }
 `;
 

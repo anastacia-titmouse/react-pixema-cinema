@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Color, H2, Media } from "ui";
 
@@ -15,7 +14,7 @@ export const SignInFormStyled = styled.form`
     width: 80%;
   }
 
-  ${Media.Mobile_S} {
+  ${Media.Mobile} {
     width: 80%;
   }
 `;

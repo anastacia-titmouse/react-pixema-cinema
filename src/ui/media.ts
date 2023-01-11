@@ -1,7 +1,6 @@
 export enum Media {
-  Mobile_S = "@media (max-width: 320px)",
-  Mobile_M = "@media (max-width: 375px)",
-  Mobile_L = "@media (max-width: 425px)",
-  Mobile_XL = "@media (max-width: 530px)",
+  Mobile = "@media (max-width: 320px)",
   Tablet = "@media (max-width: 768px)",
+  Desktop_M = "@media (max-width: 1280px)",
+  Desktop_S = "@media (max-width: 1024px)",
 }

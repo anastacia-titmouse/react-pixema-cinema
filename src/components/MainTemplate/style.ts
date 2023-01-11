@@ -11,7 +11,21 @@ export const MainTemplateStyled = styled.div`
     "header header"
     "nav content";
   min-height: 100vh;
-  padding: 40px 62px 64px 62px;
+  padding: 40px 62px 64px;
+
+  ${Media.Desktop_M} {
+    grid-template-areas: "header nav" "content nav";
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 0;
+    padding: 48px 176px;
+  }
+
+  ${Media.Desktop_S} {
+    grid-template-areas: "header nav" "content nav";
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 0;
+    padding: 48px 48px;
+  }
 
   ${Media.Tablet} {
     grid-template-areas: "header nav" "content nav";
@@ -19,6 +33,10 @@ export const MainTemplateStyled = styled.div`
     grid-column-gap: 0;
     padding: 48px 40px;
     width: 100%;
+
+    ${Media.Mobile} {
+      padding: 40px 24px;
+    }
   }
 `;
 

@@ -6,7 +6,7 @@ export const HeaderStyled = styled.header`
   align-items: center;
   padding-left: 60px;
 
-  ${Media.Mobile_S} {
+  ${Media.Mobile} {
     justify-content: center;
     padding: 0;
   }

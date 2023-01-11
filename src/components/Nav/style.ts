@@ -15,6 +15,15 @@ export const NavStyled = styled.nav`
       width: 248px;
     }
   }
+
+  ${Media.Desktop_M} {
+    width: 0;
+    overflow: hidden;
+
+    &.is-open {
+      width: 248px;
+    }
+  }
 `;
 
 export const Button = styled.button`
