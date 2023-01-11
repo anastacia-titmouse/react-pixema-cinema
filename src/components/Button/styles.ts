@@ -49,6 +49,22 @@ export const ButtonStyled = styled.button`
     }
   }
 
+  &.grid {
+    grid-area: burger;
+    background-color: ${Color.Primary};
+
+    &:hover {
+      background-color: ${Color.Primary_Light};
+      color: ${Color.Primary_TEXT};
+    }
+
+    & svg path,
+    & svg circle {
+      fill: ${Color.Primary_TEXT};
+      stroke: ${Color.Primary_TEXT};
+    }
+  }
+
   &:disabled {
     &:hover {
       background-color: ${Color.Secondary};

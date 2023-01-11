@@ -17,25 +17,27 @@ export const MainTemplateStyled = styled.div`
     grid-template-areas: "header nav" "content nav";
     grid-template-columns: 1fr auto;
     grid-column-gap: 0;
-    padding: 48px 176px;
+    padding: 40px 70px;
   }
 
   ${Media.Desktop_S} {
     grid-template-areas: "header nav" "content nav";
     grid-template-columns: 1fr auto;
     grid-column-gap: 0;
-    padding: 48px 48px;
+    padding: 40px 48px;
   }
 
   ${Media.Tablet} {
     grid-template-areas: "header nav" "content nav";
     grid-template-columns: 1fr auto;
     grid-column-gap: 0;
-    padding: 48px 40px;
+    padding: 40px 40px;
     width: 100%;
 
     ${Media.Mobile} {
-      padding: 40px 24px;
+      grid-template-rows: 144px 1fr;
+      grid-row-gap: 40px;
+      padding: 32px 24px;
     }
   }
 `;

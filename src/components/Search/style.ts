@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Color } from "ui";
 
 export const SearchForm = styled.form`
+  grid-area: search;
   position: relative;
   width: 100%;
   height: 56px;
@@ -41,7 +42,6 @@ export const SearchStyled = styled.input`
   border-radius: 10px;
   outline: none;
   border: 1px solid ${Color.Primary_INPUT_BORDER};
-  margin: 0 41px 0 0;
   box-sizing: border-box;
   padding: 16px 76px 16px 20px;
   font-family: "Exo2 Regular", sans-serif;

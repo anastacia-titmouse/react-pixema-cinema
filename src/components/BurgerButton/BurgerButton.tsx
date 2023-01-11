@@ -10,7 +10,7 @@ export const BurgerButton = () => {
 
   return (
     <Button
-      className="primary"
+      className="grid"
       style={{ padding: 0 }}
       onClick={() => {
         dispatch(setIsOpen(!isMobileMenuOpen));

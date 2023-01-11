@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Color, S1_2 } from "ui";
+import { Color, INPUT, S1_2 } from "ui";
 import { CSSProperties } from "react";
-import { INPUT } from "../../ui/typography";
 
 export const linkStyle: CSSProperties = {
   display: "block",
@@ -13,6 +12,8 @@ export const MovieCardStyled = styled.li`
   display: grid;
   row-gap: 25px;
   grid-template-rows: max-content auto;
+  max-width: 266px;
+  max-height: 433px;
 `;
 
 export const Text = styled.div`

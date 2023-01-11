@@ -7,6 +7,7 @@ export const NavLinkStyled = styled(NavLink)<{ $isActive: PathMatch<string> | nu
   flex-direction: row;
   gap: 20px;
   align-items: center;
+  max-width: 266px;
   font-size: 18px;
   color: ${({ $isActive }) => ($isActive ? `${Color.Primary}` : `${Color.Secondary}`)};
 

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Color, Media } from "ui";
 
 export const UserSettingsStyled = styled.div`
+  grid-area: user;
   background-color: transparent;
   width: 267px;
 
