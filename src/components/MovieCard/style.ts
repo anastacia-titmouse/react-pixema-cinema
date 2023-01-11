@@ -8,12 +8,12 @@ export const linkStyle: CSSProperties = {
   overflow: "hidden",
 };
 
-export const MovieCardStyled = styled.li`
+export const MovieCardWrapper = styled.li``;
+
+export const MovieCardStyled = styled.div`
   display: grid;
   row-gap: 25px;
   grid-template-rows: max-content auto;
-  max-width: 266px;
-  max-height: 433px;
 `;
 
 export const Text = styled.div`
