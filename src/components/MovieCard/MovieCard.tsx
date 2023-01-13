@@ -13,12 +13,13 @@ import {
 } from "./style";
 import { CustomNavLink } from "components";
 import { deleteFavoriteMovie, useTypedDispatch } from "store";
-import { BookmarkIcon } from "assets";
+import { TimesIcon } from "assets";
 
 interface IProps {
   movie: IMovie;
+  showDeleteFromFavorites?: boolean;
 }
-export const MovieCard = ({ movie }: IProps) => {
+export const MovieCard = ({ movie, showDeleteFromFavorites = false }: IProps) => {
   const { imdbId, poster, title, year } = movie;
   const dispatch = useTypedDispatch();
 
@@ -30,15 +31,17 @@ export const MovieCard = ({ movie }: IProps) => {
     <MovieCardWrapper>
       <CustomNavLink to={`${generatePath(ROUTE.MOVIE_DETAILS, { imdbId })}`} style={linkStyle}>
         <MovieCardStyled key={imdbId}>
-          <DeleteButton
-            onClick={(event) => {
-              event.stopPropagation();
-              event.preventDefault();
-              deleteFavorite && deleteFavorite();
-            }}
-          >
-            <BookmarkIcon />
-          </DeleteButton>
+          {showDeleteFromFavorites && (
+            <DeleteButton
+              onClick={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                deleteFavorite && deleteFavorite();
+              }}
+            >
+              <TimesIcon />
+            </DeleteButton>
+          )}
           <CardPoster src={poster} alt={title} />
           <Text>
             <Title>

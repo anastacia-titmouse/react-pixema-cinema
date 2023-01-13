@@ -16,7 +16,7 @@ export const FavoritesPage = () => {
 
   return (
     <div className="favorites">
-      <MoviesList movies={movies} />
+      <MoviesList movies={movies} showDeleteFromFavorites={true} />
     </div>
   );
 };

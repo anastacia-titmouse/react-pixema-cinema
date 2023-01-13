@@ -49,12 +49,17 @@ export const CardPoster = styled.img`
 
 export const DeleteButton = styled.button`
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 20px;
   right: 20px;
+  width: 30px;
+  height: 30px;
   background-color: ${Color.Graphite};
   border: none;
   border-radius: 10px;
-  padding: 2px 6px;
+  padding: 0;
   path {
     fill: ${Color.Primary};
     transition: 0.3s fill ease-in-out;
