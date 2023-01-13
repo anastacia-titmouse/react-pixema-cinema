@@ -33,18 +33,19 @@ export const fetchFavoriteMovies = createAsyncThunk<
 });
 
 export const deleteFavoriteMovie = createAsyncThunk<
-  void,
+  string,
   string,
   { rejectValue: string; state: RootState }
 >("favorites/delete", async (imdbId, { rejectWithValue, getState }) => {
   const state = getState();
-  const { uid } = state.user;
-  if (uid !== null) {
-    try {
-      await deleteFavorite(imdbId, uid);
-    } catch (error) {
-      return rejectWithValue(getFirebaseErrorMessage(error));
-    }
+  //state.user.uid === null is unreachable for favorites page
+  const uid = state.user.uid as string;
+
+  try {
+    await deleteFavorite(imdbId, uid);
+    return imdbId;
+  } catch (error) {
+    return rejectWithValue(getFirebaseErrorMessage(error));
   }
 });
 
@@ -71,6 +72,9 @@ export const favoritesSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(deleteFavoriteMovie.fulfilled, (state, action) => {
+      state.movies = state.movies.filter((movie) => {
+        return movie.imdbId !== action.payload;
+      });
       state.isLoading = false;
     });
     builder.addCase(deleteFavoriteMovie.rejected, (state) => {

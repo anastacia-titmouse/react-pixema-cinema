@@ -33,10 +33,10 @@ export const MovieCard = ({ movie, showDeleteFromFavorites = false }: IProps) =>
         <MovieCardStyled key={imdbId}>
           {showDeleteFromFavorites && (
             <DeleteButton
+              type="button"
               onClick={(event) => {
-                event.stopPropagation();
                 event.preventDefault();
-                deleteFavorite && deleteFavorite();
+                deleteFavorite();
               }}
             >
               <TimesIcon />
