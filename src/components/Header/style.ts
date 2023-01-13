@@ -19,6 +19,15 @@ export const HeaderStyled = styled.header`
     grid-template-columns: 0.5fr 4fr 60px;
     grid-template-areas: "logo search burger";
     grid-column-gap: 32px;
+
+    &.is-open {
+      grid-template-columns: 0 4fr 92px;
+      grid-gap: 0;
+
+      & > *:last-child {
+        margin-left: 32px;
+      }
+    }
   }
 
   ${Media.Mobile} {
@@ -27,6 +36,12 @@ export const HeaderStyled = styled.header`
       "search search search";
     grid-row-gap: 32px;
     padding-bottom: 40px;
+
+    &.is-open {
+      grid-template-columns: 0 4fr 92px;
+      grid-column-gap: 0;
+      grid-row-gap: 32px;
+    }
   }
 `;
 

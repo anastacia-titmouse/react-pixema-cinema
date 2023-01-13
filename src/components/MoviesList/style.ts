@@ -14,4 +14,12 @@ export const StyledList = styled.ul`
   ${Media.Desktop_M} {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  ${Media.Tablet} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  ${Media.Mobile} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;

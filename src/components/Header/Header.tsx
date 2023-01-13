@@ -9,12 +9,14 @@ import { useWindowSize } from "hooks";
 
 export const Header = () => {
   const darkThemeStore: boolean = useTypedSelector((state) => state.user.useDarkTheme);
+  const isMobileMenuOpen = useTypedSelector((state) => state.mobileMenu.isOpen);
   const navigate = useNavigate();
   const { width } = useWindowSize();
 
   return (
-    <HeaderStyled>
+    <HeaderStyled className={isMobileMenuOpen ? "is-open" : ""}>
       <LogoStyled
+        className={isMobileMenuOpen ? "is-open" : ""}
         onClick={() => {
           navigate(`${ROUTE.HOME}`);
         }}

@@ -35,6 +35,7 @@ export * from "./Switch/Switch";
 export * from "./ServerError/ServerError";
 export * from "./BurgerButton/BurgerButton";
 export * from "./EmptyResult/EmptyResult";
+export * from "./LinkIcon/LinkIcon";
 
 export {
   MovieCard,

@@ -10,10 +10,10 @@ export const NavStyled = styled.nav`
   ${Media.Tablet} {
     width: 0;
     overflow: hidden;
-    padding: 56px 32px 0 32px;
 
     &.is-open {
       width: 248px;
+      padding: 0 32px;
     }
   }
 
@@ -22,7 +22,8 @@ export const NavStyled = styled.nav`
     overflow: hidden;
 
     &.is-open {
-      width: 248px;
+      width: 200px;
+      padding: 0 32px;
     }
   }
 `;
