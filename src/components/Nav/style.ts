@@ -10,6 +10,7 @@ export const NavStyled = styled.nav`
   ${Media.Tablet} {
     width: 0;
     overflow: hidden;
+    padding: 56px 32px 0 32px;
 
     &.is-open {
       width: 248px;
