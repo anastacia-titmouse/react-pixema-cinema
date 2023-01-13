@@ -1,4 +1,4 @@
-import { generatePath } from "react-router-dom";
+import { generatePath, Link } from "react-router-dom";
 import { ROUTE } from "router";
 import { IMovie } from "types";
 import {
@@ -11,7 +11,6 @@ import {
   MovieCardWrapper,
   DeleteButton,
 } from "./style";
-import { CustomNavLink } from "components";
 import { deleteFavoriteMovie, useTypedDispatch } from "store";
 import { TimesIcon } from "assets";
 
@@ -29,7 +28,7 @@ export const MovieCard = ({ movie, showDeleteFromFavorites = false }: IProps) =>
 
   return (
     <MovieCardWrapper>
-      <CustomNavLink to={`${generatePath(ROUTE.MOVIE_DETAILS, { imdbId })}`} style={linkStyle}>
+      <Link to={`${generatePath(ROUTE.MOVIE_DETAILS, { imdbId })}`} style={linkStyle}>
         <MovieCardStyled key={imdbId}>
           {showDeleteFromFavorites && (
             <DeleteButton
@@ -50,7 +49,7 @@ export const MovieCard = ({ movie, showDeleteFromFavorites = false }: IProps) =>
             <SubTitle>{year}</SubTitle>
           </Text>
         </MovieCardStyled>
-      </CustomNavLink>
+      </Link>
     </MovieCardWrapper>
   );
 };
