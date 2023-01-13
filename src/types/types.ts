@@ -21,6 +21,7 @@ export interface IFullMovieInfoDto {
   Type: string;
   DVD: string;
   BoxOffice: string;
+  Error?: string;
 }
 
 export enum PgRating {
@@ -76,6 +77,7 @@ export interface IResponseDto {
   Search: IShortMovieInfoDto[];
   totalResults: string;
   Response: "True" | "False";
+  Error?: string;
 }
 
 interface IRating {

@@ -1,8 +1,9 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IMovie, IResponseDto, MovieTypes } from "types";
-import { getImdbErrorMessage, OmdbAPI, transformShortMovieInfo } from "services";
-import { RootState } from "../../store";
+import { OmdbAPI, transformShortMovieInfo } from "services";
+import { RootState } from "store";
+import { AxiosError } from "axios";
 
 export interface FilterState {
   keyword: string;
@@ -37,7 +38,8 @@ export const applyFilter = createAsyncThunk<
   try {
     return OmdbAPI.getMoviesBySearch({ keyword, yearOfRelease, type });
   } catch (error) {
-    return rejectWithValue(getImdbErrorMessage(error));
+    const errorResponse = error as AxiosError;
+    return rejectWithValue(errorResponse.message);
   }
 });
 
@@ -52,7 +54,8 @@ export const loadMoreMovies = createAsyncThunk<
   try {
     return OmdbAPI.getMoviesBySearch({ keyword, yearOfRelease, type, page: page + 1 });
   } catch (error) {
-    return rejectWithValue(getImdbErrorMessage(error));
+    const errorResponse = error as AxiosError;
+    return rejectWithValue(errorResponse.message);
   }
 });
 

@@ -17,6 +17,7 @@ class OmdbApi {
       plot: "full",
     };
     const { data } = await this.API.get<IFullMovieInfoDto>("", { params });
+    if (data.Error) throw new Error(data.Error);
     return data;
   }
 
@@ -31,14 +32,9 @@ class OmdbApi {
     const { data } = await this.API.get<IResponseDto>("", {
       params,
     });
-
+    if (data.Error) throw new Error(data.Error);
     return data;
   }
 }
-
-export const getImdbErrorMessage = (error: unknown) => {
-  //TODO
-  return "";
-};
 
 export const OmdbAPI = new OmdbApi();

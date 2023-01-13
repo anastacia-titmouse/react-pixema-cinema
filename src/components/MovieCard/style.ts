@@ -8,7 +8,9 @@ export const linkStyle: CSSProperties = {
   overflow: "hidden",
 };
 
-export const MovieCardWrapper = styled.li``;
+export const MovieCardWrapper = styled.li`
+  position: relative;
+`;
 
 export const MovieCardStyled = styled.div`
   display: grid;
@@ -43,4 +45,24 @@ export const CardPoster = styled.img`
   width: 100%;
   aspect-ratio: 266/357;
   object-fit: cover;
+`;
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: ${Color.Graphite};
+  border: none;
+  border-radius: 10px;
+  padding: 2px 6px;
+  path {
+    fill: ${Color.Primary};
+    transition: 0.3s fill ease-in-out;
+  }
+  &:hover {
+    cursor: pointer;
+    path {
+      fill: ${Color.Primary_Light};
+    }
+  }
 `;

@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
 import {
-  getImdbErrorMessage,
   IFavoriteMovieModel,
   isMovieExistsInFavorites,
   OmdbAPI,
   putFavoriteMovie,
   transformFullMovieInfo,
 } from "services";
-import { RootState } from "../../store";
+import { RootState } from "store";
 import { IFullMovieInfo } from "types";
 
 export interface MovieDetailsState {
@@ -41,7 +41,8 @@ export const fetchMovieById = createAsyncThunk<
 
     return { movieInfo, isFavoriteMovie };
   } catch (error) {
-    return rejectWithValue(getImdbErrorMessage(error));
+    const errorResponse = error as AxiosError;
+    return rejectWithValue(errorResponse.message);
   }
 });
 
@@ -58,7 +59,8 @@ export const addMovieToFavorites = createAsyncThunk<
       return putFavoriteMovie({ ...payload, uid });
     }
   } catch (error) {
-    return rejectWithValue(getImdbErrorMessage(error));
+    const errorResponse = error as AxiosError;
+    return rejectWithValue(errorResponse.message);
   }
 });
 

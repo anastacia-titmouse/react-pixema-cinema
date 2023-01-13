@@ -11,13 +11,13 @@ export const MovieDetailsPage = () => {
 
   useEffect(() => {
     dispatch(resetMovieDetails());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (imdbId) {
       dispatch(fetchMovieById(imdbId));
     }
-  }, [imdbId]);
+  }, [imdbId, dispatch]);
 
   if (movie) {
     return <SingleMovieView movie={movie} />;

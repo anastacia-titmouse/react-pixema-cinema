@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IMovie } from "types";
-import { fetchFavorites, getFirebaseErrorMessage, IFavoriteMovieModel } from "services";
-import { RootState } from "../../store";
+import {
+  deleteFavorite,
+  fetchFavorites,
+  getFirebaseErrorMessage,
+  IFavoriteMovieModel,
+} from "services";
+import { RootState } from "store";
 
 export interface FavoritesState {
   isLoading: boolean;
@@ -20,11 +25,26 @@ export const fetchFavoriteMovies = createAsyncThunk<
 >("favorites/fetchFavoriteMovies", async (payload, { rejectWithValue, getState }) => {
   const state = getState();
   const { uid } = state.user;
-
   try {
     return fetchFavorites(uid);
   } catch (error) {
     return rejectWithValue(getFirebaseErrorMessage(error));
+  }
+});
+
+export const deleteFavoriteMovie = createAsyncThunk<
+  void,
+  string,
+  { rejectValue: string; state: RootState }
+>("favorites/delete", async (imdbId, { rejectWithValue, getState }) => {
+  const state = getState();
+  const { uid } = state.user;
+  if (uid !== null) {
+    try {
+      await deleteFavorite(imdbId, uid);
+    } catch (error) {
+      return rejectWithValue(getFirebaseErrorMessage(error));
+    }
   }
 });
 
@@ -42,9 +62,21 @@ export const favoritesSlice = createSlice({
       state.isLoading = false;
       state.movies = action.payload;
     });
+
+    builder.addCase(fetchFavoriteMovies.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(deleteFavoriteMovie.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteFavoriteMovie.fulfilled, (state, action) => {
+      state.isLoading = false;
+    });
+    builder.addCase(deleteFavoriteMovie.rejected, (state) => {
+      state.isLoading = false;
+    });
   },
 });
-
-export const {} = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;

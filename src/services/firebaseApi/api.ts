@@ -20,6 +20,7 @@ import {
   updateDoc,
   doc,
   setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import {
   IFavoriteMovieModel,
@@ -146,6 +147,17 @@ const fetchFavorites = async (userUid: string | null): Promise<IFavoriteMovieMod
   const q = query(collection(db, FirebaseCollections.favorites), where("uid", "==", userUid));
   const doc = await getDocs(q);
   return doc.docs.map((doc) => doc.data()) as IFavoriteMovieModel[];
+};
+
+export const deleteFavorite = async (imdbID: string, uid: string) => {
+  const q = query(
+    collection(db, FirebaseCollections.favorites),
+    where("imdbId", "==", imdbID),
+    where("uid", "==", uid),
+  );
+  const doc = await getDocs(q);
+  const ref = doc.docs.map((doc) => doc.ref);
+  await deleteDoc(ref[0]);
 };
 
 const fetchTrendMovies = async (): Promise<ITrendMovieModel[]> => {

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IMovie } from "types";
 import { fetchTrendMovies, getFirebaseErrorMessage, ITrendMovieModel } from "services";
-import { RootState } from "../../store";
+import { RootState } from "store";
 
 export interface TrendsState {
   isLoading: boolean;
@@ -41,7 +41,5 @@ export const trendsSlice = createSlice({
     });
   },
 });
-
-export const {} = trendsSlice.actions;
 
 export default trendsSlice.reducer;
