@@ -8,7 +8,6 @@ import { ReactComponent as ChevronRight } from "./icons/chevron-right.svg";
 import { ReactComponent as FilterIcon } from "./icons/filter.svg";
 import { ReactComponent as TimesIcon } from "./icons/times.svg";
 import { ReactComponent as BookmarkIcon } from "./icons/bookmark.svg";
-import { LinkIcon } from "../components/LinkIcon/LinkIcon";
 import { ReactComponent as BurgerIcon } from "./icons/burger.svg";
 import { ReactComponent as PixemaLightIcon } from "./icons/logo.svg";
 import empty from "./images/empty-result.png";
@@ -24,7 +23,6 @@ export {
   FilterIcon,
   TimesIcon,
   BookmarkIcon,
-  LinkIcon,
   BurgerIcon,
   PixemaLightIcon,
   empty,
