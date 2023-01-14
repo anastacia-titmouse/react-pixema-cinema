@@ -1,10 +1,10 @@
-import { InputSection, SignInFormStyled, Text, Title } from "./styles";
+import { InputSection, SignInFormStyled, Text, Title, Error } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { loginUser, useTypedDispatch, useTypedSelector } from "store";
 import { ROUTE } from "router";
 import { useForm } from "react-hook-form";
-import { Button, CustomNavLink, InputStyled, Label } from "components";
+import { Button, CustomLink, InputStyled, Label } from "components";
 
 interface ISignInFormData {
   email: string;
@@ -35,12 +35,12 @@ export const SignInForm = () => {
 
   return (
     <SignInFormStyled onSubmit={handleSubmit(onSubmit)}>
-      {serverError && <span className={"server-errors"}>{serverError}</span>}
-      <Title>Sign up</Title>
+      <Title>Sign in</Title>
       <InputSection>
         <div>
           <Label>Email</Label>
           <InputStyled
+            className={errors.email ? "error" : ""}
             {...register("email", {
               required: true,
               validate: (value: string) => {
@@ -58,11 +58,12 @@ export const SignInForm = () => {
             })}
             placeholder={"Your email"}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && <Error>{errors.email.message}</Error>}
         </div>
         <div>
           <Label>Password</Label>
           <InputStyled
+            className={serverError ? "error" : ""}
             {...register("password", {
               required: true,
               validate: (value: string) => {
@@ -74,16 +75,21 @@ export const SignInForm = () => {
               },
             })}
             placeholder={"Your password"}
+            type="password"
           />
-          {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && <Error>{errors.password.message}</Error>}
+          {serverError && <Error className={"server-errors"}>{serverError}</Error>}
         </div>
+        <CustomLink className="password" to={`${ROUTE.RESET_PASSWORD}`}>
+          Forgot password?
+        </CustomLink>
       </InputSection>
 
       <Button type="submit" className="primary">
         Sign in
       </Button>
       <Text>
-        Don't have an account? <CustomNavLink to={`${ROUTE.SIGN_UP}`}>Sign Up</CustomNavLink>
+        Don't have an account? <CustomLink to={`${ROUTE.SIGN_UP}`}>Sign Up</CustomLink>
       </Text>
     </SignInFormStyled>
   );

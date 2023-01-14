@@ -1,7 +1,8 @@
-import { ResetPasswordFormStyled, SuccessfulResetText } from "./styles";
-import { Button, InputStyled, Label, ServerError } from "components";
+import { ResetPasswordFormStyled, SuccessfulResetText, Title } from "./styles";
+import { Button, CustomLink, InputStyled, Label, ServerError } from "components";
 import { resetPassword, useTypedDispatch, useTypedSelector } from "store";
 import { useState } from "react";
+import { ROUTE } from "router";
 
 export const ResetPasswordForm = () => {
   const dispatch = useTypedDispatch();
@@ -20,21 +21,23 @@ export const ResetPasswordForm = () => {
       }}
     >
       {error && <ServerError text={error} />}
-      <h1>Reset password</h1>
+      <Title>Reset password</Title>
       {isResetFinished && !error && (
         <SuccessfulResetText>
-          {`You will receive an email ${email} with a link to reset your password!`}
+          {`You will receive an email ${email} with a link to reset your password! Return to `}
+          <CustomLink to={`${ROUTE.SIGN_IN}`}>Sign In</CustomLink>
         </SuccessfulResetText>
       )}
-      <Label>Email</Label>
-      <InputStyled
-        placeholder="Email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-        disabled={isFormDisabled}
-      />
-
+      <div>
+        <Label>Email</Label>
+        <InputStyled
+          placeholder="Email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          disabled={isFormDisabled}
+        />
+      </div>
       <Button className="primary" disabled={isFormDisabled}>
         Reset
       </Button>

@@ -41,7 +41,7 @@ export const SettingsForm = () => {
 
   useEffect(() => {
     dispatch(resetChangeSettingsError());
-  }, []);
+  }, [dispatch]);
 
   return (
     <SettingsFormStyled>
@@ -80,6 +80,7 @@ export const SettingsForm = () => {
             <Label>New password</Label>
             <InputStyled
               placeholder="New password"
+              type="password"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -89,7 +90,7 @@ export const SettingsForm = () => {
 
           <div>
             <Label>Confirm password</Label>
-            <InputStyled placeholder="Confirm password" />
+            <InputStyled placeholder="Confirm password" type="password" />
           </div>
         </InputGroup>
       </SettingsFieldset>

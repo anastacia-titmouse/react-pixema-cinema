@@ -1,5 +1,10 @@
 import { ResetPasswordForm } from "../../components/ResetPasswordForm/ResetPasswordForm";
+import { ResetPasswordPageStyled } from "./styles";
 
 export const ResetPasswordPage = () => {
-  return <ResetPasswordForm />;
+  return (
+    <ResetPasswordPageStyled>
+      <ResetPasswordForm />;
+    </ResetPasswordPageStyled>
+  );
 };

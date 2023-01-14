@@ -1,9 +1,10 @@
 import { SignInForm } from "components";
+import { SignInPageStyled } from "./styles";
 
 export const SignInPage = () => {
   return (
-    <div>
+    <SignInPageStyled>
       <SignInForm />
-    </div>
+    </SignInPageStyled>
   );
 };

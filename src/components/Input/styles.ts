@@ -20,7 +20,6 @@ export const InputStyled = styled.input`
   }
 
   &.error {
-    color: ${Color.Error};
     border-color: ${Color.Error};
   }
 

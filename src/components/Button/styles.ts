@@ -36,6 +36,7 @@ export const ButtonStyled = styled.button`
 
   &.primary {
     background-color: ${Color.Primary};
+    color: ${Color.White};
 
     &:hover {
       background-color: ${Color.Primary_Light};

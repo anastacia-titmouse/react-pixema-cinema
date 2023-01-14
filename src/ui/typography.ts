@@ -60,6 +60,13 @@ export const S1_3 = css`
   font-family: "Exo2 Regular", sans-serif;
 `;
 
+export const S1_4 = css`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Exo2 Regular", sans-serif;
+`;
+
 export const B = css`
   font-family: "Exo2 Regular", sans-serif;
   font-weight: 400;

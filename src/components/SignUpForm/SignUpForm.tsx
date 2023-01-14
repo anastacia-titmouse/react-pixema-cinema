@@ -1,8 +1,8 @@
-import { Button, CustomNavLink, InputStyled, Label } from "components";
+import { Button, CustomLink, InputStyled, Label } from "components";
 import { useForm } from "react-hook-form";
 import { ROUTE } from "router";
 import { registerUser, useTypedDispatch, useTypedSelector } from "store";
-import { SignUpFormStyled, Title, Text, InputSection } from "./styles";
+import { SignUpFormStyled, Title, Text, InputSection, Error } from "./styles";
 
 interface ISignUpFormData {
   name: string;
@@ -28,12 +28,12 @@ export const SignUpForm = () => {
 
   return (
     <SignUpFormStyled onSubmit={handleSubmit(onSubmit)}>
-      {serverError && <span className={"server-errors"}>{serverError}</span>}
       <Title>Sign up</Title>
       <InputSection>
         <div>
           <Label>Name</Label>
           <InputStyled
+            className={errors.name ? "error" : ""}
             {...register("name", {
               validate: (value) => {
                 if (!value) {
@@ -45,11 +45,12 @@ export const SignUpForm = () => {
             })}
             placeholder={"Your name"}
           />
-          {errors.name && <span>{errors.name.message}</span>}
+          {errors.name && <Error>{errors.name.message}</Error>}
         </div>
         <div>
           <Label>Email</Label>
           <InputStyled
+            className={errors.name ? "error" : ""}
             {...register("email", {
               required: true,
               validate: (value: string) => {
@@ -67,11 +68,12 @@ export const SignUpForm = () => {
             })}
             placeholder={"Your email"}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && <Error>{errors.email.message}</Error>}
         </div>
         <div>
           <Label>Password</Label>
           <InputStyled
+            className={errors.name ? "error" : ""}
             {...register("password", {
               required: true,
               validate: (value: string) => {
@@ -83,23 +85,26 @@ export const SignUpForm = () => {
               },
             })}
             placeholder={"Your password"}
+            type="password"
           />
-          {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && <Error>{errors.password.message}</Error>}
+          {serverError && <Error className={"server-errors"}>{serverError}</Error>}
         </div>
         <div>
           <Label>Confirm password</Label>
           <InputStyled
+            className={errors.name ? "error" : ""}
             {...register("confirmPassword", {
               required: true,
               validate: (value) => {
                 if (watch("password") !== value) {
-                  return "Your passwords do no match";
+                  return "Your passwords do not match";
                 }
               },
             })}
             placeholder={"Confirm password"}
           />
-          {errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
+          {errors.confirmPassword && <Error>{errors.confirmPassword.message}</Error>}
         </div>
       </InputSection>
 
@@ -107,7 +112,7 @@ export const SignUpForm = () => {
         Sign up
       </Button>
       <Text>
-        Already have an account? <CustomNavLink to={`${ROUTE.SIGN_IN}`}>Sign In</CustomNavLink>
+        Already have an account? <CustomLink to={`${ROUTE.SIGN_IN}`}>Sign In</CustomLink>
       </Text>
     </SignUpFormStyled>
   );

@@ -36,6 +36,7 @@ export * from "./ServerError/ServerError";
 export * from "./BurgerButton/BurgerButton";
 export * from "./EmptyResult/EmptyResult";
 export * from "./LinkIcon/LinkIcon";
+export * from "./CustomLink/CustomLink";
 
 export {
   MovieCard,
