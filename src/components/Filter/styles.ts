@@ -48,10 +48,13 @@ export const FilterStyled = styled.div`
 
   ${Media.Tablet} {
     width: 100%;
+    padding: 48px;
   }
 
   ${Media.Mobile} {
+    grid-template-rows: min-content min-content min-content;
     width: 100%;
+    padding: 48px;
   }
 `;
 
