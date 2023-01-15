@@ -6,7 +6,7 @@ import { ROUTE } from "router";
 import { UserSettingsButton } from "components";
 import { Popover } from "@mui/material";
 
-export const UserSettings = () => {
+export const UserProfile = () => {
   const isAuth = useTypedSelector((state) => state.user.isAuth);
   const username = useTypedSelector((state) => state.user.name);
   const navigate = useNavigate();

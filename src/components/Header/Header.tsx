@@ -1,6 +1,6 @@
 import { PixemaIcon, PixemaLightIcon } from "assets";
 import { Search, BurgerButton } from "components";
-import { UserSettings } from "components";
+import { UserProfile } from "components";
 import { HeaderStyled, LogoStyled } from "./style";
 import { useNavigate } from "react-router-dom";
 import { ROUTE } from "router";
@@ -24,7 +24,7 @@ export const Header = () => {
         {darkThemeStore ? <PixemaIcon /> : <PixemaLightIcon />}
       </LogoStyled>
       <Search />
-      {width && width <= 1280 ? <BurgerButton /> : <UserSettings />}
+      {width && width <= 1280 ? <BurgerButton /> : <UserProfile />}
     </HeaderStyled>
   );
 };
