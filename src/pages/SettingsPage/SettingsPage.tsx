@@ -1,5 +1,10 @@
 import { SettingsForm } from "components";
+import { SettingsPageStyled } from "./styles";
 
 export const SettingsPage = () => {
-  return <SettingsForm />;
+  return (
+    <SettingsPageStyled>
+      <SettingsForm />;
+    </SettingsPageStyled>
+  );
 };

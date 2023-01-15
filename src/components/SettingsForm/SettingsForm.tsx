@@ -2,7 +2,7 @@ import { Switch, InputStyled, Label, Button, ServerError } from "components";
 import {
   ButtonGroup,
   Caption,
-  Header2,
+  Header,
   InputGroup,
   SettingsFieldset,
   SettingsFormStyled,
@@ -46,63 +46,69 @@ export const SettingsForm = () => {
   return (
     <SettingsFormStyled>
       <ServerError text={changeSettingsError}></ServerError>
-      <Header2>Profile</Header2>
-      <SettingsFieldset>
-        <InputGroup>
-          <div>
-            <Label>Name</Label>
-            <InputStyled
-              placeholder="Name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-          </div>
+      <div>
+        <Header>Profile</Header>
+        <SettingsFieldset>
+          <InputGroup>
+            <div>
+              <Label>Name</Label>
+              <InputStyled
+                placeholder="Name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
 
-          <div>
-            <Label>Email</Label>
-            <InputStyled
-              placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </div>
-        </InputGroup>
-      </SettingsFieldset>
+            <div>
+              <Label>Email</Label>
+              <InputStyled
+                placeholder="Email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </div>
+          </InputGroup>
+        </SettingsFieldset>
+      </div>
 
-      <Header2>Password</Header2>
-      <SettingsFieldset>
-        <InputGroup>
-          <div>
-            <Label>New password</Label>
-            <InputStyled
-              placeholder="New password"
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-          </div>
+      <section>
+        <Header>Password</Header>
+        <SettingsFieldset>
+          <InputGroup>
+            <div>
+              <Label>New password</Label>
+              <InputStyled
+                placeholder="New password"
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </div>
 
-          <div>
-            <Label>Confirm password</Label>
-            <InputStyled placeholder="Confirm password" type="password" />
-          </div>
-        </InputGroup>
-      </SettingsFieldset>
+            <div>
+              <Label>Confirm password</Label>
+              <InputStyled placeholder="Confirm password" type="password" />
+            </div>
+          </InputGroup>
+        </SettingsFieldset>
+      </section>
 
-      <Header2>Color mode</Header2>
-      <ThemeSettingFieldset>
-        <div>
-          <Label style={{ display: "inline-block" }}>Dark</Label>
-          <Caption>Use dark theme</Caption>
-        </div>
-        <Switch checked={useDarkTheme} onChange={() => setUseDarkTheme(!useDarkTheme)} />
-      </ThemeSettingFieldset>
+      <section>
+        <Header>Color mode</Header>
+        <ThemeSettingFieldset>
+          <div>
+            <Label style={{ display: "inline-block" }}>Dark</Label>
+            <Caption>Use dark theme</Caption>
+          </div>
+          <Switch checked={useDarkTheme} onChange={() => setUseDarkTheme(!useDarkTheme)} />
+        </ThemeSettingFieldset>
+      </section>
       <ButtonGroup>
         <Button
           onClick={(e) => {

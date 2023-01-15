@@ -30,7 +30,14 @@ export const router = createBrowserRouter(
         />
         <Route path={ROUTE.TRENDS} element={<TrendsPage />} />
         <Route path={ROUTE.SEARCH} element={<SearchPage />} />
-        <Route path={ROUTE.SETTINGS} element={<SettingsPage />} />
+        <Route
+          path={ROUTE.SETTINGS}
+          element={
+            <ProtectedRoute protectFrom={ProtectFrom.anon} redirectTo={`${ROUTE.SIGN_IN}`}>
+              <SettingsPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path={ROUTE.MOVIE_DETAILS} element={<MovieDetailsPage />} />
       </Route>
       <Route element={<AuthTemplate />}>
