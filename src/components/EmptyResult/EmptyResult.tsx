@@ -4,7 +4,7 @@ export const EmptyResult = () => {
   return (
     <EmptyResultStyled>
       <Image />
-      <Title>There'snothing here, yet!</Title>
+      <Title>There's nothing here, yet!</Title>
     </EmptyResultStyled>
   );
 };

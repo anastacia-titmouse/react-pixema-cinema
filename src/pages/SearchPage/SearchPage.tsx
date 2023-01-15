@@ -1,5 +1,5 @@
 import { loadMoreMovies, useTypedDispatch, useTypedSelector } from "store";
-import { MoviesList, ShowMoreButton } from "components";
+import { EmptyResult, MoviesList, ShowMoreButton } from "components";
 
 export const SearchPage = () => {
   const dispatch = useTypedDispatch();
@@ -11,15 +11,17 @@ export const SearchPage = () => {
 
   return (
     <div>
-      <MoviesList movies={movies} />
-      {isShowMoreButtonVisible && (
-        <ShowMoreButton
-          disabled={isLoading}
-          onClick={() => {
-            dispatch(loadMoreMovies());
-          }}
-        />
-      )}
-    </div>
-  );
-};
+      {!movies.length ? (
+        <EmptyResult />
+      ) : (
+         <MoviesList movies={movies} />
+      // {isShowMoreButtonVisible && (
+      //   // <ShowMoreButton
+      //   //   disabled={isLoading}
+      //   //   onClick={() => {
+      //   //     dispatch(loadMoreMovies());
+      //   //   }}
+      //   // />
+      // )}
+  );};
+  </div>);

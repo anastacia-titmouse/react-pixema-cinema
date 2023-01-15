@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useTypedDispatch, fetchFavoriteMovies, useTypedSelector } from "store";
 import { EmptyResult, MoviesList } from "components";
+import { FavoritesPageStyled } from "./styles";
 
 export const FavoritesPage = () => {
   const movies = useTypedSelector((state) => state.favorites.movies);
@@ -10,13 +11,13 @@ export const FavoritesPage = () => {
     dispatch(fetchFavoriteMovies());
   }, [dispatch]);
 
-  if (!movies.length) {
-    return <EmptyResult />;
-  }
-
   return (
-    <div className="favorites">
-      <MoviesList movies={movies} showDeleteFromFavorites={true} />
-    </div>
+    <FavoritesPageStyled className="favorites">
+      {!movies.length ? (
+        <EmptyResult />
+      ) : (
+        <MoviesList movies={movies} showDeleteFromFavorites={true} />
+      )}
+    </FavoritesPageStyled>
   );
 };
