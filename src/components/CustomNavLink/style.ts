@@ -1,12 +1,12 @@
 import { NavLink, PathMatch } from "react-router-dom";
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, S1 } from "ui";
 
 export const NavLinkStyled = styled(NavLink)<{ $isActive: PathMatch<string> | null }>`
   display: flex;
   gap: 20px;
   align-items: center;
-  font-size: 18px;
+  ${S1}
   color: ${({ $isActive }) => ($isActive ? `${Color.Primary}` : `${Color.Secondary}`)};
 
   & svg path {

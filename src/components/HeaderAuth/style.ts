@@ -10,4 +10,8 @@ export const HeaderStyled = styled.header`
     justify-content: center;
     padding: 0;
   }
+
+  & svg {
+    cursor: pointer;
+  }
 `;

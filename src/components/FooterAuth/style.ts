@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, S1_4 } from "ui";
 
 export const FooterStyled = styled.footer`
   display: flex;
@@ -8,5 +8,6 @@ export const FooterStyled = styled.footer`
 `;
 
 export const SubTitle = styled.h6`
+  ${S1_4};
   color: ${Color.Light};
 `;

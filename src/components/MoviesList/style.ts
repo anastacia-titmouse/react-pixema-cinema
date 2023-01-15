@@ -6,6 +6,7 @@ export const StyledList = styled.ul`
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 40px;
   width: 100%;
+  grid-area: content;
 
   ${Media.Desktop_L} {
     grid-template-columns: repeat(3, 1fr);
