@@ -10,6 +10,10 @@ export const SingleMovieViewStyled = styled.div`
   grid-row-gap: 56px;
   grid-column-gap: 42px;
 
+  ${Media.Tablet} {
+    grid-template-rows: min-content 1fr 350px;
+  }
+
   ${Media.Mobile} {
     grid-template-areas: "poster " "info" "info" "recommendations";
   }

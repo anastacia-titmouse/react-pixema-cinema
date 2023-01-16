@@ -29,6 +29,9 @@ export const Content = styled.div`
 
   ${Media.Tablet} {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-flow: row;
+  }
+
+  ${Media.Mobile} {
+    grid-template-columns: 1fr;
   }
 `;
