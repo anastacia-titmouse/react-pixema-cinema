@@ -1,11 +1,6 @@
 import { Icon, PgBadgeStyled } from "./styles";
 import { PgRating } from "types";
-import pgGImg from "assets/pgIcons/g.png";
-import pgNc17 from "assets/pgIcons/nc17.png";
-import pgNotRated from "assets/pgIcons/not-rated.png";
-import pg13 from "assets/pgIcons/pg13.png";
-import pgPg from "assets/pgIcons/pg.png";
-import pgR from "assets/pgIcons/r.png";
+import { pg13, pgGImg, pgNc17, pgNotRated, pgPg, pgR } from "assets";
 
 const renderPgIcon = (rating: PgRating) => {
   switch (rating) {

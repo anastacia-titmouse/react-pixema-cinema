@@ -12,6 +12,5 @@ export const AuthTemplateStyled = styled.div`
   overflow: auto;
   padding-bottom: 40px;
   background-size: cover;
-  //https://stackoverflow.com/questions/47196800/reactjs-and-images-in-public-folder
   background: ${bg1}, ${bg2}, no-repeat url(${process.env.PUBLIC_URL + "/background.png"}), ${bg3};
 `;

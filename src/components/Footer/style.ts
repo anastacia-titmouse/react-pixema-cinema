@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Color } from "ui";
-import { INPUT } from "ui/typography";
+import { Color, INPUT } from "ui";
 
 export const FooterStyled = styled.footer`
   grid-area: footer;

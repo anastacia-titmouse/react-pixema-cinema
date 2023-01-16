@@ -16,8 +16,8 @@ export const SingleMovieViewStyled = styled.div`
   }
 
   ${Media.Mobile} {
-    grid-template-columns: 266px 1fr;
     grid-template-areas: "poster " "info" "info" "recommendations";
+    grid-template-columns: 1fr;
   }
 `;
 

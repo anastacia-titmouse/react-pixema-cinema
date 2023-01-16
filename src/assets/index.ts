@@ -12,6 +12,12 @@ import { LinkIcon } from "../components/LinkIcon/LinkIcon";
 import { ReactComponent as BurgerIcon } from "./icons/burger.svg";
 import { ReactComponent as PixemaLightIcon } from "./icons/logo.svg";
 import empty from "./images/empty-result.png";
+import pgGImg from "./pgIcons/g.png";
+import pgNc17 from "./pgIcons/nc17.png";
+import pgNotRated from "./pgIcons/not-rated.png";
+import pg13 from "./pgIcons/pg13.png";
+import pgPg from "./pgIcons/pg.png";
+import pgR from "./pgIcons/r.png";
 
 export {
   HomeIcon,
@@ -28,4 +34,10 @@ export {
   BurgerIcon,
   PixemaLightIcon,
   empty,
+  pgGImg,
+  pgNc17,
+  pgNotRated,
+  pg13,
+  pgPg,
+  pgR,
 };

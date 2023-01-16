@@ -1,6 +1,5 @@
 import { StylesConfig } from "react-select";
-import { Color } from "ui";
-import { INPUT_CSS_OBJECT } from "ui/typography";
+import { Color, INPUT_CSS_OBJECT } from "ui";
 import { ICustomSelectOption } from "./CustomSelect";
 
 export const selectStyles: StylesConfig<ICustomSelectOption> = {
