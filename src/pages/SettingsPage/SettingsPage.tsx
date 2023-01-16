@@ -4,7 +4,7 @@ import { SettingsPageStyled } from "./styles";
 export const SettingsPage = () => {
   return (
     <SettingsPageStyled>
-      <SettingsForm />;
+      <SettingsForm />
     </SettingsPageStyled>
   );
 };

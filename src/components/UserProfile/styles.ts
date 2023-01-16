@@ -25,10 +25,10 @@ export const UserSettingButton = styled.button`
   font-family: "Exo2 Regular", sans-serif;
   font-weight: 500;
   font-size: 16px;
-  background-color: ${Color.Dark};
+  background-color: ${Color.Primary_BG};
   outline: none;
   border: none;
-  color: ${Color.White};
+  color: ${Color.Primary_TEXT};
 
   &:hover {
     color: ${Color.Primary_Light};

@@ -32,7 +32,7 @@ export const Header = styled.h2`
 `;
 
 export const SettingsFieldset = styled.fieldset`
-  background-color: ${Color.Dark};
+  background-color: ${Color.Primary_FORM_BG};
   border: none;
   border-radius: 10px;
   padding: 40px;

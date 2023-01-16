@@ -10,6 +10,7 @@ export const linkStyle: CSSProperties = {
 
 export const MovieCardWrapper = styled.li`
   position: relative;
+  list-style-type: none;
 `;
 
 export const MovieCardStyled = styled.div`
@@ -56,7 +57,7 @@ export const DeleteButton = styled.button`
   right: 20px;
   width: 30px;
   height: 30px;
-  background-color: ${Color.Graphite};
+  background-color: ${Color.Primary_BG};
   border: none;
   border-radius: 10px;
   padding: 0;
