@@ -22,6 +22,6 @@ export const MovieDetailsPage = () => {
   if (movie) {
     return <SingleMovieView movie={movie} />;
   } else {
-    return null; //TODO not found error
+    return null;
   }
 };

@@ -11,10 +11,12 @@ export const SingleMovieViewStyled = styled.div`
   grid-column-gap: 42px;
 
   ${Media.Tablet} {
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: min-content 1fr 350px;
   }
 
   ${Media.Mobile} {
+    grid-template-columns: 266px 1fr;
     grid-template-areas: "poster " "info" "info" "recommendations";
   }
 `;
