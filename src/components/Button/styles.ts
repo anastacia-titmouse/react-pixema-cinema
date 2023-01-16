@@ -64,6 +64,15 @@ export const ButtonStyled = styled.button`
       fill: ${Color.Primary_TEXT};
       stroke: ${Color.Primary_TEXT};
     }
+
+    &.is-mobile-menu-open {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      top: 5px;
+      right: 5px;
+      z-index: 999;
+    }
   }
 
   &:disabled {

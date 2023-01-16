@@ -8,7 +8,7 @@ export const BurgerButton = () => {
 
   return (
     <Button
-      className="grid"
+      className={`grid${isMobileMenuOpen ? " is-mobile-menu-open" : ""}`}
       style={{ padding: 0 }}
       onClick={() => {
         dispatch(setIsOpen(!isMobileMenuOpen));

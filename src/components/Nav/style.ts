@@ -26,6 +26,17 @@ export const NavStyled = styled.nav`
       padding: 0 32px;
     }
   }
+
+  ${Media.Mobile} {
+    &.is-open {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      background-color: ${Color.Primary_BG};
+    }
+  }
 `;
 
 export const Button = styled.button`
