@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color, H2 } from "ui";
+import { Color, H2, Media } from "ui";
 
 export const RecommendationsStyled = styled.div``;
 
@@ -25,5 +25,10 @@ export const RecommendationsButtonGroup = styled.div`
 export const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 40px;
+  grid-column-gap: 40px;
+
+  ${Media.Tablet} {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: row;
+  }
 `;

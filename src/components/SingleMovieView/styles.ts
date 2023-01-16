@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Color, H1 } from "ui";
-import { INPUT } from "../../ui/typography";
+import { Color, H1, INPUT, Media } from "ui";
 
 export const SingleMovieViewStyled = styled.div`
   min-height: 100%;
@@ -10,6 +9,10 @@ export const SingleMovieViewStyled = styled.div`
   grid-template-rows: 1fr 1fr 509px;
   grid-row-gap: 56px;
   grid-column-gap: 42px;
+
+  ${Media.Mobile} {
+    grid-template-areas: "poster " "info" "info" "recommendations";
+  }
 `;
 
 export const PosterAndCtrlWrapper = styled.div`
@@ -58,6 +61,10 @@ export const MovieDetails = styled.div`
   grid-row-gap: 20px;
   color: ${Color.Primary_TEXT};
   ${INPUT}
+
+  ${Media.Tablet} {
+    grid-row-gap: 10px;
+  }
 `;
 
 export const RecommendationsWrapper = styled.div`

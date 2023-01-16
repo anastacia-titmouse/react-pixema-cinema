@@ -12,7 +12,7 @@ export const EmptyResultStyled = styled.div`
 export const Image = styled.div`
   width: 400px;
   height: 400px;
-  margin-top: 150px;
+  margin: 100px auto;
   background: url(${empty}) center no-repeat;
   background-size: contain;
 

@@ -1,5 +1,5 @@
 import { ShowMoreButtonWrapper } from "./styles";
-import { Button } from "../Button/Button";
+import { Button } from "components";
 
 export const ShowMoreButton = ({
   disabled,

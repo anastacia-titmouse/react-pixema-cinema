@@ -1,6 +1,6 @@
 import { RecommendationsStyled, Header, RecommendationsButtonGroup, Content } from "./styles";
 import { Button, MovieCard } from "components";
-import { IMovie } from "../../types";
+import { IMovie } from "types";
 import { useEffect, useState } from "react";
 
 const hardcodedRecommendationMovies: IMovie[] = [
@@ -80,7 +80,6 @@ const hardcodedRecommendationMovies: IMovie[] = [
 
 /**
  * Stub. API does not support recommendations for movie.
- * @constructor
  */
 export const Recommendations = () => {
   const [page, setPage] = useState(1);

@@ -11,17 +11,15 @@ export const SearchPage = () => {
 
   return (
     <div>
-      {!movies.length ? (
-        <EmptyResult />
-      ) : (
-         <MoviesList movies={movies} />
-      // {isShowMoreButtonVisible && (
-      //   // <ShowMoreButton
-      //   //   disabled={isLoading}
-      //   //   onClick={() => {
-      //   //     dispatch(loadMoreMovies());
-      //   //   }}
-      //   // />
-      // )}
-  );};
-  </div>);
+      {!movies.length ? <EmptyResult /> : <MoviesList movies={movies} />}
+      {isShowMoreButtonVisible && (
+        <ShowMoreButton
+          disabled={isLoading}
+          onClick={() => {
+            dispatch(loadMoreMovies());
+          }}
+        />
+      )}
+    </div>
+  );
+};
